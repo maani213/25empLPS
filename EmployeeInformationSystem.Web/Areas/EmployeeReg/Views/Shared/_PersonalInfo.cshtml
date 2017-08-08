@@ -1,0 +1,143 @@
+﻿@model EmployeeInformationSystem.Model.EmployeeRegistrationInfo
+
+@using (Html.BeginForm("PersonalInfo", "Profile", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">First Name</label>
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Father's Name</label>
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Father's Name" } })
+                    @Html.ValidationMessageFor(model => model.FatherName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Date of Birth</label>
+                <div class="col-sm-9">
+                    <div data-min-view="2" data-date-format="dd MM yyyy" class="input-group date datetimepicker">
+                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "background-color: white;" } })
+                        <span class="input-group-addon btn btn-primary"><i class="icon-th mdi mdi-calendar"></i></span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DateOfBirth)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Personal Email</label>
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.PersonalEmail, new { htmlAttributes = new { @class = "form-control", @placeholder = "Personal Email" } })
+                    @Html.ValidationMessageFor(model => model.PersonalEmail)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Present Address</label>
+                <div class="col-sm-9">
+                    @Html.TextAreaFor(model => model.PresentAddress, new { @class = "form-control", @rows = 3, @style = "resize: none;" })
+                    @Html.ValidationMessageFor(model => model.PresentAddress)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Marital Status</label>
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(m => m.MaritalStatus,
+                   new List<SelectListItem>{
+                       new SelectListItem{ Text="Single", Value="Single"},
+                       new SelectListItem{ Text="Married", Value="Married"}
+
+                   }, "-- Select --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MaritalStatus)
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Last Name</label>
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">CNIC</label>
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.CNIC, new { htmlAttributes = new { @class = "form-control", @placeholder = "CNIC" } })
+                    @Html.ValidationMessageFor(model => model.CNIC)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Cell #</label>
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.CellNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Cell #" } })
+                    @Html.ValidationMessageFor(model => model.CellNumber)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Residence Phone #</label>
+                <div class="col-sm-9">
+                    @Html.EditorFor(model => model.ResidencePhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Residence Phone #" } })
+                    @Html.ValidationMessageFor(model => model.ResidencePhoneNumber)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Permanent Address</label>
+                <div class="col-sm-9">
+                    @Html.TextAreaFor(model => model.PermanentAddress, new { @class = "form-control", @rows = 3, @style = "resize: none;" })
+                    @Html.ValidationMessageFor(model => model.PermanentAddress)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Total Experience</label>
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Year(s)</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(model => model.ExperienceYears, Enumerable.Range(0, 15).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "-- Select --", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ExperienceYears)
+                            <br />
+                        </div>
+
+                        <label class="col-sm-2 control-label">Month(s)</label>
+                        <div class="col-sm-4">
+                            @Html.DropDownListFor(model => model.ExperienceMonths, Enumerable.Range(0, 11).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "-- Select --", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ExperienceMonths)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-sm-3 control-label"></label>
+                <div class="col-sm-9">
+                    <button class="btn btn-space btn-success" type="submit">
+                        <i class="icon icon-left mdi mdi-arrow-right"></i>
+                        Next Step
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,94 @@
+﻿@model EmployeeInformationSystem.Model.RegistrationViewModel
+
+@*Married employee wizard progress start*@
+@if (Model.employeeRegistrationInfo.MaritalStatus == "Married")
+{
+    if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsDocumentsUploaded == true && Model.accountCheckListInfo.IsPictureUploaded == true && Model.familyMembersList.Count() > 0)
+    {
+        <div class="progress">
+            <div style="width: 100%" class="progress-bar progress-bar-primary progress-bar-striped active">100% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsPictureUploaded == true && Model.familyMembersList.Count() > 0)
+    {
+        <div class="progress">
+            <div style="width: 70%" class="progress-bar progress-bar-primary progress-bar-striped active">70% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsDocumentsUploaded && Model.accountCheckListInfo.IsPictureUploaded == true)
+    {
+        <div class="progress">
+            <div style="width: 80%" class="progress-bar progress-bar-primary progress-bar-striped active">80% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsPictureUploaded == true)
+    {
+        <div class="progress">
+            <div style="width: 50%" class="progress-bar progress-bar-primary progress-bar-striped active">50% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsDocumentsUploaded == true && Model.familyMembersList.Count() > 0)
+    {
+        <div class="progress">
+            <div style="width: 80%" class="progress-bar progress-bar-primary progress-bar-striped active">80% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsDocumentsUploaded == true)
+    {
+        <div class="progress">
+            <div style="width: 60%" class="progress-bar progress-bar-primary progress-bar-striped active">60% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.familyMembersList.Count() > 0)
+    {
+        <div class="progress">
+            <div style="width: 50%" class="progress-bar progress-bar-primary progress-bar-striped active">50% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true)
+    {
+        <div class="progress">
+            <div style="width: 30%" class="progress-bar progress-bar-primary progress-bar-striped active">30% Complete</div>
+        </div>
+    }
+    else
+    {
+        <div class="progress">
+            <div style="width: 0%" class="progress-bar progress-bar-primary progress-bar-striped active">0% Complete</div>
+        </div>
+    }
+    @*Married employee wizard progress end*@
+}
+else
+{
+    if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsDocumentsUploaded == true && Model.accountCheckListInfo.IsPictureUploaded == true)
+    {
+        <div class="progress">
+            <div style="width: 100%" class="progress-bar progress-bar-primary progress-bar-striped active">100% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsDocumentsUploaded == true)
+    {
+        <div class="progress">
+            <div style="width: 90%" class="progress-bar progress-bar-primary progress-bar-striped active">90% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true && Model.accountCheckListInfo.IsPictureUploaded == true)
+    {
+        <div class="progress">
+            <div style="width: 60%" class="progress-bar progress-bar-primary progress-bar-striped active">60% Complete</div>
+        </div>
+    }
+    else if (Model.accountCheckListInfo.IsPersonalInfoProvided == true)
+    {
+        <div class="progress">
+            <div style="width: 50%" class="progress-bar progress-bar-primary progress-bar-striped active">50% Complete</div>
+        </div>
+    }
+    else
+    {
+        <div class="progress">
+            <div style="width: 0%" class="progress-bar progress-bar-primary progress-bar-striped active">0% Complete</div>
+        </div>
+    }
+}

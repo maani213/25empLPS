@@ -1,0 +1,67 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.MedicalAllowanceInfo>
+
+@{
+    ViewBag.Title = "Allowance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Allowance</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <a href="@Url.Action("CreateAllowance", "Medical")" class="btn btn-space btn-success">
+                                    Create
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="panel panel-border-color panel-border-color-warning">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Category</td>
+                                        <td>Rs @item.Amount</td>
+                                        <td>
+                                            @using (Html.BeginForm("DeleteAllowance", "Medical", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.Hidden("id", item.Id)
+
+                                                <a href="@Url.Action("UpdateAllowance", "Medical", new { id = item.Id})">
+                                                    <i class="icon icon-left mdi mdi-edit"></i>
+                                                    Edit
+                                                </a><span>&nbsp;|&nbsp;</span>
+
+                                                <button type="submit" onclick="return confirm('Are you sure want to delete this Allowance?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                    <i class="icon icon-left mdi mdi-delete"></i>
+                                                    Delete
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

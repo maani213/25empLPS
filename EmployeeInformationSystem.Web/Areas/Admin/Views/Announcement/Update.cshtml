@@ -1,0 +1,63 @@
+﻿@model EmployeeInformationSystem.Model.AnnouncementInfo
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Update Announcement</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6 col-md-push-3">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @using (Html.BeginForm("Update", "Announcement", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(x => x.Id)
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Title</label>
+                                                <div class="col-sm-9">
+                                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "" } })
+                                                    @Html.ValidationMessageFor(model => model.Title)
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Description</label>
+                                                <div class="col-sm-9">
+                                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 8, @style = "resize: none;" })
+                                                    @Html.ValidationMessageFor(model => model.Description)
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label"></label>
+                                                <div class="col-sm-9">
+                                                    <button class="btn btn-space btn-success" type="submit">
+                                                        Update
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

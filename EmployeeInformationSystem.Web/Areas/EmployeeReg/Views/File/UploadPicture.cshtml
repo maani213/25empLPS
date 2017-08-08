@@ -1,0 +1,165 @@
+﻿@model EmployeeInformationSystem.Model.RegistrationViewModel
+
+@{
+    ViewBag.Title = "Upload Picture";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#finish-btn").click(function () {
+            $.ajax({
+                url: '@Url.Action("ReviewInfo", "File")',
+                type: 'GET',
+                cache: false,
+
+                success: function (result) {
+                    $('#review-info-container').html(result);
+                    $("#review-info").modal('show');
+                },
+
+                failure: function (error) {
+                    alert("Something went wrong, please try again later.")
+                }
+            });
+        });
+    });
+</script>
+
+<style type="text/css">
+    .activetab {
+        color: #fff !important;
+        background: #4285f4 !important;
+    }
+
+    .activetabchevron {
+        border: 24px solid transparent;
+        border-left: 14px solid #4285f4;
+        border-right: 0;
+        display: block;
+        position: absolute;
+        right: -14px;
+        top: 0;
+        z-index: 1;
+    }
+</style>
+
+<div class="main-content container-fluid">
+    <div class="row wizard-row">
+        <div class="col-md-12 fuelux">
+            <div class="block-wizard panel panel-default">
+                <div id="wizard1" class="wizard wizard-ux no-steps-container">
+                    @if (Model.accountCheckListInfo != null)
+                    {
+                        @Html.Partial("_WizardProgress", Model)
+
+                        <ul class="steps" style="margin-left: 0">
+                            <li data-step="1" class="active">Personal Info<span class="chevron"></span></li>
+                            @if (Model.employeeRegistrationInfo.MaritalStatus == "Married")
+                            {
+                                <li data-step="2" class="active">Family Details<span class="chevron"></span></li>
+                            }
+                            <li data-step="3" class="active">Upload Documents<span class="chevron"></span></li>
+                            <li data-step="4" class="activetab">Upload Picture<span class="activetabchevron"></span></li>
+                        </ul>
+                        <div class="step-content">
+                            <div data-step="4" class="step-pane active">
+                                @Html.Raw(TempData["Msg"])
+
+                                @if (Model.accountCheckListInfo.IsPictureUploaded == false)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-push-3">
+                                            <h4 class="xs-mb-20"><b>Upload Picture</b></h4>
+                                            <div class="panel panel-border-color panel-border-color-warning">
+                                                @using (Html.BeginForm("UploadPicture", "File", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;", @id = "include-form" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">Picture</label>
+                                                        <div class="col-sm-7">
+                                                            <input type="file" name="file" id="file" class="form-control">
+                                                        </div>
+                                                        <div class="col-sm-3">
+                                                            <button type="submit" class="btn btn-space btn-primary">
+                                                                <i class="icon icon-left mdi mdi mdi-upload"></i>
+                                                                Upload
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align:center;">
+                                            @{
+                                                string imgPath = Url.Content("~/Content/Employee_pictures/" + Model.employeeRegistrationInfo.AccountId + ".jpg");
+                                            }
+                                            <img src="@imgPath" class="img-circle" style="border: solid thin;" width="200" height="200" />
+                                            <br /><br />
+
+                                            @using (Html.BeginForm("ChangePicture", "File", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <button class="btn btn-primary btn-space" type="submit">
+                                                    <i class="icon icon-left mdi mdi-camera"></i>
+                                                    Change Picture
+                                                </button>
+                                            }
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                                }
+                                <br />
+                                <br />
+
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align:center;">
+                                        <a href="@Url.Action("UploadDocuments", "File")" class="btn btn-primary btn-space">
+                                            <i class="icon icon-left mdi mdi-arrow-left"></i> &nbsp;
+                                            Previous
+                                        </a>
+
+                                        @if (Model.accountCheckListInfo.IsPictureUploaded == true)
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <button class="btn btn-success btn-space" id="finish-btn" type="button">
+                                                <i class="icon icon-left mdi mdi-check"></i>
+                                                Finish
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-success btn-space disabled" type="button">
+                                                Finish
+                                            </button>
+                                        }
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                }
+                                                else
+                                                {
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="text-align:center;">
+                                                            Something went wrong! please try again later.
+                                                        </div>
+                                                    </div>
+                                                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="review-info-container"></div>
+
+

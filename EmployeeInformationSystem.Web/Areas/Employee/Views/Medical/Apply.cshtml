@@ -1,0 +1,166 @@
+﻿@model EmployeeInformationSystem.Model.MedicalCheckoutInfo
+
+@{
+    ViewBag.Title = "Apply";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    #apply-medical .modal-content {
+        max-width: 100%;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $("#editBtn").click(function (eve) {
+            $("#modal-content").load('@Url.Content("~/Employee/Medical/UpdateCheckout/")' + $(this).data("id"));
+        });
+    });
+</script>
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Apply for Medical</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <br />
+                    <h4 class="xs-mb-20">Medical Details</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br />
+                                        <div class="table-responsive">
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:45%;">Patient Name</li>
+                                                <li class="active" style="width:53%;">@Model.PatientName</li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:45%;">Treatment Date</li>
+                                                <li class="active" style="width:53%;">@Model.TreatmentDate.Value.ToString("dd MMMM yyyy")</li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:45%;">Description</li>
+                                                <li class="active" style="width:53%;">@Model.Description</li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:45%;">Amount</li>
+                                                <li class="active" style="width:53%;">Rs @Model.Amount</li>
+                                            </ol>
+
+                                            <div class="modal-footer" style="text-align:center;">
+                                                <button data-toggle="modal" data-target="#apply-medical" id="editBtn" data-id="@Model.Id" type="button" class="btn btn-primary">Edit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="xs-mb-20">Prescriptions</h4>
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <br />
+                                @using (Html.BeginForm("UploadPrescription", "Medical", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.HiddenFor(x => x.Id)
+                                    @Html.HiddenFor(x => x.EmployeeInfoId)
+                                    @Html.HiddenFor(x => x.EmployeeName)
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Prescription Name</label>
+                                        <div class="col-sm-3">
+                                            @Html.EditorFor(model => model.PrescriptionName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.PrescriptionName)
+                                            <br />
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <input type="file" name="file" id="file" class="form-control">
+                                            <br />
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <button type="submit" class="btn btn-space btn-primary">
+                                                <i class="icon icon-left mdi mdi mdi-upload"></i>
+                                                Upload
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                }
+                                @if (Model.MedicalPrescriptions.Count() > 0)
+                                {
+                                    foreach (var item in Model.MedicalPrescriptions)
+                                    {
+                                        <div class="table-responsive">
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:72%;">@item.FileName</li>
+                                                <li class="active" style="width:25%;">
+                                                    @using (Html.BeginForm("DeletePrescription", "Medical", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                    {
+                                                        @Html.AntiForgeryToken()
+                                                        @Html.Hidden("PrescriptionId", item.Id)
+                                                        <button type="submit" onclick="return confirm('Are you sure want to delete this prescription?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                            <i class="icon icon-left mdi mdi-delete"></i>
+                                                            Delete
+                                                        </button>
+                                                    }
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    }
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align:center;">
+                                            @using (Html.BeginForm("ApplyMedical", "Medical", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                            {
+                                                @Html.HiddenFor(x => x.Id)
+                                                @Html.AntiForgeryToken()
+                                                <button class="btn btn-success btn-space" type="submit" onclick="return confirm('I certify that the above information is true and correct. \n\n Are you sure want to submit?');">
+                                                    Submit
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h5 class="text-center">Upload Prescription(s)</h5>
+                                    <div style="text-align:center;">
+                                        <button class="btn btn-success btn-space disabled" type="button">
+                                            Submit
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="apply-medical" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+        <div class="modal-dialog modal-lg bs-example">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                    <h3 class="modal-title">Apply For Medical</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

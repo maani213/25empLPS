@@ -1,0 +1,113 @@
+﻿@model EmployeeInformationSystem.Model.NotificationViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-body">
+                    <br /><br />
+
+                    @*<div class="row">
+                            <div class="col-md-4">
+                                <h1 style="color: #999999; font-family: verdana, Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bold; text-decoration: none;">Welcome</h1>
+                                <p>
+                                    to the <strong>Admin Services</strong> of the LPS Online.<br />
+                                    Please use the menu given on the left<br />
+                                    panel of the screen to proceed further.
+                                </p>
+                            </div>
+
+                            <div class="col-md-8">
+                                <img src="~/Content/online_banner.jpg" class="img-responsive" alt="No image found" />
+                            </div>
+                        </div>
+                        <br /><br />*@
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="~/Content/beagle_Theme/assets/img/employee_banner.jpg" class="img-responsive" alt="No image found" />
+                        </div>
+                    </div>
+                    <br />
+
+                    @if (Model.PaySlipInfo != null)
+                    {
+                        double diff = (DateTime.Parse(DateTime.Now.ToString("dd MMMM yyyy")) - DateTime.Parse(Model.PaySlipInfo.CreatedDate.Value.ToString("dd MMMM yyyy"))).TotalDays;
+
+                        if (diff <= 2)
+                        {
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div role="alert" class="alert alert-primary alert-icon alert-icon-border alert-dismissible">
+                                        <div class="icon"><span class="mdi mdi-info-outline"></span></div>
+                                        <div class="message">
+                                            <strong>Info!</strong> Your payslip for the month @Model.PaySlipInfo.SalaryDate.ToString("MMMM yyyy") has been created. &nbsp; <a href="@Url.Action("Details", "Salary")"><img src="~/Content/beagle_Theme/assets/img/new_notice.gif" alt="No image found" /></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @if (Model.EmployeesBirthDayList != null && Model.EmployeesBirthDayList.Count() > 0)
+                    {
+                        foreach(var item in Model.EmployeesBirthDayList)
+                        {
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div role="alert" class="alert alert-primary alert-icon alert-icon-border alert-dismissible">
+                                        <div class="icon"><span class="mdi mdi-info-outline"></span></div>
+                                        <div class="message">
+                                            @if (DateTime.Parse(item.DateOfBirth.Value.ToString("dd MMMM")) == DateTime.Parse(DateTime.Now.ToString("dd MMMM")))
+                                            {
+                                                <strong>Info!&nbsp;</strong><span>@item.FirstName&nbsp;@item.LastName celebrating birthday Today.&nbsp;</span><img src="~/Content/beagle_Theme/assets/img/new_notice.gif" alt="No image found" />
+                                            }
+                                            else
+                                            {
+                                                <strong>Info!&nbsp;</strong><span>@item.FirstName&nbsp;@item.LastName celebrates birthday on @item.DateOfBirth.Value.ToString("dd MMMM") @DateTime.Now.Year.&nbsp;</span><img src="~/Content/beagle_Theme/assets/img/new_notice.gif" alt="No image found" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    @if (Model.EmployeeInfo != null)
+                    {
+                        if (Model.EmployeeInfo.DateOfJoin != null && Model.EmployeeInfo.ProbationPeriod != null)
+                        {
+                            double diff = (DateTime.Parse(DateTime.Now.ToString("dd MMMM yyyy")) - DateTime.Parse(Model.EmployeeInfo.DateOfJoin.Value.ToString("dd MMMM yyyy")).AddDays(int.Parse(Model.EmployeeInfo.ProbationPeriod) * 30)).TotalDays;
+
+                            if (diff < 0 && diff >= -7)
+                            {
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div role="alert" class="alert alert-primary alert-icon alert-icon-border alert-dismissible">
+                                            <div class="icon"><span class="mdi mdi-info-outline"></span></div>
+                                            <div class="message">
+                                                @{
+                                                    DateTime joinDate = Convert.ToDateTime(Model.EmployeeInfo.DateOfJoin.Value.ToString("dd MMMM yyyy"));
+                                                }
+                                                <strong>Info!</strong> Your probation period will be completed on @Convert.ToDateTime(joinDate.AddDays(int.Parse(Model.EmployeeInfo.ProbationPeriod) * 30)).ToString("dd MMMM yyyy"). &nbsp; <a href="@Url.Action("GeneralInfo", "Home")"><img src="~/Content/beagle_Theme/assets/img/new_notice.gif" alt="No image found" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                            }
+                                                        }
+                                                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

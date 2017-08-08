@@ -1,0 +1,101 @@
+﻿@model EmployeeInformationSystem.Model.LeaveViewModel
+
+@{
+    ViewBag.Title = "Leave Details";
+
+    int remainingCasualLeaves = 0;
+    int remainingAnnualLeaves = 0;
+
+    if (Model.AnnualLeave != null && Model.CasualLeave != null)
+    {
+        remainingCasualLeaves = Model.CasualLeave.Allowed - Model.CasualLeave.Availed;
+        remainingAnnualLeaves = Model.AnnualLeave.Allowed - Model.AnnualLeave.Availed;
+    }
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Leave Details</div>
+                <div class="panel-body">
+                    <br />
+                    @if (Model.AnnualLeave != null && Model.CasualLeave != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <h4 class="xs-mb-20">Casual Leaves</h4>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Allowed</li>
+                                        <li class="active" style="width:10%;">@Model.CasualLeave.Allowed</li>
+                                    </ol>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Availed</li>
+                                        <li class="active" style="width:10%;">@Model.CasualLeave.Availed</li>
+                                    </ol>
+
+                                    @if (remainingCasualLeaves >= 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #34A853; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@remainingCasualLeaves</li>
+                                        </ol>
+                                    }
+                                    else
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #EA4335; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@remainingCasualLeaves</li>
+                                        </ol>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <h4 class="xs-mb-20">Annual Leaves</h4>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Allowed</li>
+                                        <li class="active" style="width:10%;">@Model.AnnualLeave.Allowed</li>
+                                    </ol>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Availed</li>
+                                        <li class="active" style="width:10%;">@Model.AnnualLeave.Availed</li>
+                                    </ol>
+
+                                    @if (remainingAnnualLeaves >= 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #34A853; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@remainingAnnualLeaves</li>
+                                        </ol>
+                                    }
+                                    else
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #EA4335; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@remainingAnnualLeaves</li>
+                                        </ol>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    }
+                    else
+                    {
+                        <h5 class="text-center">No leave found</h5>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

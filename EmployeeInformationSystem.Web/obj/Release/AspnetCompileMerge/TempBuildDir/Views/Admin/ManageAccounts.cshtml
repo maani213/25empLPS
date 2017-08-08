@@ -1,0 +1,110 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.AccountInfo>
+
+@{
+    ViewBag.Title = "Manage Accounts";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#alert-message').hide();
+        }, 5000);
+    });
+</script>
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Manage Accounts</div>
+                <div class="panel-body">
+                    <br />
+                    @Html.Raw(TempData["Msg"])
+                    <div class="row">
+                        <div class="panel panel-border-color panel-border-color-warning">
+                            <div class="panel panel-default panel-table">
+                                <div class="panel-heading">
+
+                                    <a href="@Url.Action("CreateEmployeeAccount", "Admin")" class="btn btn-space btn-primary">
+                                        <i class="icon icon-left mdi mdi-account-add"></i>
+                                        Create Account
+                                    </a>
+
+                                </div>
+                                <div class="panel-body">
+                                    <div class="table-responsive noSwipe">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:30%">Company Email</th>
+                                                    <th style="width:15%">Role</th>
+                                                    <th style="width:15%">Creation Date</th>
+                                                    <th style="width:15%">Account Status</th>
+                                                    <th style="width:25%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    if (item.RoleName == "Employee")
+                                                    {
+                                                        <tr>
+                                                            <td>@item.CompanyEmail</td>
+                                                            <td>@item.RoleName</td>
+                                                            <td>
+                                                                @if (item.CreatedDate == null)
+                                                                {
+                                                                    <span>Not Available</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @item.CreatedDate.Value.ToString("dd MMMM yyyy")
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                @{
+                                                                    string accountStatus;
+
+                                                                    if (item.IsActive == true)
+                                                                    {
+                                                                        accountStatus = "Active";
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        accountStatus = "Deactive";
+                                                                    }
+                                                                }
+
+                                                                @accountStatus
+                                                            </td>
+
+                                                            <td>
+                                                                <form>
+                                                                    <a href="@Url.Action("UpdateEmployeeAccount", "Admin", new { id = item.Id })" class="btn btn-space btn-default">
+                                                                        <i class="icon icon-left mdi mdi-edit"></i>
+                                                                        Edit
+                                                                    </a>
+
+                                                                    <button type="submit" class="btn btn-space btn-danger">
+                                                                        <i class="icon icon-left mdi mdi-delete"></i>
+                                                                        Delete
+                                                                    </button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                                        }
+                                                                    }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

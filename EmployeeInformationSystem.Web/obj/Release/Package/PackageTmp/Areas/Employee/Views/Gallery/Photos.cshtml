@@ -1,0 +1,59 @@
+﻿@model EmployeeInformationSystem.Model.AlbumInfo
+
+@{
+    ViewBag.Title = "Photos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Photos</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <div class="row">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel-body">
+                                <br />
+                                @if (Model != null && Model.PhotoInfoList.Count() > 0)
+                                {
+                                    <div class="gallery-container">
+                                        @foreach (var item in Model.PhotoInfoList)
+                                        {
+                                            <div class="item">
+                                                <div class="photo">
+                                                    <div class="img">
+                                                        <img src="@item.Path" alt="Gallery Image">
+                                                        <div class="over">
+                                                            <div class="info-wrapper">
+                                                                <div class="info">
+                                                                    <div class="title">@item.AlbumTitle</div>
+                                                                    <div class="date">@item.UploadOn</div>
+                                                                    <div class="func">
+                                                                        <a href="#"><i class="icon mdi mdi-link"></i></a>
+                                                                        <a href="@item.Path" class="image-zoom"><i class="icon mdi mdi-search"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h5 class="text-center">No photo found</h5>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1727 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EmployeeInformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Salt" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginIp" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsFirstTimeLogin" Type="bit" Nullable="false" />
+          <Property Name="IsCheckListCompleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountCheckList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsPersonalInfoProvided" Type="bit" Nullable="false" />
+          <Property Name="IsDocumentsUploaded" Type="bit" Nullable="false" />
+          <Property Name="IsPictureUploaded" Type="bit" Nullable="false" />
+          <Property Name="AccountId" Type="int" />
+        </EntityType>
+        <EntityType Name="AccountConfirmation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Token" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AccountId" Type="int" />
+        </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CoverPhotoPath" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByAccountId" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByAccountId" Type="int" />
+        </EntityType>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedByAccountId" Type="int" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedByAccountId" Type="int" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentPath" Type="nvarchar(max)" />
+          <Property Name="DocumentType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="200" />
+          <Property Name="UploadDate" Type="date" Nullable="false" />
+          <Property Name="EmployeeInfoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="CellNumber" Type="nvarchar" MaxLength="22" />
+          <Property Name="ResidencePhoneNumber" Type="nvarchar" MaxLength="30" />
+          <Property Name="PersonalEmail" Type="nvarchar" MaxLength="150" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaritalStatus" Type="nvarchar" MaxLength="150" />
+          <Property Name="PermanentAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="PresentAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="TotalExperience" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProbationPeriod" Type="nvarchar" MaxLength="150" />
+          <Property Name="Position" Type="nvarchar" MaxLength="150" />
+          <Property Name="EmpCode" Type="int" />
+          <Property Name="Team" Type="nvarchar" MaxLength="200" />
+          <Property Name="DateOfJoin" Type="datetime" />
+          <Property Name="DateOfLeave" Type="datetime" />
+          <Property Name="AccountId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedByAccountId" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByAccountId" Type="int" />
+        </EntityType>
+        <EntityType Name="FamilyMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="25" />
+          <Property Name="Relation" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmployeeInfoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LeaveAllowed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Casual" Type="int" Nullable="false" />
+          <Property Name="Annual" Type="int" Nullable="false" />
+          <Property Name="EmployeeInfoId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedByAccountId" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByAccountId" Type="int" />
+        </EntityType>
+        <EntityType Name="LeaveRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestDate" Type="datetime" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="LeaveType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="800" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsCreatedByAdmin" Type="bit" Nullable="false" />
+          <Property Name="RequestProcessDate" Type="datetime" />
+          <Property Name="RequestProcessByAccountId" Type="int" />
+          <Property Name="EmployeeInfoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalAllowance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalCheckout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestDate" Type="datetime" />
+          <Property Name="TreatmentDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="Status" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsCreatedByAdmin" Type="bit" />
+          <Property Name="RequestProcessDate" Type="datetime" />
+          <Property Name="RequestProcessByAccountId" Type="int" />
+          <Property Name="EmployeeInfoId" Type="int" Nullable="false" />
+          <Property Name="FamilyMemberId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedicalPrescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrescriptionPath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime" Nullable="false" />
+          <Property Name="MedicalCheckoutId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaySlip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberOfDaysWorked" Type="int" Nullable="false" />
+          <Property Name="TotalSalary" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BasicSalary" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="HouseRent" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="MedicalAllowance" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="IncomTax" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="LoanDeduction" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="OtherDeductions" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="SalaryDate" Type="datetime" Nullable="false" />
+          <Property Name="EmployeeInfoId" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedByAccountId" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByAccountId" Type="int" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Path" Type="nvarchar(max)" />
+          <Property Name="AlbumId" Type="int" Nullable="false" />
+          <Property Name="UploadOn" Type="datetime" />
+          <Property Name="UploadByAccountId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Salary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TotalSalary" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="BasicSalary" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="HouseRent" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="MedicalAllowance" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="IncomTax" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="LoanDeduction" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="OtherDeductions" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="EmployeeInfoId" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedByAccountId" Type="int" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByAccountId" Type="int" />
+        </EntityType>
+        <Association Name="FK__AccountCh__Accou__3F115E1A">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AccountCheckList" Type="Self.AccountCheckList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountCheckList">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AccountCo__Accou__6A30C649">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="AccountConfirmation" Type="Self.AccountConfirmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountConfirmation">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeI__Accou__778AC167">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Salary__Employee__625A9A57">
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountConfirmation_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="AccountConfirmation" Type="Self.AccountConfirmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountConfirmation">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Album_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Album_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Album" Type="Self.Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcement_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcement_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_EmployeeInfo">
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FamilyMember_EmployeeInfo">
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FamilyMember" Type="Self.FamilyMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FamilyMember">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveAllowed_EmployeeInfo">
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="LeaveAllowed" Type="Self.LeaveAllowed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LeaveAllowed">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveRequest_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="LeaveRequest" Type="Self.LeaveRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LeaveRequest">
+              <PropertyRef Name="RequestProcessByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveRequest_EmployeeInfo">
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="1" />
+          <End Role="LeaveRequest" Type="Self.LeaveRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LeaveRequest">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalCheckout_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="MedicalCheckout" Type="Self.MedicalCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCheckout">
+              <PropertyRef Name="RequestProcessByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalCheckout_EmployeeInfo">
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="1" />
+          <End Role="MedicalCheckout" Type="Self.MedicalCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCheckout">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalCheckout_FamilyMember">
+          <End Role="FamilyMember" Type="Self.FamilyMember" Multiplicity="1" />
+          <End Role="MedicalCheckout" Type="Self.MedicalCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilyMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCheckout">
+              <PropertyRef Name="FamilyMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalPrescription_MedicalCheckout">
+          <End Role="MedicalCheckout" Type="Self.MedicalCheckout" Multiplicity="1" />
+          <End Role="MedicalPrescription" Type="Self.MedicalPrescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCheckout">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalPrescription">
+              <PropertyRef Name="MedicalCheckoutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaySlip_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="PaySlip" Type="Self.PaySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaySlip">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaySlip_Account2">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="PaySlip" Type="Self.PaySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaySlip">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaySlip_EmployeeInfo">
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="1" />
+          <End Role="PaySlip" Type="Self.PaySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaySlip">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photo_Album">
+          <End Role="Album" Type="Self.Album" Multiplicity="1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salary_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salary_Account1">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmployeeInformationModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountCheckList" EntityType="Self.AccountCheckList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountConfirmation" EntityType="Self.AccountConfirmation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeInfo" EntityType="Self.EmployeeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FamilyMember" EntityType="Self.FamilyMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveAllowed" EntityType="Self.LeaveAllowed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveRequest" EntityType="Self.LeaveRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalAllowance" EntityType="Self.MedicalAllowance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalCheckout" EntityType="Self.MedicalCheckout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalPrescription" EntityType="Self.MedicalPrescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaySlip" EntityType="Self.PaySlip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AccountCh__Accou__3F115E1A" Association="Self.FK__AccountCh__Accou__3F115E1A">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountCheckList" EntitySet="AccountCheckList" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AccountCo__Accou__6A30C649" Association="Self.FK__AccountCo__Accou__6A30C649">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountConfirmation" EntitySet="AccountConfirmation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeI__Accou__778AC167" Association="Self.FK__EmployeeI__Accou__778AC167">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Salary__Employee__625A9A57" Association="Self.FK__Salary__Employee__625A9A57">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+            <End Role="Salary" EntitySet="Salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountConfirmation_Account" Association="Self.FK_AccountConfirmation_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountConfirmation" EntitySet="AccountConfirmation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Album_Account" Association="Self.FK_Album_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Album_Account1" Association="Self.FK_Album_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Album" EntitySet="Album" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcement_Account" Association="Self.FK_Announcement_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Announcement" EntitySet="Announcement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcement_Account1" Association="Self.FK_Announcement_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Announcement" EntitySet="Announcement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_EmployeeInfo" Association="Self.FK_Document_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_Account" Association="Self.FK_EmployeeInfo_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_Account1" Association="Self.FK_EmployeeInfo_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FamilyMember_EmployeeInfo" Association="Self.FK_FamilyMember_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+            <End Role="FamilyMember" EntitySet="FamilyMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveAllowed_EmployeeInfo" Association="Self.FK_LeaveAllowed_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+            <End Role="LeaveAllowed" EntitySet="LeaveAllowed" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveRequest_Account" Association="Self.FK_LeaveRequest_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="LeaveRequest" EntitySet="LeaveRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveRequest_EmployeeInfo" Association="Self.FK_LeaveRequest_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+            <End Role="LeaveRequest" EntitySet="LeaveRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalCheckout_Account" Association="Self.FK_MedicalCheckout_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalCheckout_EmployeeInfo" Association="Self.FK_MedicalCheckout_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalCheckout_FamilyMember" Association="Self.FK_MedicalCheckout_FamilyMember">
+            <End Role="FamilyMember" EntitySet="FamilyMember" />
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckout" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalPrescription_MedicalCheckout" Association="Self.FK_MedicalPrescription_MedicalCheckout">
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckout" />
+            <End Role="MedicalPrescription" EntitySet="MedicalPrescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaySlip_Account1" Association="Self.FK_PaySlip_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="PaySlip" EntitySet="PaySlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaySlip_Account2" Association="Self.FK_PaySlip_Account2">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="PaySlip" EntitySet="PaySlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaySlip_EmployeeInfo" Association="Self.FK_PaySlip_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+            <End Role="PaySlip" EntitySet="PaySlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photo_Album" Association="Self.FK_Photo_Album">
+            <End Role="Album" EntitySet="Album" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salary_Account" Association="Self.FK_Salary_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Salary" EntitySet="Salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salary_Account1" Association="Self.FK_Salary_Account1">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Salary" EntitySet="Salary" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmployeeInformationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EmployeeInformationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Roles" EntityType="EmployeeInformationModel.Role" />
+          <FunctionImport Name="GetsalarybyID" ReturnType="Collection(EmployeeInformationModel.GetsalarybyID_Result)" />
+          <EntitySet Name="Announcements" EntityType="EmployeeInformationModel.Announcement" />
+          <EntitySet Name="Albums" EntityType="EmployeeInformationModel.Album" />
+          <EntitySet Name="Photos" EntityType="EmployeeInformationModel.Photo" />
+          <AssociationSet Name="FK_Photo_Album" Association="EmployeeInformationModel.FK_Photo_Album">
+            <End Role="Album" EntitySet="Albums" />
+            <End Role="Photo" EntitySet="Photos" />
+          </AssociationSet>
+          <EntitySet Name="LeaveRequests" EntityType="EmployeeInformationModel.LeaveRequest" />
+          <EntitySet Name="AccountConfirmations" EntityType="EmployeeInformationModel.AccountConfirmation" />
+          <EntitySet Name="PaySlips" EntityType="EmployeeInformationModel.PaySlip" />
+          <EntitySet Name="MedicalAllowances" EntityType="EmployeeInformationModel.MedicalAllowance" />
+          <EntitySet Name="MedicalPrescriptions" EntityType="EmployeeInformationModel.MedicalPrescription" />
+          <EntitySet Name="MedicalCheckouts" EntityType="EmployeeInformationModel.MedicalCheckout" />
+          <AssociationSet Name="FK_MedicalPrescription_MedicalCheckout" Association="EmployeeInformationModel.FK_MedicalPrescription_MedicalCheckout">
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckouts" />
+            <End Role="MedicalPrescription" EntitySet="MedicalPrescriptions" />
+          </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="EmployeeInformationModel.Account" />
+          <EntitySet Name="AccountCheckLists" EntityType="EmployeeInformationModel.AccountCheckList" />
+          <EntitySet Name="Documents" EntityType="EmployeeInformationModel.Document" />
+          <EntitySet Name="EmployeeInfoes" EntityType="EmployeeInformationModel.EmployeeInfo" />
+          <EntitySet Name="FamilyMembers" EntityType="EmployeeInformationModel.FamilyMember" />
+          <EntitySet Name="LeaveAlloweds" EntityType="EmployeeInformationModel.LeaveAllowed" />
+          <EntitySet Name="Salaries" EntityType="EmployeeInformationModel.Salary" />
+          <AssociationSet Name="FK__AccountCh__Accou__3F115E1A" Association="EmployeeInformationModel.FK__AccountCh__Accou__3F115E1A">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountCheckList" EntitySet="AccountCheckLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AccountCo__Accou__6A30C649" Association="EmployeeInformationModel.FK__AccountCo__Accou__6A30C649">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountConfirmation" EntitySet="AccountConfirmations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EmployeeI__Accou__778AC167" Association="EmployeeInformationModel.FK__EmployeeI__Accou__778AC167">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Role" Association="EmployeeInformationModel.FK_Account_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountConfirmation_Account" Association="EmployeeInformationModel.FK_AccountConfirmation_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountConfirmation" EntitySet="AccountConfirmations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Album_Account" Association="EmployeeInformationModel.FK_Album_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Album" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Album_Account1" Association="EmployeeInformationModel.FK_Album_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Album" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcement_Account" Association="EmployeeInformationModel.FK_Announcement_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Announcement" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Announcement_Account1" Association="EmployeeInformationModel.FK_Announcement_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Announcement" EntitySet="Announcements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_Account" Association="EmployeeInformationModel.FK_EmployeeInfo_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_Account1" Association="EmployeeInformationModel.FK_EmployeeInfo_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveRequest_Account" Association="EmployeeInformationModel.FK_LeaveRequest_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="LeaveRequest" EntitySet="LeaveRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalCheckout_Account" Association="EmployeeInformationModel.FK_MedicalCheckout_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaySlip_Account1" Association="EmployeeInformationModel.FK_PaySlip_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="PaySlip" EntitySet="PaySlips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaySlip_Account2" Association="EmployeeInformationModel.FK_PaySlip_Account2">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="PaySlip" EntitySet="PaySlips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salary_Account" Association="EmployeeInformationModel.FK_Salary_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Salary" EntitySet="Salaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salary_Account1" Association="EmployeeInformationModel.FK_Salary_Account1">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Salary" EntitySet="Salaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_EmployeeInfo" Association="EmployeeInformationModel.FK_Document_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Salary__Employee__625A9A57" Association="EmployeeInformationModel.FK__Salary__Employee__625A9A57">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+            <End Role="Salary" EntitySet="Salaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FamilyMember_EmployeeInfo" Association="EmployeeInformationModel.FK_FamilyMember_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+            <End Role="FamilyMember" EntitySet="FamilyMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveAllowed_EmployeeInfo" Association="EmployeeInformationModel.FK_LeaveAllowed_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+            <End Role="LeaveAllowed" EntitySet="LeaveAlloweds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveRequest_EmployeeInfo" Association="EmployeeInformationModel.FK_LeaveRequest_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+            <End Role="LeaveRequest" EntitySet="LeaveRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalCheckout_EmployeeInfo" Association="EmployeeInformationModel.FK_MedicalCheckout_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaySlip_EmployeeInfo" Association="EmployeeInformationModel.FK_PaySlip_EmployeeInfo">
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+            <End Role="PaySlip" EntitySet="PaySlips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalCheckout_FamilyMember" Association="EmployeeInformationModel.FK_MedicalCheckout_FamilyMember">
+            <End Role="FamilyMember" EntitySet="FamilyMembers" />
+            <End Role="MedicalCheckout" EntitySet="MedicalCheckouts" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="EmployeeInformationModel.FK_Account_Role" FromRole="Role" ToRole="Account" />
+        </EntityType>
+        <ComplexType Name="GetsalarybyID_Result">
+          <Property Type="Int32" Name="EmployeeInfoId" Nullable="false" />
+          <Property Type="DateTime" Name="Column1" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Announcement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByAccountId" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByAccountId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK_Announcement_Account" FromRole="Announcement" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="EmployeeInformationModel.FK_Announcement_Account1" FromRole="Announcement" ToRole="Account" />
+          </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CoverPhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByAccountId" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByAccountId" Type="Int32" />
+          <NavigationProperty Name="Photos" Relationship="EmployeeInformationModel.FK_Photo_Album" FromRole="Album" ToRole="Photo" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK_Album_Account" FromRole="Album" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="EmployeeInformationModel.FK_Album_Account1" FromRole="Album" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AlbumId" Type="Int32" Nullable="false" />
+          <Property Name="UploadOn" Type="DateTime" Precision="3" />
+          <Property Name="UploadByAccountId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Album" Relationship="EmployeeInformationModel.FK_Photo_Album" FromRole="Photo" ToRole="Album" />
+        </EntityType>
+        <Association Name="FK_Photo_Album">
+          <End Type="EmployeeInformationModel.Album" Role="Album" Multiplicity="1" />
+          <End Type="EmployeeInformationModel.Photo" Role="Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Album">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LeaveRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LeaveType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsCreatedByAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="RequestProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="RequestProcessByAccountId" Type="Int32" />
+          <Property Name="EmployeeInfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK_LeaveRequest_Account" FromRole="LeaveRequest" ToRole="Account" />
+          <NavigationProperty Name="EmployeeInfo" Relationship="EmployeeInformationModel.FK_LeaveRequest_EmployeeInfo" FromRole="LeaveRequest" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="AccountConfirmation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AccountId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK__AccountCo__Accou__6A30C649" FromRole="AccountConfirmation" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="EmployeeInformationModel.FK_AccountConfirmation_Account" FromRole="AccountConfirmation" ToRole="Account" />
+          </EntityType>
+        <EntityType Name="PaySlip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberOfDaysWorked" Type="Int32" Nullable="false" />
+          <Property Name="TotalSalary" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="BasicSalary" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="HouseRent" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="MedicalAllowance" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="IncomTax" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="LoanDeduction" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="OtherDeductions" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="SalaryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmployeeInfoId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByAccountId" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByAccountId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK_PaySlip_Account1" FromRole="PaySlip" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="EmployeeInformationModel.FK_PaySlip_Account2" FromRole="PaySlip" ToRole="Account" />
+          <NavigationProperty Name="EmployeeInfo" Relationship="EmployeeInformationModel.FK_PaySlip_EmployeeInfo" FromRole="PaySlip" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="MedicalAllowance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="MedicalPrescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrescriptionPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MedicalCheckoutId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalCheckout" Relationship="EmployeeInformationModel.FK_MedicalPrescription_MedicalCheckout" FromRole="MedicalPrescription" ToRole="MedicalCheckout" />
+        </EntityType>
+        <EntityType Name="MedicalCheckout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestDate" Type="DateTime" Precision="3" />
+          <Property Name="TreatmentDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsCreatedByAdmin" Type="Boolean" />
+          <Property Name="RequestProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="RequestProcessByAccountId" Type="Int32" />
+          <Property Name="EmployeeInfoId" Type="Int32" Nullable="false" />
+          <Property Name="FamilyMemberId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MedicalPrescriptions" Relationship="EmployeeInformationModel.FK_MedicalPrescription_MedicalCheckout" FromRole="MedicalCheckout" ToRole="MedicalPrescription" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK_MedicalCheckout_Account" FromRole="MedicalCheckout" ToRole="Account" />
+          <NavigationProperty Name="EmployeeInfo" Relationship="EmployeeInformationModel.FK_MedicalCheckout_EmployeeInfo" FromRole="MedicalCheckout" ToRole="EmployeeInfo" />
+          <NavigationProperty Name="FamilyMember" Relationship="EmployeeInformationModel.FK_MedicalCheckout_FamilyMember" FromRole="MedicalCheckout" ToRole="FamilyMember" />
+        </EntityType>
+        <Association Name="FK_MedicalPrescription_MedicalCheckout">
+          <End Type="EmployeeInformationModel.MedicalCheckout" Role="MedicalCheckout" Multiplicity="1" />
+          <End Type="EmployeeInformationModel.MedicalPrescription" Role="MedicalPrescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedicalCheckout">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalPrescription">
+              <PropertyRef Name="MedicalCheckoutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginIp" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsFirstTimeLogin" Type="Boolean" Nullable="false" />
+          <Property Name="IsCheckListCompleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AccountCheckLists" Relationship="EmployeeInformationModel.FK__AccountCh__Accou__3F115E1A" FromRole="Account" ToRole="AccountCheckList" />
+          <NavigationProperty Name="AccountConfirmations" Relationship="EmployeeInformationModel.FK__AccountCo__Accou__6A30C649" FromRole="Account" ToRole="AccountConfirmation" />
+          <NavigationProperty Name="EmployeeInfoes" Relationship="EmployeeInformationModel.FK__EmployeeI__Accou__778AC167" FromRole="Account" ToRole="EmployeeInfo" />
+          <NavigationProperty Name="Role" Relationship="EmployeeInformationModel.FK_Account_Role" FromRole="Account" ToRole="Role" />
+          <NavigationProperty Name="AccountConfirmations1" Relationship="EmployeeInformationModel.FK_AccountConfirmation_Account" FromRole="Account" ToRole="AccountConfirmation" />
+          <NavigationProperty Name="Albums" Relationship="EmployeeInformationModel.FK_Album_Account" FromRole="Account" ToRole="Album" />
+          <NavigationProperty Name="Albums1" Relationship="EmployeeInformationModel.FK_Album_Account1" FromRole="Account" ToRole="Album" />
+          <NavigationProperty Name="Announcements" Relationship="EmployeeInformationModel.FK_Announcement_Account" FromRole="Account" ToRole="Announcement" />
+          <NavigationProperty Name="Announcements1" Relationship="EmployeeInformationModel.FK_Announcement_Account1" FromRole="Account" ToRole="Announcement" />
+          <NavigationProperty Name="EmployeeInfoes1" Relationship="EmployeeInformationModel.FK_EmployeeInfo_Account" FromRole="Account" ToRole="EmployeeInfo" />
+          <NavigationProperty Name="EmployeeInfoes2" Relationship="EmployeeInformationModel.FK_EmployeeInfo_Account1" FromRole="Account" ToRole="EmployeeInfo" />
+          <NavigationProperty Name="LeaveRequests" Relationship="EmployeeInformationModel.FK_LeaveRequest_Account" FromRole="Account" ToRole="LeaveRequest" />
+          <NavigationProperty Name="MedicalCheckouts" Relationship="EmployeeInformationModel.FK_MedicalCheckout_Account" FromRole="Account" ToRole="MedicalCheckout" />
+          <NavigationProperty Name="PaySlips" Relationship="EmployeeInformationModel.FK_PaySlip_Account1" FromRole="Account" ToRole="PaySlip" />
+          <NavigationProperty Name="PaySlips1" Relationship="EmployeeInformationModel.FK_PaySlip_Account2" FromRole="Account" ToRole="PaySlip" />
+          <NavigationProperty Name="Salaries" Relationship="EmployeeInformationModel.FK_Salary_Account" FromRole="Account" ToRole="Salary" />
+          <NavigationProperty Name="Salaries1" Relationship="EmployeeInformationModel.FK_Salary_Account1" FromRole="Account" ToRole="Salary" />
+        </EntityType>
+        <EntityType Name="AccountCheckList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsPersonalInfoProvided" Type="Boolean" Nullable="false" />
+          <Property Name="IsDocumentsUploaded" Type="Boolean" Nullable="false" />
+          <Property Name="IsPictureUploaded" Type="Boolean" Nullable="false" />
+          <Property Name="AccountId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK__AccountCh__Accou__3F115E1A" FromRole="AccountCheckList" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EmployeeInfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmployeeInfo" Relationship="EmployeeInformationModel.FK_Document_EmployeeInfo" FromRole="Document" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="EmployeeInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="CellNumber" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
+          <Property Name="ResidencePhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PresentAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TotalExperience" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProbationPeriod" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EmpCode" Type="Int32" />
+          <Property Name="Team" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfJoin" Type="DateTime" Precision="3" />
+          <Property Name="DateOfLeave" Type="DateTime" Precision="3" />
+          <Property Name="AccountId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByAccountId" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByAccountId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK__EmployeeI__Accou__778AC167" FromRole="EmployeeInfo" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="EmployeeInformationModel.FK_EmployeeInfo_Account" FromRole="EmployeeInfo" ToRole="Account" />
+          <NavigationProperty Name="Account2" Relationship="EmployeeInformationModel.FK_EmployeeInfo_Account1" FromRole="EmployeeInfo" ToRole="Account" />
+          <NavigationProperty Name="Documents" Relationship="EmployeeInformationModel.FK_Document_EmployeeInfo" FromRole="EmployeeInfo" ToRole="Document" />
+          <NavigationProperty Name="Salaries" Relationship="EmployeeInformationModel.FK__Salary__Employee__625A9A57" FromRole="EmployeeInfo" ToRole="Salary" />
+          <NavigationProperty Name="FamilyMembers" Relationship="EmployeeInformationModel.FK_FamilyMember_EmployeeInfo" FromRole="EmployeeInfo" ToRole="FamilyMember" />
+          <NavigationProperty Name="LeaveAlloweds" Relationship="EmployeeInformationModel.FK_LeaveAllowed_EmployeeInfo" FromRole="EmployeeInfo" ToRole="LeaveAllowed" />
+          <NavigationProperty Name="LeaveRequests" Relationship="EmployeeInformationModel.FK_LeaveRequest_EmployeeInfo" FromRole="EmployeeInfo" ToRole="LeaveRequest" />
+          <NavigationProperty Name="MedicalCheckouts" Relationship="EmployeeInformationModel.FK_MedicalCheckout_EmployeeInfo" FromRole="EmployeeInfo" ToRole="MedicalCheckout" />
+          <NavigationProperty Name="PaySlips" Relationship="EmployeeInformationModel.FK_PaySlip_EmployeeInfo" FromRole="EmployeeInfo" ToRole="PaySlip" />
+        </EntityType>
+        <EntityType Name="FamilyMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Relation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeInfoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmployeeInfo" Relationship="EmployeeInformationModel.FK_FamilyMember_EmployeeInfo" FromRole="FamilyMember" ToRole="EmployeeInfo" />
+          <NavigationProperty Name="MedicalCheckouts" Relationship="EmployeeInformationModel.FK_MedicalCheckout_FamilyMember" FromRole="FamilyMember" ToRole="MedicalCheckout" />
+        </EntityType>
+        <EntityType Name="LeaveAllowed">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Casual" Type="Int32" Nullable="false" />
+          <Property Name="Annual" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeInfoId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByAccountId" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByAccountId" Type="Int32" />
+          <NavigationProperty Name="EmployeeInfo" Relationship="EmployeeInformationModel.FK_LeaveAllowed_EmployeeInfo" FromRole="LeaveAllowed" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="Salary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TotalSalary" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="BasicSalary" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="HouseRent" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="MedicalAllowance" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="IncomTax" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="LoanDeduction" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="OtherDeductions" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="EmployeeInfoId" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByAccountId" Type="Int32" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByAccountId" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="EmployeeInformationModel.FK_Salary_Account" FromRole="Salary" ToRole="Account" />
+          <NavigationProperty Name="Account1" Relationship="EmployeeInformationModel.FK_Salary_Account1" FromRole="Salary" ToRole="Account" />
+          <NavigationProperty Name="EmployeeInfo" Relationship="EmployeeInformationModel.FK__Salary__Employee__625A9A57" FromRole="Salary" ToRole="EmployeeInfo" />
+        </EntityType>
+        <Association Name="FK__AccountCh__Accou__3F115E1A">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EmployeeInformationModel.AccountCheckList" Role="AccountCheckList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountCheckList">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AccountCo__Accou__6A30C649">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.AccountConfirmation" Role="AccountConfirmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountConfirmation">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EmployeeI__Accou__778AC167">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Role">
+          <End Type="EmployeeInformationModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountConfirmation_Account">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.AccountConfirmation" Role="AccountConfirmation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountConfirmation">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Album_Account">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.Album" Role="Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Album_Account1">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.Album" Role="Album" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Album">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcement_Account">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.Announcement" Role="Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Announcement_Account1">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.Announcement" Role="Announcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Announcement">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_Account">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_Account1">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveRequest_Account">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.LeaveRequest" Role="LeaveRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LeaveRequest">
+              <PropertyRef Name="RequestProcessByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalCheckout_Account">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.MedicalCheckout" Role="MedicalCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCheckout">
+              <PropertyRef Name="RequestProcessByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaySlip_Account1">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.PaySlip" Role="PaySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaySlip">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaySlip_Account2">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.PaySlip" Role="PaySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaySlip">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salary_Account">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.Salary" Role="Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="ModifiedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salary_Account1">
+          <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EmployeeInformationModel.Salary" Role="Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="CreatedByAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_EmployeeInfo">
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EmployeeInformationModel.Document" Role="Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Salary__Employee__625A9A57">
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EmployeeInformationModel.Salary" Role="Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FamilyMember_EmployeeInfo">
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EmployeeInformationModel.FamilyMember" Role="FamilyMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FamilyMember">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveAllowed_EmployeeInfo">
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EmployeeInformationModel.LeaveAllowed" Role="LeaveAllowed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LeaveAllowed">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveRequest_EmployeeInfo">
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="1" />
+          <End Type="EmployeeInformationModel.LeaveRequest" Role="LeaveRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LeaveRequest">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalCheckout_EmployeeInfo">
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="1" />
+          <End Type="EmployeeInformationModel.MedicalCheckout" Role="MedicalCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCheckout">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaySlip_EmployeeInfo">
+          <End Type="EmployeeInformationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="1" />
+          <End Type="EmployeeInformationModel.PaySlip" Role="PaySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmployeeInfo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaySlip">
+              <PropertyRef Name="EmployeeInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalCheckout_FamilyMember">
+          <End Type="EmployeeInformationModel.FamilyMember" Role="FamilyMember" Multiplicity="1" />
+          <End Type="EmployeeInformationModel.MedicalCheckout" Role="MedicalCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FamilyMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedicalCheckout">
+              <PropertyRef Name="FamilyMemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmployeeInformationModelStoreContainer" CdmEntityContainer="EmployeeInformationEntities">
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Announcements">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.Announcement">
+              <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="ModifiedByAccountId" ColumnName="ModifiedByAccountId" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByAccountId" ColumnName="CreatedByAccountId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Albums">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="ModifiedByAccountId" ColumnName="ModifiedByAccountId" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedByAccountId" ColumnName="CreatedByAccountId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CoverPhotoPath" ColumnName="CoverPhotoPath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="UploadByAccountId" ColumnName="UploadByAccountId" />
+                <ScalarProperty Name="UploadOn" ColumnName="UploadOn" />
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveRequests">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.LeaveRequest">
+              <MappingFragment StoreEntitySet="LeaveRequest">
+                <ScalarProperty Name="EmployeeInfoId" ColumnName="EmployeeInfoId" />
+                <ScalarProperty Name="RequestProcessByAccountId" ColumnName="RequestProcessByAccountId" />
+                <ScalarProperty Name="RequestProcessDate" ColumnName="RequestProcessDate" />
+                <ScalarProperty Name="IsCreatedByAdmin" ColumnName="IsCreatedByAdmin" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="LeaveType" ColumnName="LeaveType" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountConfirmations">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.AccountConfirmation">
+              <MappingFragment StoreEntitySet="AccountConfirmation">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaySlips">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.PaySlip">
+              <MappingFragment StoreEntitySet="PaySlip">
+                <ScalarProperty Name="ModifiedByAccountId" ColumnName="ModifiedByAccountId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedByAccountId" ColumnName="CreatedByAccountId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EmployeeInfoId" ColumnName="EmployeeInfoId" />
+                <ScalarProperty Name="SalaryDate" ColumnName="SalaryDate" />
+                <ScalarProperty Name="OtherDeductions" ColumnName="OtherDeductions" />
+                <ScalarProperty Name="LoanDeduction" ColumnName="LoanDeduction" />
+                <ScalarProperty Name="IncomTax" ColumnName="IncomTax" />
+                <ScalarProperty Name="MedicalAllowance" ColumnName="MedicalAllowance" />
+                <ScalarProperty Name="HouseRent" ColumnName="HouseRent" />
+                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
+                <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
+                <ScalarProperty Name="NumberOfDaysWorked" ColumnName="NumberOfDaysWorked" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalAllowances">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.MedicalAllowance">
+              <MappingFragment StoreEntitySet="MedicalAllowance">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalPrescriptions">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.MedicalPrescription">
+              <MappingFragment StoreEntitySet="MedicalPrescription">
+                <ScalarProperty Name="MedicalCheckoutId" ColumnName="MedicalCheckoutId" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="PrescriptionPath" ColumnName="PrescriptionPath" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalCheckouts">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.MedicalCheckout">
+              <MappingFragment StoreEntitySet="MedicalCheckout">
+                <ScalarProperty Name="FamilyMemberId" ColumnName="FamilyMemberId" />
+                <ScalarProperty Name="EmployeeInfoId" ColumnName="EmployeeInfoId" />
+                <ScalarProperty Name="RequestProcessByAccountId" ColumnName="RequestProcessByAccountId" />
+                <ScalarProperty Name="RequestProcessDate" ColumnName="RequestProcessDate" />
+                <ScalarProperty Name="IsCreatedByAdmin" ColumnName="IsCreatedByAdmin" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TreatmentDate" ColumnName="TreatmentDate" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="IsCheckListCompleted" ColumnName="IsCheckListCompleted" />
+                <ScalarProperty Name="IsFirstTimeLogin" ColumnName="IsFirstTimeLogin" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastLoginIp" ColumnName="LastLoginIp" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountCheckLists">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.AccountCheckList">
+              <MappingFragment StoreEntitySet="AccountCheckList">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="IsPictureUploaded" ColumnName="IsPictureUploaded" />
+                <ScalarProperty Name="IsDocumentsUploaded" ColumnName="IsDocumentsUploaded" />
+                <ScalarProperty Name="IsPersonalInfoProvided" ColumnName="IsPersonalInfoProvided" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="EmployeeInfoId" ColumnName="EmployeeInfoId" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="DocumentPath" ColumnName="DocumentPath" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeInfoes">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.EmployeeInfo">
+              <MappingFragment StoreEntitySet="EmployeeInfo">
+                <ScalarProperty Name="ModifiedByAccountId" ColumnName="ModifiedByAccountId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedByAccountId" ColumnName="CreatedByAccountId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="DateOfLeave" ColumnName="DateOfLeave" />
+                <ScalarProperty Name="DateOfJoin" ColumnName="DateOfJoin" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="EmpCode" ColumnName="EmpCode" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="ProbationPeriod" ColumnName="ProbationPeriod" />
+                <ScalarProperty Name="TotalExperience" ColumnName="TotalExperience" />
+                <ScalarProperty Name="PresentAddress" ColumnName="PresentAddress" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="PersonalEmail" ColumnName="PersonalEmail" />
+                <ScalarProperty Name="ResidencePhoneNumber" ColumnName="ResidencePhoneNumber" />
+                <ScalarProperty Name="CellNumber" ColumnName="CellNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FamilyMembers">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.FamilyMember">
+              <MappingFragment StoreEntitySet="FamilyMember">
+                <ScalarProperty Name="EmployeeInfoId" ColumnName="EmployeeInfoId" />
+                <ScalarProperty Name="Relation" ColumnName="Relation" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveAlloweds">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.LeaveAllowed">
+              <MappingFragment StoreEntitySet="LeaveAllowed">
+                <ScalarProperty Name="ModifiedByAccountId" ColumnName="ModifiedByAccountId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedByAccountId" ColumnName="CreatedByAccountId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EmployeeInfoId" ColumnName="EmployeeInfoId" />
+                <ScalarProperty Name="Annual" ColumnName="Annual" />
+                <ScalarProperty Name="Casual" ColumnName="Casual" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salaries">
+            <EntityTypeMapping TypeName="EmployeeInformationModel.Salary">
+              <MappingFragment StoreEntitySet="Salary">
+                <ScalarProperty Name="ModifiedByAccountId" ColumnName="ModifiedByAccountId" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedByAccountId" ColumnName="CreatedByAccountId" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="EmployeeInfoId" ColumnName="EmployeeInfoId" />
+                <ScalarProperty Name="OtherDeductions" ColumnName="OtherDeductions" />
+                <ScalarProperty Name="LoanDeduction" ColumnName="LoanDeduction" />
+                <ScalarProperty Name="IncomTax" ColumnName="IncomTax" />
+                <ScalarProperty Name="MedicalAllowance" ColumnName="MedicalAllowance" />
+                <ScalarProperty Name="HouseRent" ColumnName="HouseRent" />
+                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
+                <ScalarProperty Name="TotalSalary" ColumnName="TotalSalary" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

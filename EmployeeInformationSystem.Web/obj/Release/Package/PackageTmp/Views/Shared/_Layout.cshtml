@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="~/Content/beagle_Theme/assets/img/logo-fav.png">
+    <title>@ViewBag.Title - Employee Information System</title>
+
+    @Scripts.Render("~/js/core")
+    @Styles.Render("~/css/core")
+</head>
+<body>
+    <div class="be-wrapper be-fixed-sidebar">
+        <nav class="navbar navbar-default navbar-fixed-top be-top-header">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand"></span>
+                </div>
+                <div class="be-right-navbar be-right-navbar-flex">
+                    <div class="search-container">
+                        <div class="input-group input-group-sm" style="margin-top: 10px;">
+                            <span>Your last session was created on @Html.Raw(Convert.ToDateTime(CurrentUser.LastLoginDate).ToString("dd-MM-yyyy h:mm tt")) from @Html.Raw(CurrentUser.LastLoginIp)</span>
+                        </div>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right be-user-nav">
+                        <li class="dropdown">
+                            @{
+                                string imgPath = Url.Content("~/Content/Employee_pictures/") + CurrentUser.AccountId + ".jpg";
+                            }
+                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle"><img src="@imgPath" alt="No Image"><span class="user-name"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <li><a href="@Url.Action("UpdateMyInfo", "Profile", new { Area = "Admin" })"><span class="icon mdi mdi-info-outline"></span>Update My Info</a></li>
+                                }
+                                else if (User.IsInRole("Administrator"))
+                                {
+                                    if (CurrentUser.Mode == "Admin")
+                                    {
+                                        <li><a href="@Url.Action("SwitchMode", "Setting", new { Area = "" })"><span class="icon mdi mdi-pin-account"></span>Switch to Employee Mode</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("SwitchMode", "Setting", new { Area = "" })"><span class="icon mdi mdi-shield-security"></span>Switch to Admin Mode</a></li>
+                                    }
+                                }
+                                <li><a href="@Url.Action("ChangePassword", "Auth", new { Area = "" })"><span class="icon mdi mdi-lock-open"></span>Change Password</a></li>
+                                <li><a href="@Url.Action("Logout", "Auth", new { Area = "" })"><span class="icon mdi mdi-power"></span> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right be-icons-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle"><strong>Welcome </strong>@Html.Raw(CurrentUser.Name)</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="be-left-sidebar">
+            <div class="left-sidebar-wrapper">
+                <a href="#" class="left-sidebar-toggle">Menu</a>
+                <div class="left-sidebar-spacer">
+                    <div class="left-sidebar-scroll">
+                        <div class="left-sidebar-content" id="menu-items">
+                            <ul class="sidebar-elements">
+                                <li class="divider">Menu</li>
+                                @if (CurrentUser.Mode == "Admin")
+                                {
+                                    @Html.Action("GetAdminMenu", "Setting", new { Area = "" })
+                                }
+                                else
+                                {
+                                    @Html.Action("GetEmployeeMenu", "Setting", new { Area = "" })
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="be-content">
+            @RenderBody()
+            <div class="splash-footer"><span>Copyright @DateTime.Now.Year Logic Powered Solutions | All Rights Reserved</span></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //initialize the javascript
+            App.init();
+            App.formMultiselect();
+            App.formElements();
+
+            var path = (window.location.pathname + location.search);
+            var isMatchedFound = false;
+            $("#menu-items a").each(function (i) {
+                var aHref = $(this).attr("href");
+                if (aHref.toLowerCase() == path.toLowerCase()) {
+                    isMatchedFound = true;
+                    $(this).parentsUntil("ul:first").addClass("active");
+                    $(this).parent().addClass("active");
+                }
+                else {
+                    $(this).parent().removeClass("active");
+                }
+            });
+
+            setTimeout(function () {
+                $('#alert-message').hide();
+            }, 5000);
+        });
+
+        $(window).on('load', function () {
+            App.pageGallery();
+        });
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

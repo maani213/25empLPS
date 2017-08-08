@@ -1,0 +1,96 @@
+﻿@model EmployeeInformationSystem.Model.SalaryInfo
+
+@{
+    ViewBag.Title = "Update Salary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Update Salary</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-push-1">
+                            <h4>@Model.EmployeeName</h4>
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                @using (Html.BeginForm("Update", "Salary", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                {
+                                    @Html.HiddenFor(model => model.Id)
+                                    @Html.HiddenFor(model => model.EmployeeInfoId)
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Total Salary</label>
+                                        <div class="col-sm-6">
+                                            @Html.EditorFor(model => model.TotalSalary, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Basic Salary</label>
+                                        <div class="col-sm-6">
+                                            @Html.EditorFor(model => model.BasicSalary, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Tax</label>
+                                        <div class="col-sm-6">
+                                            @Html.EditorFor(model => model.IncomTax, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Medical Allowance</label>
+                                        <div class="col-sm-6">
+                                            @Html.EditorFor(model => model.MedicalAllowance, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">House Rent</label>
+                                        <div class="col-sm-6">
+                                            @Html.EditorFor(model => model.HouseRent, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                        </div>
+                                    </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Loan Deduction</label>
+                                            <div class="col-sm-6">
+                                                @Html.EditorFor(model => model.LoanDeduction, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label">Other Deductions</label>
+                                            <div class="col-sm-6">
+                                                @Html.EditorFor(model => model.OtherDeductions, new { htmlAttributes = new { @class = "form-control" } })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label"></label>
+                                            <div class="col-sm-6">
+                                                <a href="@Url.Action("Manage","Salary")" class="btn btn-space btn-primary">
+                                                    <i class="icon icon-left mdi mdi-undo"></i>
+                                                    Back
+                                                </a>
+                                                &nbsp;
+                                                <button type="submit" class="btn btn-space btn-success">
+                                                    <i class="icon icon-left mdi mdi-refresh"></i>
+                                                    Update
+                                                </button>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

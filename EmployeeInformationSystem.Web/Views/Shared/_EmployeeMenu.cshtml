@@ -1,0 +1,55 @@
+﻿@model EmployeeInformationSystem.Model.MenuViewModel
+
+<li>
+    <a href="@Url.Action("Dashboard", "Home", new { Area = "Employee" })"><i class="icon mdi mdi-home"></i><span>Dashboard</span></a>
+</li>
+
+@if (Model.IsNewAnnouncement == true)
+{
+    <li>
+        <a href="@Url.Action("Announcements", "Home", new { Area = "Employee" })"><i class="icon mdi mdi-notifications-none"></i><span>Announcements <img src='@Url.Content("~/Content/new.gif")' /></span></a>
+    </li>
+}
+else
+{
+    <li>
+        <a href="@Url.Action("Announcements", "Home", new { Area = "Employee" })"><i class="icon mdi mdi-notifications-none"></i><span>Announcements</span></a>
+    </li>
+}
+
+<li>
+    <a href="@Url.Action("GeneralInfo", "Home", new { Area = "Employee" })"><i class="icon mdi mdi-info-outline"></i><span>General Information</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Details", "Leave", new { Area = "Employee" })"><i class="icon mdi mdi-calendar"></i><span>Leave Details</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Details", "Salary", new { Area = "Employee" })"><i class="icon mdi mdi-balance"></i><span>Salary Details</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Details", "Tax", new { Area = "Employee" })"><i class="icon mdi mdi-money-off"></i><span>Tax Details</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Details", "Medical", new { Area = "Employee" })"><i class="icon mdi mdi-hospital"></i><span>Medical Details</span></a>
+</li>
+
+@if (Model.IsNewAlbum == true)
+{
+    <li>
+        <a href="@Url.Action("Albums", "Gallery", new { Area = "Employee" })"><i class="icon mdi mdi-collection-image-o"></i><span>Gallery <img src='@Url.Content("~/Content/new.gif")' /></span></a>
+    </li>
+}
+else
+{
+    <li>
+        <a href="@Url.Action("Albums", "Gallery", new { Area = "Employee" })"><i class="icon mdi mdi-collection-image-o"></i><span>Gallery</span></a>
+    </li>
+}
+
+<li>
+    <a href="@Url.Action("Details", "Attendance", new { Area = "Employee" })"><i class="icon mdi mdi-time"></i><span>Attendence Details</span></a>
+</li>

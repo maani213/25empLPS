@@ -1,0 +1,60 @@
+﻿@model EmployeeInformationSystem.Model.MedicalAllowanceInfo
+
+@{
+    ViewBag.Title = "Create Allowance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Create Allowance</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6 col-md-push-3">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <br />
+                                        @using (Html.BeginForm("CreateAllowance", "Medical", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Category</label>
+                                                <div class="col-sm-8">
+                                                    @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Category)
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label">Amount</label>
+                                                <div class="col-sm-8">
+                                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                                                    @Html.ValidationMessageFor(model => model.Amount)
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label"></label>
+                                                <div class="col-sm-8">
+                                                    <button type="submit" class="btn btn-success">Create</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

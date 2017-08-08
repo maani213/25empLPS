@@ -1,0 +1,27 @@
+﻿@model EmployeeInformationSystem.Model.MedicalPrescriptionInfo
+
+@{
+    ViewBag.Title = "View Prescription";
+    Layout = null;
+}
+
+@Html.Raw(TempData["Msg"])
+
+<div class="col-md-12">
+    <div style="text-align:center; margin: 0 auto;"><img src="@Model.PrescriptionPath" class="img-responsive" /></div>
+    <br />
+    @using (Html.BeginForm("DownloadPrescription", "Medical", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.Id)
+
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="icon icon-left mdi mdi-download"></i>
+                Download
+            </button>
+        </div>
+    }
+</div>
+

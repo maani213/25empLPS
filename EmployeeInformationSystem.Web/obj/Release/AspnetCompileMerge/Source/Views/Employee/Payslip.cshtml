@@ -1,0 +1,163 @@
+﻿@model EmployeeInformationSystem.Model.SalaryInfo
+
+@{
+    ViewBag.Title = "Payslip";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                @if (Model != null)
+                {
+                    <div class="invoice">
+                        <div class="row invoice-header">
+                            <div class="col-xs-7">
+                                <div class="invoice-logo"></div>
+                            </div>
+                            <div class="col-xs-5 invoice-order"><span class="invoice-id">Payslip for the Month</span><span class="incoice-date">@Model.SalaryDate.ToString("MMMM yyyy")</span></div>
+                        </div>
+                        <div class="row invoice-data">
+                            <div class="col-xs-5 invoice-person"><span class="name">@Model.EmployeeName</span><span>@Model.Position</span><span>Emp Code: @Model.EmpCode</span><span>-------------------------------------</span><span>No of Days Worked: @Model.NumberOfDaysWorked</span></div>
+                            <div class="col-xs-2 invoice-payment-direction"></div>
+                            <div class="col-xs-5 invoice-person"><span class="name">Logic Powered Solutions</span><span>3rd Floor, Evacuee Trust Complex,</span><span> Sector F-5/1 Islamabad.</span></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="invoice-details">
+                                    <tbody>
+                                        <tr>
+                                            <th>Earnings</th>
+                                            <th></th>
+                                            <th class="amount">Amount (PKR)</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="description">Basic Salary</td>
+                                            <td class="description"></td>
+                                            <td class="amount">
+                                                @Model.BasicSalary
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="description">House Rent</td>
+                                            <td class="description"></td>
+                                            <td class="amount">@Model.HouseRent</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="description">Medical Allowance</td>
+                                            <td class="description"></td>
+                                            <td class="amount">@Model.MedicalAllowance</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="summary total" style="width:33%;">Net Salary</td>
+                                            <td class="amount total-value">
+                                                @{
+                                                    decimal netSalary = Convert.ToDecimal(Model.BasicSalary + Model.HouseRent + Model.MedicalAllowance);
+                                                }
+
+                                                @netSalary
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="invoice-details">
+                                    <tbody>
+                                        <tr>
+                                            <th>Deductions</th>
+                                            <th></th>
+                                            <th class="amount">Amount (PKR)</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="description">Income Tax</td>
+                                            <td class="description"></td>
+                                            <td class="amount">
+                                                @if (Model.IncomTax > 0)
+                                                {
+                                                    @Model.IncomTax
+                                                }
+                                                else
+                                                {
+                                                    <span>N/A</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="description">Loan Deduction</td>
+                                            <td class="description"></td>
+                                            <td class="amount">
+                                                @if (Model.LoanDeduction > 0)
+                                                {
+                                                    @Model.LoanDeduction
+                                                }
+                                                else
+                                                {
+                                                    <span>N/A</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="summary total">Net Payable</td>
+                                            <td class="amount total-value">
+                                                @{
+                                                    decimal netPayable = Convert.ToDecimal(netSalary - (Model.IncomTax + Model.LoanDeduction));
+                                                }
+
+                                                @netPayable
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row invoice-footer" style="float:left;">
+                            <div class="col-md-12">
+                                @*@using (Html.BeginForm("SavePayslipAsPdf", "Employee", FormMethod.Post, new { @class = "form-horizontal" }))
+                                    {
+                                        @Html.Hidden("id", Model.Id)
+                                        @Html.AntiForgeryToken()
+
+                                        <button class="btn btn-lg btn-space btn-primary" type="submit">
+                                            <i class="icon icon-left mdi mdi-file"></i>
+                                            Save PDF
+                                        </button><span>&nbsp;&nbsp;&nbsp;</span>
+
+                                        <a href="javascript:window.open('@Url.Action("PayslipPrintPreview", "Employee", new { id = Model.Id})', 'mywindow', 'left=5,top=5,width=650,height=600,toolbar=1,resizable=0')" class="btn btn-lg btn-space btn-default">
+                                            <i class="icon icon-left mdi mdi-print"></i>
+                                            Print
+                                        </a>
+                                    }*@
+
+                                <a href="javascript:window.open('@Url.Action("PayslipPrintPreview", "Employee", new { id = Model.Id})', 'mywindow', 'left=5,top=5,width=650,height=600,toolbar=1,resizable=0')" class="btn btn-lg btn-space btn-primary">
+                                    <i class="icon icon-left mdi mdi-print"></i>
+                                    Print
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="panel-heading panel-heading-divider">Payslip</div>
+                    <div class="panel-body">
+                        <br />
+                        <h5 class="text-center">No payslip found</h5>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,50 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Error Occurred...</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel-body">
+                                <div class="table-responsive noSwipe">
+                                    <table class="table">
+                                        <tr style="background-color:#C7EBFE;">
+                                            <td>You have been directed to this page because, the server could not process your request.Please perform the following steps</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Step1: Please press the browser's "back" button.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Step2: Please attempt action again.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Step3: If the above steps fail, please log out, close all browsers, and then start again.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>If problem still persists, please contact us.</td>
+                                        </tr>
+                                        <tr style="background-color:#C7EBFE;">
+                                            <td>Your request could not be processed due to the following reason(s)</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:hotpink; color:white">Exception Message: @Model.Exception.Message</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

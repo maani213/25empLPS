@@ -1,0 +1,95 @@
+﻿@model EmployeeInformationSystem.Model.AlbumInfo
+
+@{
+    ViewBag.Title = "Upload Photos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $('.delete-btn').click(function () {
+
+            if (confirm("Are you sure want to delete this photo?")) {
+                $('#delete-photo').submit();
+            }
+        });
+    });
+</script>
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Upload Photos</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    @using (Html.BeginForm("UploadPhotos", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.Id)
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Photo(s)</label>
+                            <div class="col-sm-5">
+                                <input type="file" name="files" multiple id="fu1" class="form-control">
+                                <br />
+                            </div>
+
+                            <label class="col-sm-1 control-label">
+                                <button type="submit" class="btn btn-space btn-success">
+                                    <i class="icon icon-left mdi mdi mdi-upload"></i>
+                                    Upload
+                                </button>
+                            </label>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <div class="panel-body">
+                                    <br />
+                                    @if (Model != null && Model.PhotoInfoList.Count() > 0)
+                                    {
+                                        <div class="gallery-container">
+                                            @foreach (var item in Model.PhotoInfoList)
+                                            {
+                                                using (Html.BeginForm("DeletePhoto", "Gallery", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;", @id = "delete-photo" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.Hidden("PhotoId", item.Id)
+                                                    @Html.Hidden("AlbumId", Model.Id)
+                                                    <div class="item">
+                                                        <div class="photo">
+                                                            <div class="img">
+                                                                <img src="@item.Path" alt="Gallery Image">
+                                                                <div class="over">
+                                                                    <div class="info-wrapper">
+                                                                        <div class="info">
+                                                                            <div class="title">@item.AlbumTitle</div>
+                                                                            <div class="date">@item.UploadOn</div>
+                                                                            <div class="func">
+                                                                                <a href="#" class="delete-btn" id="@item.Id"><i class="icon mdi mdi-delete"></i></a>
+                                                                                <a href="@item.Path" class="image-zoom"><i class="icon mdi mdi-search"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="text-center">No photo found</h5>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

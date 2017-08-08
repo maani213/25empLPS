@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeeInformationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="LastLoginIp" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EmployeeInfoes" Relationship="Self.FK__EmployeeI__Accou__4D94879B" FromRole="Account" ToRole="EmployeeInfo" />
+    <NavigationProperty Name="EmployeeInfoes1" Relationship="Self.FK_EmployeeInfo_Account" FromRole="Account" ToRole="EmployeeInfo" />
+    <NavigationProperty Name="EmployeeInfoes2" Relationship="Self.FK_EmployeeInfo_Account1" FromRole="Account" ToRole="EmployeeInfo" />
+    <NavigationProperty Name="Role" Relationship="EmployeeInformationModel.FK_Account_Role" FromRole="Account" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="EmployeeDocument">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocumentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeInfoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EmployeeInfo" Relationship="Self.FK_EmployeeDocument_EmployeeInfo" FromRole="EmployeeDocument" ToRole="EmployeeInfo" />
+  </EntityType>
+  <EntityType Name="EmployeeInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="22" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SecondaryEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PermanentAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PresentAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TotalExperience" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfJoin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccountId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByAccountId" Type="Int32" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedByAccountId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Account" Relationship="Self.FK__EmployeeI__Accou__4D94879B" FromRole="EmployeeInfo" ToRole="Account" />
+    <NavigationProperty Name="Account1" Relationship="Self.FK_EmployeeInfo_Account" FromRole="EmployeeInfo" ToRole="Account" />
+    <NavigationProperty Name="Account2" Relationship="Self.FK_EmployeeInfo_Account1" FromRole="EmployeeInfo" ToRole="Account" />
+    <NavigationProperty Name="EmployeeDocuments" Relationship="Self.FK_EmployeeDocument_EmployeeInfo" FromRole="EmployeeInfo" ToRole="EmployeeDocument" />
+  </EntityType>
+  <Association Name="FK__EmployeeI__Accou__4D94879B">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeInfo">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeInfo_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeInfo">
+        <PropertyRef Name="ModifiedByAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeInfo_Account1">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeInfo">
+        <PropertyRef Name="CreatedByAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeDocument_EmployeeInfo">
+    <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="1" />
+    <End Role="EmployeeDocument" Type="Self.EmployeeDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EmployeeDocument">
+        <PropertyRef Name="EmployeeInfoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EmployeeInformationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="EmployeeDocuments" EntityType="Self.EmployeeDocument" />
+    <EntitySet Name="EmployeeInfoes" EntityType="Self.EmployeeInfo" />
+    <AssociationSet Name="FK__EmployeeI__Accou__4D94879B" Association="Self.FK__EmployeeI__Accou__4D94879B">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeInfo_Account" Association="Self.FK_EmployeeInfo_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeInfo_Account1" Association="Self.FK_EmployeeInfo_Account1">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeDocument_EmployeeInfo" Association="Self.FK_EmployeeDocument_EmployeeInfo">
+      <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+      <End Role="EmployeeDocument" EntitySet="EmployeeDocuments" />
+    </AssociationSet>
+    <EntitySet Name="Roles" EntityType="EmployeeInformationModel.Role" />
+    <AssociationSet Name="FK_Account_Role" Association="EmployeeInformationModel.FK_Account_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Accounts" Relationship="EmployeeInformationModel.FK_Account_Role" FromRole="Role" ToRole="Account" />
+  </EntityType>
+  <Association Name="FK_Account_Role">
+    <End Type="EmployeeInformationModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="EmployeeInformationModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

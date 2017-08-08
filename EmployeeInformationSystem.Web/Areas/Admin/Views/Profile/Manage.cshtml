@@ -1,0 +1,458 @@
+﻿@model EmployeeInformationSystem.Model.EmployeeInfo
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string _employeeFullName = "";
+
+    if (Model != null)
+    {
+        _employeeFullName = Model.FirstName + " " + Model.LastName;
+    }
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Employee General Info</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    @using (Html.BeginForm("Manage", "Profile", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Employee</label>
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.EmployeeId, "-- Please Select Employee --", new { @class = "select2 select2-hidden-accessible", onchange = "this.form.submit();" })
+                            </div>
+                        </div>
+                    }
+                    <br />
+                    @if (Model != null)
+                    {
+                        <div class="user-profile">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="user-display">
+                                        <div class="user-display-bg"><br /><br /><br /></div>
+                                        <div class="user-display-bottom">
+                                            @{
+                                                string imgPath = "";
+
+                                                if (Model != null)
+                                                {
+                                                    imgPath = Url.Content("~/Content/Employee_pictures/") + Model.AccountId + ".jpg";
+                                                }
+                                            }
+                                            <div class="user-display-avatar"><img src="@imgPath" alt="No Image"></div>
+                                            <div class="user-display-info">
+                                                <div class="name">
+                                                    @_employeeFullName &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="@Url.Action("Update", "Profile", new { id = Model.Id })">
+                                                        Edit Info
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div class="user-info-list panel panel-default">
+                                            <div class="panel panel-border-color panel-border-color-warning">
+                                                <div class="panel-body">
+                                                    <div class="col-md-6">
+                                                        <table class="no-border no-strip skills">
+                                                            <tbody class="no-border-x no-border-y">
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-male-alt"></span></td>
+                                                                    <td class="item">Father's Name: </td>
+                                                                    <td>@Model.FatherName</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-cake"></span></td>
+                                                                    <td class="item">Date of Birth: </td>
+                                                                    <td>
+                                                                        @if (Model.DateOfBirth != null)
+                                                                        {
+                                                                            @Model.DateOfBirth.Value.ToString("dd MMMM yyyy")
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-email"></span></td>
+                                                                    <td class="item">Personal Email: </td>
+                                                                    <td>@Model.PersonalEmail</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-pin"></span></td>
+                                                                    <td class="item">Present Address: </td>
+                                                                    <td>@Model.PresentAddress</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-male-female"></span></td>
+                                                                    <td class="item">Marital Status: </td>
+                                                                    <td>@Model.MaritalStatus</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-calendar-check"></span></td>
+                                                                    <td class="item">Date of Join: </td>
+                                                                    <td>
+                                                                        @if (Model.DateOfJoin != null)
+                                                                        {
+                                                                            @Model.DateOfJoin.Value.ToString("dd MMMM yyyy")
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-case"></span></td>
+                                                                    <td class="item">Position: </td>
+                                                                    <td>@Model.Position</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-email"></span></td>
+                                                                    <td class="item">Company Email</td>
+                                                                    <td>@Model.CompanyEmail</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-badge-check"></span></td>
+                                                                    <td class="item">Employment Status: </td>
+                                                                    <td>
+
+                                                                        @if (Model.DateOfJoin != null)
+                                                                        {
+                                                                            if (!string.IsNullOrEmpty(Model.ProbationPeriod))
+                                                                            {
+                                                                                DateTime joinDate = Convert.ToDateTime(Model.DateOfJoin.Value.ToString("dd MMMM yyyy"));
+                                                                                DateTime completionDate = Convert.ToDateTime(joinDate.AddDays(int.Parse(Model.ProbationPeriod) * 30).ToString("dd MMMM yyyy"));
+                                                                                DateTime currentDate = DateTime.Now;
+
+                                                                                int result = DateTime.Compare(currentDate, completionDate);
+
+                                                                                if (result < 0)
+                                                                                {
+                                                                                    <span>Probation (@joinDate.ToString("dd MMMM yyyy") - @completionDate.ToString("dd MMMM yyyy"))</span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <span>Permanent</span>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <table class="no-border no-strip skills">
+                                                            <tbody class="no-border-x no-border-y">
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-card"></span></td>
+                                                                    <td class="item">CNIC #: </td>
+                                                                    <td>@Model.CNIC</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-smartphone-android"></span></td>
+                                                                    <td class="item">Cell #: </td>
+                                                                    <td>@Model.CellNumber</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-phone"></span></td>
+                                                                    <td class="item">Residence Phone #: </td>
+                                                                    <td>@Model.ResidencePhoneNumber</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-pin"></span></td>
+                                                                    <td class="item">Permanent Address: </td>
+                                                                    <td>@Model.PermanentAddress</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-library"></span></td>
+                                                                    <td class="item">Total Experience: </td>
+                                                                    <td>
+                                                                        @if (Model.DateOfLeave == null)
+                                                                        {
+                                                                            if (Model.DateOfJoin != null)
+                                                                            {
+                                                                                DateTime joinDate = Convert.ToDateTime(Model.DateOfJoin.ToString());
+                                                                                DateTime currentDate = DateTime.Now;
+
+                                                                                currentDate = currentDate.AddYears(int.Parse(Model.ExperienceYears)).AddMonths(int.Parse(Model.ExperienceMonths));
+
+                                                                                TimeSpan ts = currentDate - joinDate;
+                                                                                DateTime duration = DateTime.MinValue.AddDays(ts.Days);
+
+                                                                                int totalYears = duration.Year - 1;
+                                                                                int totalMonths = duration.Month - 1;
+
+                                                                                <span>@totalYears Years @totalMonths Months</span>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (Model.DateOfJoin != null)
+                                                                            {
+                                                                                DateTime joinDate = Convert.ToDateTime(Model.DateOfJoin.ToString());
+                                                                                DateTime leaveDate = Convert.ToDateTime(Model.DateOfLeave.ToString());
+
+                                                                                leaveDate = leaveDate.AddYears(int.Parse(Model.ExperienceYears)).AddMonths(int.Parse(Model.ExperienceMonths));
+
+                                                                                TimeSpan ts = leaveDate - joinDate;
+                                                                                DateTime duration = DateTime.MinValue.AddDays(ts.Days);
+
+                                                                                int totalYears = duration.Year - 1;
+                                                                                int totalMonths = duration.Month - 1;
+
+                                                                                <span>@totalYears Years @totalMonths Months</span>
+                                                                            }
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-library"></span></td>
+                                                                    <td class="item">Total LPS Experience: </td>
+                                                                    <td>
+                                                                        @if (Model.DateOfLeave == null)
+                                                                        {
+                                                                            if (Model.DateOfJoin != null)
+                                                                            {
+                                                                                DateTime joinDate = Convert.ToDateTime(Model.DateOfJoin.ToString());
+                                                                                DateTime currentDate = DateTime.Now;
+
+                                                                                TimeSpan ts = currentDate - joinDate;
+                                                                                DateTime duration = DateTime.MinValue.AddDays(ts.Days);
+
+                                                                                int totalYears = duration.Year - 1;
+                                                                                int totalMonths = duration.Month - 1;
+
+                                                                                <span>@totalYears Years @totalMonths Months</span>
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (Model.DateOfJoin != null)
+                                                                            {
+                                                                                DateTime joinDate = Convert.ToDateTime(Model.DateOfJoin.ToString());
+                                                                                DateTime leaveDate = Convert.ToDateTime(Model.DateOfLeave.ToString());
+
+                                                                                TimeSpan ts = leaveDate - joinDate;
+                                                                                DateTime duration = DateTime.MinValue.AddDays(ts.Days);
+
+                                                                                int totalYears = duration.Year - 1;
+                                                                                int totalMonths = duration.Month - 1;
+
+                                                                                <span>@totalYears Years @totalMonths Months</span>
+                                                                            }
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-accounts-alt"></span></td>
+                                                                    <td class="item">Team: </td>
+                                                                    <td>@Model.Team</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="icon"><span class="mdi mdi-account-box-o"></span></td>
+                                                                    <td class="item">EMP Code: </td>
+                                                                    <td>@Model.EmpCode</td>
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h4 class="xs-mb-20">Family Details</h4>
+                                                    <button data-toggle="modal" data-target="#family-modal" id="add-family-btn" data-id="@Model.Id" type="button" class="btn btn-space btn-success">
+                                                        Add
+                                                    </button>
+                                                    <div class="panel panel-border-color panel-border-color-warning">
+                                                        <br />
+                                                        @if (Model.FamilyMembersList != null && Model.FamilyMembersList.Count() > 0)
+                                                        {
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>CNIC</th>
+                                                                            <th>Relation</th>
+                                                                            <th>&nbsp;</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach (var item in Model.FamilyMembersList)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@item.Name</td>
+                                                                                <td>@item.CNIC</td>
+                                                                                <td>@item.Relation</td>
+                                                                                <td>
+                                                                                    @using (Html.BeginForm("Delete", "Family", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                                    {
+                                                                                        @Html.AntiForgeryToken()
+                                                                                        @Html.Hidden("FamilyMemberId", item.Id)
+
+                                                                                        <button type="button" data-toggle="modal" data-target="#family-modal" class="edit-family-btn" data-id="@item.Id" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                                            <i class="icon icon-left mdi mdi-edit"></i>
+                                                                                            Edit
+                                                                                        </button>
+
+                                                                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this family member?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                                            <i class="icon icon-left mdi mdi-delete"></i>
+                                                                                            Delete
+                                                                                        </button>
+                                                                                    }
+                                                                                </td>
+                                                                            </tr>
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h5 class="text-center">No family member found</h5>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h4 class="xs-mb-20">Documents</h4>
+                                                    <div class="panel panel-border-color panel-border-color-warning">
+                                                        @using (Html.BeginForm("UploadDocuments", "Profile", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            @Html.Hidden("EmployeeId", Model.Id)
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label">Prescription Name</label>
+                                                                <div class="col-sm-3">
+                                                                    @Html.EditorFor(model => model.DocumentName, new { htmlAttributes = new { @class = "form-control" } })
+                                                                    @Html.ValidationMessageFor(model => model.DocumentName)
+                                                                    <br />
+                                                                </div>
+
+                                                                <div class="col-sm-3">
+                                                                    <input type="file" name="file" id="file" class="form-control">
+                                                                    <br />
+                                                                </div>
+
+                                                                <div class="col-sm-3">
+                                                                    <button type="submit" class="btn btn-space btn-primary">
+                                                                        <i class="icon icon-left mdi mdi mdi-upload"></i>
+                                                                        Upload
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        @if (Model.DocumentsList.Count() > 0)
+                                                        {
+                                                            foreach (var item in Model.DocumentsList)
+                                                            {
+                                                                <ol class="breadcrumb">
+                                                                    <li class="active" style="width:72%;">@item.FileName</li>
+                                                                    <li class="active">
+                                                                        @using (Html.BeginForm("DownloadDocument", "Profile", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                        {
+                                                                            @Html.AntiForgeryToken()
+                                                                            @Html.Hidden("DocumentId", item.Id)
+                                                                            <button type="submit" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                                <i class="icon icon-left mdi mdi-download"></i>
+                                                                                Download
+                                                                            </button>
+                                                                        }
+                                                                    </li>
+                                                                    <li class="active">
+                                                                        @using (Html.BeginForm("DeleteDocument", "Profile", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                        {
+                                                                            @Html.AntiForgeryToken()
+                                                                            @Html.Hidden("DocumentId", item.Id)
+                                                                            <button type="submit" onclick="return confirm('Are you sure want to delete this document?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                                <i class="icon icon-left mdi mdi-delete"></i>
+                                                                                Delete
+                                                                            </button>
+                                                                        }
+                                                                    </li>
+                                                                </ol>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <h5 class="text-center">No document found</h5>
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                }
+                                                else
+                                                {
+                                                    <h5 class="text-center">Select employee from the list</h5>
+                                                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="family-modal" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+    <div class="modal-dialog modal-lg bs-example">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                <h3 class="modal-title">Family Member</h3>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#add-family-btn").click(function (eve) {
+            $("#modal-content").load('@Url.Content("~/Admin/Family/Add/")' + $(this).data("id"));
+        });
+
+        $(".edit-family-btn").click(function (eve) {
+            $("#modal-content").load('@Url.Content("~/Admin/Family/Update/")' + $(this).data("id"));
+        });
+    });
+</script>

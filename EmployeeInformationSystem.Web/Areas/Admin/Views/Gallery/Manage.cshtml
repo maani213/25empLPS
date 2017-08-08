@@ -1,0 +1,68 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.AlbumInfo>
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Manage Gallery</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <a href="@Url.Action("CreateAlbum", "Gallery")" class="btn btn-space btn-success">
+                                    Create Album
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <div class="panel-body">
+                                    <br />
+                                    @foreach (var item in Model)
+                                    {
+                                        using (Html.BeginForm("DeleteAlbum", "Gallery", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.Hidden("AlbumId", item.Id)
+                                            <div class="col-xs-3" style="margin-bottom:40px;">
+                                                <div class="text-center">
+                                                    <a href="@Url.Action("UploadPhotos", "Gallery", new { id = item.Id })"><img src="@item.CoverPhotoPath" alt="Placeholder" class="img-thumbnail" width="200" height="160"></a>
+                                                    <br />
+                                                    @item.NumberOfPhotos Photos
+                                                    <br />
+                                                    <b>@item.Title</b>
+                                                    <br />
+                                                    <a href="@Url.Action("UpdateAlbum", "Gallery", new { id = item.Id })">
+                                                        <i class="icon icon-left mdi mdi-edit"></i>
+                                                        Edit
+                                                    </a>&nbsp; |
+                                                    <button type="submit" onclick="return confirm('Are you sure want to delete this album?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                        <i class="icon icon-left mdi mdi-delete"></i>
+                                                        Delete
+                                                    </button>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

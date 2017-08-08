@@ -1,0 +1,193 @@
+﻿@model EmployeeInformationSystem.Model.SalaryViewModel
+
+@{
+    ViewBag.Title = "Manage Salaries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+
+        $("#checkAll").click(function () {
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+
+        $("#create-salary").click(function () {
+            var IdsArray = [];
+
+            $('#employeeCheck :checked').each(function () {
+                if ($(this).val() != null || $(this).val() != "") {
+                    IdsArray.push($(this).val());
+                }
+            });
+
+            var temp = IdsArray.join(", ");
+
+            if (!temp) {
+                alert("Please select employee(s).");
+            }
+
+            else {
+                $("#employeesIdList").val(temp);
+                $("#create-salarieshistory-form").submit();
+            }
+        });
+    });
+</script>
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Manage Salaries</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    @if (Model != null)
+                    {
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-7 col-md-push-3">
+                                    @using (Html.BeginForm("Manage", "Salary", FormMethod.Post, new { @class = "form-horizontal" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">
+                                                Salary Date
+                                            </label>
+                                            <div class="col-md-5">
+                                                @Html.DropDownListFor(m => m.SalaryDate, null, htmlAttributes: new { @class = "form-control", onchange = "this.form.submit();" })
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="col-md-3">
+                                    @using (Html.BeginForm("CreateSalariesHistory", "Salary", FormMethod.Post, new { @class = "form-horizontal", @id = "create-salarieshistory-form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.HiddenFor(x => x.SalaryDate)
+                                        @Html.Hidden("employeesIdList")
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">
+                                                <button class="btn btn-space btn-primary" id="create-salary" type="button">
+                                                    Create Salary
+                                                </button>
+                                            </label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <br />
+                            <div class="panel panel-default panel-table">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <div class="panel-body">
+                                        @if (Model != null && Model.SalaryList.Count() > 0)
+                                        {
+                                            <div class="table-responsive noSwipe">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                <div class="be-checkbox be-checkbox-color inline">
+                                                                    <input id="checkAll" type="checkbox">
+                                                                    <label for="checkAll"></label>
+                                                                </div>
+                                                                Employee
+                                                            </th>
+                                                            <th>Net Payable</th>
+                                                            <th>Gross Salary</th>
+                                                            <th>Tax</th>
+                                                            <th>Loan Deduction</th>
+                                                            <th>Other Deductions</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="employeeCheck">
+                                                        @foreach (var item in Model.SalaryList)
+                                                        {
+                                                            if (item.TotalSalary > 0)
+                                                            {
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="be-checkbox be-checkbox-color inline">
+                                                                            <input id="@item.EmployeeInfoId" type="checkbox" value="@item.EmployeeInfoId">
+                                                                            <label for="@item.EmployeeInfoId"></label>
+                                                                        </div>
+                                                                        @item.EmployeeName
+                                                                    </td>
+                                                                    <td>
+                                                                        @{
+                                                                            decimal netPayable = Convert.ToDecimal(item.TotalSalary - (item.IncomTax + item.LoanDeduction + item.OtherDeductions));
+                                                                        }
+
+                                                                        @netPayable
+                                                                    </td>
+                                                                    <td>@item.TotalSalary</td>
+                                                                    <td>@item.IncomTax</td>
+                                                                    <td>@item.LoanDeduction</td>
+                                                                    <td>@item.OtherDeductions</td>
+
+                                                                    <td>
+                                                                        <a href="@Url.Action("Update", "Salary", new { id = item.Id })" style="font-size:medium">
+                                                                            <i class="icon icon-left mdi mdi-edit"></i>
+                                                                            Edit
+                                                                        </a>
+
+                                                                    </td>
+                                                                </tr>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <tr style="background-color:lightpink;">
+                                                                                    <td>
+                                                                                        <div class="be-checkbox be-checkbox-color inline">
+                                                                                            <input id="@item.EmployeeInfoId" type="checkbox" value="@item.EmployeeInfoId">
+                                                                                            <label for="@item.EmployeeInfoId"></label>
+                                                                                        </div>
+                                                                                        @item.EmployeeName
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        @{
+                                                                                            decimal netPayable = Convert.ToDecimal(item.TotalSalary - (item.IncomTax + item.LoanDeduction + item.OtherDeductions));
+                                                                                        }
+
+                                                                                        @netPayable
+                                                                                    </td>
+                                                                                    <td>@item.TotalSalary</td>
+                                                                                    <td>@item.IncomTax</td>
+                                                                                    <td>@item.LoanDeduction</td>
+                                                                                    <td>@item.OtherDeductions</td>
+                                                                                    <td>
+                                                                                        <a href="@Url.Action("Update", "Salary", new { id = item.Id })" style="font-size:medium">
+                                                                                            <i class="icon icon-left mdi mdi-edit"></i>
+                                                                                            Edit
+                                                                                        </a>
+
+                                                                                    </td>
+                                                                                </tr>
+                                                                                                }
+                                                                                            }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <h5 class="text-center">This month salaries have already created</h5>
+                                                                                            }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <h5 class="text-center">No employee found</h5>
+                                                                                            }
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

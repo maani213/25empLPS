@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="84cae6e605094420a2b38d57787c041f" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="EmployeeInformationModel.Role" Width="1.5" PointX="2.875" PointY="4.625" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.Announcement" Width="1.5" PointX="5.25" PointY="16.125" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.Album" Width="1.5" PointX="5.25" PointY="20.125" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.Photo" Width="1.5" PointX="7.5" PointY="20.5" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Photo_Album" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.LeaveRequest" Width="1.5" PointX="7.5" PointY="14.25" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.AccountConfirmation" Width="1.5" PointX="5.25" PointY="24.875" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.PaySlip" Width="1.5" PointX="10.5" PointY="5.125" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.MedicalAllowance" Width="2.5" PointX="3.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.MedicalPrescription" Width="1.5" PointX="7.125" PointY="2.125" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.MedicalCheckout" Width="1.5" PointX="9.75" PointY="12.625" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_MedicalPrescription_MedicalCheckout" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.Account" Width="1.5" PointX="3" PointY="31" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.AccountCheckList" Width="1.5" PointX="5.25" PointY="37.875" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.Document" Width="1.5" PointX="7.5" PointY="28.125" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.EmployeeInfo" Width="1.5" PointX="5.25" PointY="28.875" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.FamilyMember" Width="1.5" PointX="7.5" PointY="39.625" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.LeaveAllowed" Width="1.5" PointX="7.5" PointY="31.25" />
+        <EntityTypeShape EntityType="EmployeeInformationModel.Salary" Width="1.5" PointX="10.5" PointY="31" />
+        <AssociationConnector Association="EmployeeInformationModel.FK__AccountCh__Accou__3F115E1A" />
+        <AssociationConnector Association="EmployeeInformationModel.FK__AccountCo__Accou__6A30C649" />
+        <AssociationConnector Association="EmployeeInformationModel.FK__EmployeeI__Accou__778AC167" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Account_Role" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_AccountConfirmation_Account" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Album_Account" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Album_Account1" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Announcement_Account" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Announcement_Account1" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_EmployeeInfo_Account" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_EmployeeInfo_Account1" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_LeaveRequest_Account" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_MedicalCheckout_Account" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_PaySlip_Account1" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_PaySlip_Account2" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Salary_Account" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Salary_Account1" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_Document_EmployeeInfo" />
+        <AssociationConnector Association="EmployeeInformationModel.FK__Salary__Employee__625A9A57" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_FamilyMember_EmployeeInfo" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_LeaveAllowed_EmployeeInfo" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_LeaveRequest_EmployeeInfo" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_MedicalCheckout_EmployeeInfo" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_PaySlip_EmployeeInfo" />
+        <AssociationConnector Association="EmployeeInformationModel.FK_MedicalCheckout_FamilyMember" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

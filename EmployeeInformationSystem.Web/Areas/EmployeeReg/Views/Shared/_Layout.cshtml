@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="~/Content/beagle_Theme/assets/img/logo-fav.png">
+    <title>@ViewBag.Title - Employee Information System</title>
+    @Scripts.Render("~/js/core")
+    @Styles.Render("~/css/core")
+</head>
+<body>
+    <div class="be-wrapper be-fixed-sidebar">
+        <nav class="navbar navbar-default navbar-fixed-top be-top-header">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <span class="navbar-brand"></span>
+                </div>
+                <div class="be-right-navbar be-right-navbar-flex">
+                    <div class="search-container">
+                    </div>
+                    <ul class="nav navbar-nav navbar-right be-icons-nav">
+                        <li class="dropdown">
+                            <a href="@Url.Action("Logout", "Auth", new { Area = "" })"><span class="icon mdi mdi-power"></span> <strong>Logout</strong></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="be-content" style="margin-left:0px;">
+            @RenderBody()
+            <div class="splash-footer"><span>Copyright @DateTime.Now.Year Logic Powered Solutions | All Rights Reserved</span></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //initialize the javascript
+            App.init();
+            App.formElements();
+
+            setTimeout(function () {
+                $('#alert-message').hide();
+            }, 5000);
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

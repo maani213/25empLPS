@@ -1,0 +1,63 @@
+﻿@model EmployeeInformationSystem.Model.RegistrationViewModel
+
+@{
+    ViewBag.Title = "Family Details";
+    Layout = "~/Areas/EmployeeReg/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .activetab {
+        color: #fff !important;
+        background: #4285f4 !important;
+    }
+
+    .activetabchevron {
+        border: 24px solid transparent;
+        border-left: 14px solid #4285f4;
+        border-right: 0;
+        display: block;
+        position: absolute;
+        right: -14px;
+        top: 0;
+        z-index: 1;
+    }
+</style>
+
+<div class="main-content container-fluid">
+    <div class="row wizard-row">
+        <div class="col-md-12 fuelux">
+            <div class="block-wizard panel panel-default">
+                <div id="wizard1" class="wizard wizard-ux no-steps-container">
+                    @if (Model.accountCheckListInfo != null)
+                    {
+                        @Html.Partial("_WizardProgress", Model)
+
+                        <ul class="steps" style="margin-left: 0">
+                            <li data-step="1" class="active">Personal Info<span class="chevron"></span></li>
+                            <li data-step="2" class="activetab">Family Details<span class="activetabchevron"></span></li>
+                            <li data-step="3" class="active">Upload Documents<span class="chevron"></span></li>
+                            <li data-step="4" class="active">Upload Picture<span class="chevron"></span></li>
+                        </ul>
+                        <div class="step-content">
+                            @Html.Raw(TempData["Msg"])
+                            <div data-step="2" class="step-pane active">
+                                @Html.Partial("_FamilyDetails", Model.familyMembersList);
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center;">
+                                Something went wrong! please try again later.
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

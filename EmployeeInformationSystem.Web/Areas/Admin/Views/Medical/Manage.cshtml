@@ -1,0 +1,162 @@
+﻿@model EmployeeInformationSystem.Model.MedicalCheckoutInfo
+
+@{
+    ViewBag.Title = "Manage Medical";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Manage Medical</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+
+                    @using (Html.BeginForm("EmployeeId", "Medical", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Employee</label>
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(m => m.EmployeeInfoId, (SelectList)ViewBag.EmployeeId, "-- Please Select Employee --", new { @class = "select2 select2-hidden-accessible", onchange = "this.form.submit();" })
+                            </div>
+                        </div>
+                    }
+                    <br />
+                    <div class="row">
+                        <div class="col-md-10 col-md-push-1">
+                            <a href="@Url.Action("Allowance","Medical")" target="_blank">
+                                <i class="mdi mdi-hospital"></i>
+                                Medical Allowance
+                            </a>
+                            @*<span>&nbsp;| &nbsp;</span>
+                                <a href="@Url.Action("Reset","Leave", new { id = Model.EmployeeInfoId})">
+                                    <i class="mdi mdi-rotate-right"></i>
+                                    Reset Leaves
+                                </a>*@
+                            <hr />
+                        </div>
+                    </div>
+                    <br />
+                    @if (Model != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    @if (Model.MedicalAllowance != null)
+                                    {
+                                        <h4 class="xs-mb-20">
+                                            Medical Health Insurance
+                                        </h4>
+
+                                        <ol class="breadcrumb">
+                                            <li class="active" style="width:60%;">Total Medical Allowed</li>
+                                            <li class="active" style="width:10%;">Rs @Model.MedicalAllowance.Amount</li>
+                                        </ol>
+
+                                        if (Model.AvailedMedicalsList.Sum(x => x.Amount) == Model.MedicalAllowance.Amount)
+                                        {
+                                            <ol class="breadcrumb" style="background-color: #EA4335;">
+                                                <li class="active" style="width:60%; color: white;">Total Medical Remaining</li>
+                                                <li class="active" style="width:10%; color: white;">Rs @Convert.ToDecimal(Model.MedicalAllowance.Amount - @Model.AvailedMedicalsList.Sum(x => x.Amount))</li>
+                                            </ol>
+                                        }
+                                        else
+                                        {
+                                            <ol class="breadcrumb" style="background-color: #34A853;">
+                                                <li class="active" style="width:60%; color: white;">Total Medical Remaining</li>
+                                                <li class="active" style="width:10%; color: white;">Rs @Convert.ToDecimal(Model.MedicalAllowance.Amount - @Model.AvailedMedicalsList.Sum(x => x.Amount))</li>
+                                            </ol>
+                                        }
+
+                                        <hr style="margin: 20px 56px 18px;" />
+                                    }
+                                    <h4>
+                                        Availed Medical
+                                    </h4>
+
+                                    @if (Model.AvailedMedicalsList.Count() > 0)
+                                    {
+                                        using (Html.BeginForm("Manage", "Medical", FormMethod.Post, new { @class = "form-horizontal" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(x => x.Id)
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">
+                                                    Year
+                                                </label>
+                                                <div class="col-md-4">
+                                                    @Html.DropDownList("MedicalYear", null, htmlAttributes: new { @class = "form-control", onchange = "this.form.submit();" })
+                                                </div>
+                                            </div>
+                                        }
+                                        <br />
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Patient Name</th>
+                                                        <th>Treatment Date</th>
+                                                        <th>Description</th>
+                                                        <th>Apply Date</th>
+                                                        <th>Status</th>
+                                                        <th class="number">Amount</th>
+                                                        <th>&nbsp;</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.AvailedMedicalsList)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.PatientName</td>
+                                                            <td>@item.TreatmentDate.Value.ToString("dd MMM yyyy")</td>
+                                                            <td>@item.Description</td>
+                                                            <td>@item.RequestDate.Value.ToString("dd MMM yyyy")</td>
+                                                            <td>@item.Status</td>
+                                                            <td class="number">Rs @item.Amount</td>
+                                                            <td>
+                                                                @using (Html.BeginForm("DownloadPrescriptions", "Medical", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                {
+                                                                    @Html.AntiForgeryToken()
+                                                                    @Html.Hidden("CheckoutId", item.Id)
+
+                                                                    <button type="submit" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                        <i class="icon icon-left mdi mdi-download"></i>
+                                                                        Prescriptions
+                                                                    </button>
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td colspan="7" style="border-bottom: 1px solid white;">&nbsp;</td>
+                                                    </tr>
+                                                    <tr style="background-color:gray; color: white;">
+                                                        <td>Total Amount</td>
+                                                        <td colspan="4">&nbsp;</td>
+                                                        <td class="number">Rs @Model.AvailedMedicalsList.Sum(x => x.Amount)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="text-center">No availed medical found</h5><br />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h5 class="text-center">Select employee from the list</h5>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

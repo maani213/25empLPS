@@ -1,0 +1,75 @@
+﻿@model EmployeeInformationSystem.Model.MenuViewModel
+
+<li>
+    <a href="@Url.Action("Dashboard", "Home", new { Area = "Admin" })"><i class="icon mdi mdi-home"></i><span>Dashboard</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Manage", "Account", new { Area = "Admin" })"><i class="icon mdi mdi-key"></i><span>Manage Accounts</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Manage", "Profile", new { Area = "Admin" })"><i class="icon mdi mdi-info-outline"></i><span>Manage Employee Info</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Manage", "Salary", new { Area = "Admin" })"><i class="icon mdi mdi-money-box"></i><span>Manage Salaries</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Manage", "Medical", new { Area = "Admin" })"><i class="icon mdi mdi-hospital-alt"></i><span>Manage Medical</span></a>
+</li>
+
+@if (Model.IsNewMedicalRequest == true)
+{
+    <li>
+        <a href="@Url.Action("Requests", "Medical", new { Area = "Admin" })"><i class="icon mdi mdi-globe-alt"></i><span>Medical Requests <img src='@Url.Content("~/Content/new.gif")' /></span></a>
+    </li>
+}
+else
+{
+    <li>
+        <a href="@Url.Action("Requests", "Medical", new { Area = "Admin" })"><i class="icon mdi mdi-globe-alt"></i><span>Medical Requests</span></a>
+    </li>
+}
+
+<li>
+    <a href="@Url.Action("Manage", "Leave", new { Area = "Admin" })"><i class="icon mdi mdi-account-calendar"></i><span>Manage Leaves</span></a>
+</li>
+
+@if (Model.IsNewLeaveRequest == true)
+{
+    <li>
+        <a href="@Url.Action("Requests", "Leave", new { Area = "Admin" })"><i class="icon mdi mdi-globe"></i><span>Leave Requests <img src='@Url.Content("~/Content/new.gif")' /></span></a>
+    </li>
+}
+else
+{
+    <li>
+        <a href="@Url.Action("Requests", "Leave", new { Area = "Admin" })"><i class="icon mdi mdi-globe"></i><span>Leave Requests</span></a>
+    </li>
+}
+
+<li>
+    <a href="@Url.Action("Details", "Salary", new { Area = "Admin" })"><i class="icon mdi mdi mdi-money"></i><span>Employee Salary Details</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Manage", "Announcement", new { Area = "Admin" })"><i class="icon mdi mdi-notifications-none"></i><span>Manage Announcements</span></a>
+</li>
+
+<li>
+    <a href="@Url.Action("Manage", "Gallery", new { Area = "Admin" })"><i class="icon mdi mdi-collection-folder-image"></i><span>Manage Gallery</span></a>
+</li>
+
+@*<li class="parent">
+        <a href="#"><i class="icon mdi mdi-account-calendar"></i><span>Manage Leaves</span></a>
+        <ul class="sub-menu">
+            <li>
+                <a href="@Url.Action("LeavesRequest", "Admin")">Leaves Request</a>
+            </li>
+            <li>
+                <a href="@Url.Action("AdjustLeaves", "Admin")">Adjust Leaves</a>
+            </li>
+        </ul>
+    </li>*@

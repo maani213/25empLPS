@@ -1,0 +1,53 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.LeaveRequestInfo>
+
+@{
+    ViewBag.Title = "Leaves Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Leaves Requests</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        <br />
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @foreach (var item in Model)
+                                            {
+                                                <div role="alert" class="alert alert-primary alert-icon alert-icon-colored alert-dismissible">
+                                                    <div class="icon"><span class="mdi mdi-info-outline"></span></div>
+                                                    <div class="message">
+                                                        @item.EmployeeFullName applied for @item.LeaveType leave(s) on @item.RequestDate.ToString("dd MMMM yyyy") .
+                                                        &nbsp;&nbsp;
+                                                        <a href="@Url.Action("RequestDetails","Leave", new { id = item.Id})">Details</a>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h5 class="text-center">No leaves request found</h5>
+                    }
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+

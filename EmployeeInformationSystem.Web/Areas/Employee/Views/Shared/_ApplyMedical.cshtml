@@ -1,0 +1,72 @@
+﻿@model EmployeeInformationSystem.Model.MedicalCheckoutInfo
+@{
+    Model.PrescriptionName = "NA";
+}
+<style type="text/css">
+    #apply-medical .modal-content {
+        max-width: 100%;
+    }
+</style>
+
+<!--Form Modals-->
+<div id="apply-medical" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+    <div class="modal-dialog modal-lg bs-example">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                <h3 class="modal-title">Apply For Medical</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-border-color panel-border-color-warning">
+                    <div class="col-md-12">
+                        @using (Html.BeginForm("SaveCheckout", "Medical", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;", @id = "patient-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(x => x.PrescriptionName)
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Treatment Date</label>
+                                <div class="col-sm-6">
+                                    <div data-min-view="2" data-date-format="dd MM yyyy" class="input-group date datetimepicker">
+                                        @Html.EditorFor(model => model.TreatmentDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "background-color: white;" } })
+                                        <span class="input-group-addon btn btn-primary"><i class="icon-th mdi mdi-calendar"></i></span>
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.TreatmentDate)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Patient Name</label>
+                                <div class="col-sm-6">
+                                    @Html.DropDownListFor(model => model.FamilyMemberId, (SelectList)TempData["FamilyMembersList"], "-- Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.FamilyMemberId)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Amount</label>
+                                <div class="col-sm-6">
+                                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Amount)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Description</label>
+                                <div class="col-sm-6">
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 3, @style = "resize: none;" })
+                                    @Html.ValidationMessageFor(model => model.Description)
+                                </div>
+                            </div>
+
+                            <div class="modal-footer" style="text-align:center">
+                                <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
+                                <button type="submit" class="btn btn-primary md-close">Proceed</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

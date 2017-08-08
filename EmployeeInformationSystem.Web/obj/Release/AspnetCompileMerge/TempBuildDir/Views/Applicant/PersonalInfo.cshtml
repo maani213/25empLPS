@@ -1,0 +1,54 @@
+﻿@model EmployeeInformationSystem.Model.ApplicantViewModel
+
+@{
+    ViewBag.Title = "Personal Info";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#alert-message').hide();
+        }, 5000);
+    });
+</script>
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Personal Information</div>
+                <div class="panel-body">
+                    <br />
+                    @Html.Raw(TempData["Msg"])
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <br />
+
+                                @Html.Partial("_ApplicantPersonalInfoPartialView", Model.employeeInfo)
+
+                                @if (Model.accountCheckListInfo.IsPersonalInfoProvided == true)
+                                {
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align:center;">
+                                            <a href="@Url.Action("Documents","Applicant")" class="btn btn-success btn-spac">
+                                                Next Step &nbsp;
+                                                <i class="icon icon-left mdi mdi-arrow-right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,89 @@
+﻿@model EmployeeInformationSystem.Model.LeaveRequestInfo
+
+@{
+    ViewBag.Title = "Request Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Leaves Request Details</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6 col-md-push-3">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @using (Html.BeginForm("RequestDetails", "Leave", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(x => x.Id)
+                                            @Html.HiddenFor(x => x.Reason)
+                                            @Html.HiddenFor(x => x.EmployeeInfoId)
+                                            @Html.HiddenFor(x => x.EmployeeFullName)
+                                            @Html.HiddenFor(x => x.StartDate)
+                                            @Html.HiddenFor(x => x.EndDate)
+
+                                            <h4 class="xs-mb-20">
+                                                @Model.EmployeeFullName
+                                            </h4>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:60%;">Request Date</li>
+                                                <li class="active">@Model.RequestDate.ToString("dd MMMM yyyy")</li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:60%;">Start Date</li>
+                                                <li class="active">@Model.StartDate.ToString("dd MMMM yyyy")</li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:60%;">End Date</li>
+                                                <li class="active">@Model.EndDate.ToString("dd MMMM yyyy")</li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:60%;">Total Leaves</li>
+                                                <li class="active">
+                                                    @{
+                                                        int _totalLeaves = EmployeeInformationSystem.Web.Common.LeavesCounter.CountLeavesWithoutWeekend(Model.StartDate, Model.EndDate);
+                                                    }
+                                                    @_totalLeaves
+                                                </li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:60%;">Leave(s) Type</li>
+                                                <li class="active">@Model.LeaveType</li>
+                                            </ol>
+
+                                            <ol class="breadcrumb">
+                                                <li class="active" style="width:60%;">Reason</li>
+                                                <li class="active">@Model.Reason</li>
+                                            </ol>
+
+                                            <div class="form-group">
+                                                <label>Remark</label>
+                                                @Html.TextAreaFor(model => model.Remark, new { @class = "form-control", @rows = 3, @style = "resize: none;" })
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="submit" name="ProceedBtn" value="Approve" onclick="return confirm('Are you sure want to approve this request?');" class="btn btn-success">Approve</button>
+                                                <button type="submit" name="ProceedBtn" value="Reject" onclick="return confirm('Are you sure want to reject this request?');" class="btn btn-danger">Reject</button>
+                                            </div>
+                                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

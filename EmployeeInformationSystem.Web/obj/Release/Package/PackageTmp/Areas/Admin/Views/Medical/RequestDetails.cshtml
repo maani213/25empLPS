@@ -1,0 +1,132 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.MedicalCheckoutInfo>
+
+@{
+    ViewBag.Title = "Request Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $(".viewBtn").click(function (eve) {
+            $("#modal-content").load('@Url.Content("~/Admin/Medical/ViewPrescription/")' + $(this).data("id"));
+        });
+    });
+</script>
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Medical Request Details</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <br />
+                    <div class="row">
+                        <div class="col-md-9">
+                            <fieldset>
+                                <legend>
+                                    @Model.FirstOrDefault().EmployeeName
+                                </legend>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="row">
+                            <div class="col-md-6 col-md-push-3">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            @using (Html.BeginForm("ProcessRequest", "Medical", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.Hidden("CheckoutId", item.Id)
+
+                                                <h4 class="xs-mb-20">
+                                                    Medical Details
+                                                </h4>
+
+                                                <ol class="breadcrumb">
+                                                    <li class="active" style="width:60%;">Patient Name</li>
+                                                    <li class="active" style="width:38%;">@item.PatientName</li>
+                                                </ol>
+
+                                                <ol class="breadcrumb">
+                                                    <li class="active" style="width:60%;">Treatment Date</li>
+                                                    <li class="active" style="width:38%;">@item.TreatmentDate.Value.ToString("dd MMMM yyyy")</li>
+                                                </ol>
+
+                                                <ol class="breadcrumb">
+                                                    <li class="active" style="width:60%;">Request Date</li>
+                                                    <li class="active" style="width:38%;">@item.RequestDate.Value.ToString("dd MMMM yyyy")</li>
+                                                </ol>
+
+                                                <ol class="breadcrumb">
+                                                    <li class="active" style="width:60%;">Amount</li>
+                                                    <li class="active" style="width:38%;">Rs @item.Amount</li>
+                                                </ol>
+
+                                                <ol class="breadcrumb">
+                                                    <li class="active" style="width:60%;">Description</li>
+                                                    <li class="active" style="width:38%; text-align:justify">@item.Description</li>
+                                                </ol>
+
+                                                <h4 class="xs-mb-20">
+                                                    Prescriptions
+                                                </h4>
+
+                                                foreach (var prescription in item.MedicalPrescriptions)
+                                                {
+                                                    <ol class="breadcrumb">
+                                                        <li class="active" style="width:60%;">@prescription.FileName</li>
+                                                        <li class="active" style="width:38%;">
+
+                                                            <button type="button" data-toggle="modal" data-target="#view-prescription" class="viewBtn" data-id="@prescription.Id" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                <i class="icon icon-left mdi mdi-search-in-file"></i>
+                                                                View Prescription
+                                                            </button>
+
+                                                        </li>
+                                                    </ol>
+                                                }
+
+                                                <div class="modal-footer">
+                                                    <button type="submit" name="ProcessBtn" value="Approve" onclick="return confirm('Are you sure want to approve this request?');" class="btn btn-success">
+                                                        @*<i class="icon icon-left mdi mdi-check"></i>*@
+                                                        Approve
+                                                    </button>
+                                                    <button type="submit" name="ProcessBtn" value="Reject" onclick="return confirm('Are you sure want to reject this request?');" class="btn btn-danger">
+                                                        @*<i class="icon icon-left mdi mdi-close"></i>*@
+                                                        Reject
+                                                    </button>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-prescription" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+        <div class="modal-dialog modal-lg bs-example">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                    <h3 class="modal-title">View Prescription</h3>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

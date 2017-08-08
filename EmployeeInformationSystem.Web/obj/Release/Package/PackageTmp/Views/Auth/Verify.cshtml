@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="~/Content/beagle_Theme/assets/img/logo-fav.png">
+    <title>Verification</title>
+    @Styles.Render("~/css/login")
+</head>
+<body class="be-splash-screen">
+    <div class="be-wrapper be-login">
+        <div class="be-content">
+            <div class="main-content container-fluid">
+                <div class="splash-container forgot-password">
+                    <div class="panel panel-default panel-border-color panel-border-color-primary">
+                        <div class="panel-heading">
+                            <img src="@Url.Content("~/Content/beagle_Theme/assets/img/lps-logo.jpg")" alt="logo" width="102" height="27" class="logo-img">
+                        </div>
+                        <div class="panel-body">
+                            <p style="color:red">@Html.Raw(TempData["Msg"])</p>
+                            <p class="xs-pt-5 xs-pb-20">Get a new password reset link? <a href="@Url.Action("ForgotPassword", "Auth")">Forgot Password</a>.</p>
+                        </div>
+                    </div>
+                    <div class="splash-footer">Copyright @DateTime.Now.Year Logic Powered Solutions | All Rights Reserved</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/js/login")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //initialize the javascript
+            App.init();
+        });
+    </script>
+</body>
+</html>
+

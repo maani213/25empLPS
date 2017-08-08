@@ -1,0 +1,236 @@
+﻿@model EmployeeInformationSystem.Model.RegistrationViewModel
+
+@{
+    string employeeFullName = "";
+
+    if (Model != null)
+    {
+        employeeFullName = Model.employeeRegistrationInfo.FirstName + " " + Model.employeeRegistrationInfo.LastName;
+    }
+}
+
+<style type="text/css">
+    #review-info .modal-content {
+        max-width: 100%;
+    }
+</style>
+
+<!--Form Modals-->
+<div id="review-info" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+    <div class="modal-dialog modal-lg bs-example">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                <h3 class="modal-title">Review Info</h3>
+            </div>
+            <div class="modal-body">
+                <div class="user-profile">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="user-display">
+                                <div class="user-display-bg"><br /><br /><br /></div>
+                                <div class="user-display-bottom">
+                                    @{
+                                        string imgPath = "";
+
+                                        if (Model != null)
+                                        {
+                                            imgPath = Url.Content("~/Content/Employee_pictures/") + Model.employeeRegistrationInfo.AccountId + ".jpg";
+                                        }
+                                    }
+                                    <div class="user-display-avatar"><img src="@imgPath" alt="No Image"></div>
+                                    <div class="user-display-info">
+                                        <div class="name">@employeeFullName</div>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div class="user-info-list panel panel-default">
+
+                                    <h4 class="xs-mb-20">Personal info</h4>
+                                    <div class="panel panel-border-color panel-border-color-warning">
+                                        <div class="panel-body">
+                                            <div class="col-md-6">
+                                                <table class="no-border no-strip skills">
+                                                    <tbody class="no-border-x no-border-y">
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-male-alt"></span></td>
+                                                            <td class="item">Father's Name: </td>
+                                                            <td>@Model.employeeRegistrationInfo.FatherName</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-cake"></span></td>
+                                                            <td class="item">Date of Birth: </td>
+                                                            <td>
+                                                                @if (Model.employeeRegistrationInfo.DateOfBirth != null)
+                                                                {
+                                                                    @Model.employeeRegistrationInfo.DateOfBirth.Value.ToString("dd MMMM yyyy")
+                                                                }
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-email"></span></td>
+                                                            <td class="item">Personal Email: </td>
+                                                            <td>@Model.employeeRegistrationInfo.PersonalEmail</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-pin"></span></td>
+                                                            <td class="item">Present Address: </td>
+                                                            <td>@Model.employeeRegistrationInfo.PresentAddress</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-male-female"></span></td>
+                                                            <td class="item">Marital Status: </td>
+                                                            <td>@Model.employeeRegistrationInfo.MaritalStatus</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <table class="no-border no-strip skills">
+                                                    <tbody class="no-border-x no-border-y">
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-card"></span></td>
+                                                            <td class="item">CNIC #: </td>
+                                                            <td>@Model.employeeRegistrationInfo.CNIC</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-smartphone-android"></span></td>
+                                                            <td class="item">Cell #: </td>
+                                                            <td>@Model.employeeRegistrationInfo.CellNumber</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-phone"></span></td>
+                                                            <td class="item">Residence Phone #: </td>
+                                                            <td>@Model.employeeRegistrationInfo.ResidencePhoneNumber</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-pin"></span></td>
+                                                            <td class="item">Permanent Address: </td>
+                                                            <td>@Model.employeeRegistrationInfo.PermanentAddress</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="icon"><span class="mdi mdi-library"></span></td>
+                                                            <td class="item">Total Experience: </td>
+                                                            <td>@Model.employeeRegistrationInfo.ExperienceYears Years @Model.employeeRegistrationInfo.ExperienceMonths Months</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    @if (Model.familyMembersList != null && Model.familyMembersList.Count() > 0)
+                                    {
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4 class="xs-mb-20">Family Details</h4>
+                                                <div class="panel panel-border-color panel-border-color-warning">
+                                                    <br />
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>CNIC</th>
+                                                                    <th>Relation</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var item in Model.familyMembersList)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@item.Name</td>
+                                                                        <td>@item.CNIC</td>
+                                                                        <td>@item.Relation</td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="xs-mb-20">Documents</h4>
+                                            <div class="panel panel-border-color panel-border-color-warning">
+                                                <br />
+                                                @if (Model.documentInfoList.Count() > 0)
+                                                {
+                                                    foreach (var item in Model.documentInfoList)
+                                                    {
+                                                        using (Html.BeginForm("DownloadDocument", "Home", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                        {
+                                                            @Html.AntiForgeryToken()
+                                                            @Html.Hidden("id", item.Id)
+
+                                                            <ol class="breadcrumb">
+                                                                <li class="active">@item.FileName</li>
+                                                            </ol>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <h5 class="text-center">No document found</h5>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h4 class="xs-mb-20">Terms and Conditions</h4>
+                                            <div class="panel panel-border-color panel-border-color-warning">
+                                                <br />
+                                                <ol style="text-align: justify">
+                                                    <li>
+                                                        I agree to the all the conditions communicated to me through offer letter/email.
+                                                    </li>
+                                                    <li>
+                                                        In case I plan to leave my appointment/position in Logic Powered Solutions, I will give minimum 30 day's notice period untill unless allowed otherwise by the company management.
+                                                    </li>
+                                                    <li>
+                                                        I will never disclose any information about the work done at Logic Powered Solutions and their development plans or any other confidential information related to this company.
+                                                    </li>
+                                                </ol>
+                                                <p style="font-weight:bold; text-align:justify;">I <u>@employeeFullName</u> declare that to the best of my knowledge and beliefe, the information given above is true and complete and that I have not omitted any relevant information.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                @using (Html.BeginForm("CheckListCompleted", "File", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
+                    <button type="submit" onclick="return confirm('If you submit then you will be no longer to modify your information. \n Are you sure want to Proceed?');" class="btn btn-primary md-close">Proceed</button>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

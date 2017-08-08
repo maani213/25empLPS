@@ -1,0 +1,99 @@
+﻿@model EmployeeInformationSystem.Model.EmployeeInfo
+
+@using (Html.BeginForm("PersonalInfo", "Applicant", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;", @id = "include-form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "First Name" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">CNIC</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.CNIC, new { htmlAttributes = new { @class = "form-control", @placeholder = "CNIC" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Personal Email</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.PersonalEmail, new { htmlAttributes = new { @class = "form-control", @placeholder = "Personal Email" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Present Address</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.PresentAddress, new { htmlAttributes = new { @class = "form-control", @rows = 4, @cols = 40, @style = "resize:none", @placeholder = "Present Address" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Position</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control", @placeholder = "Position" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+               
+                <button class="btn btn-space btn-primary" type="submit">
+                    <i class="icon icon-left mdi mdi-assignment-check"></i>
+                    Save Info
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Last Name</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Date of Birth</label>
+            <div class="col-sm-5">
+                <div class="input-group date datetimepicker">
+                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    <span class="input-group-addon btn btn-primary"><i class="icon-th mdi mdi-calendar"></i></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Phone #</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone #" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Permanent Address</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.PermanentAddress, new { htmlAttributes = new { @class = "form-control", @rows = 4, @cols = 40, @style = "resize:none", @placeholder = "Permanent Address" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Total Experience</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.TotalExperience, new { htmlAttributes = new { @class = "form-control", @placeholder = "Total Experience" } })
+            </div>
+        </div>
+
+    </div>
+
+}

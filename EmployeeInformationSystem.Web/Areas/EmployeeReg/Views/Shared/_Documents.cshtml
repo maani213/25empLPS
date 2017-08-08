@@ -1,0 +1,208 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.DocumentInfo>
+
+@{
+    EmployeeInformationSystem.Model.DocumentInfo _cnicFront = (from cn in Model.ToList() where cn.DocumentType == "CNICFront" select cn).FirstOrDefault();
+    EmployeeInformationSystem.Model.DocumentInfo _cnicBack = (from cn in Model.ToList() where cn.DocumentType == "CNICBack" select cn).FirstOrDefault();
+    EmployeeInformationSystem.Model.DocumentInfo _cv = (from cv in Model.ToList() where cv.DocumentType == "CV" select cv).FirstOrDefault();
+
+    List<EmployeeInformationSystem.Model.DocumentInfo> _otherDocsList = (from od in Model.ToList() where od.DocumentType == "Other" select od).ToList();
+}
+
+<div class="row">
+    <div class="col-md-6 col-md-push-3">
+        <p style="color:red;"><b>Instruction: </b>Rename all of your files properly before uploading.</p>
+        <hr />
+
+        <h4 class="xs-mb-20"><b>Upload Updated CV</b></h4>
+        <div class="panel panel-border-color panel-border-color-warning">
+
+            @if (_cv != null)
+            {
+                <br />
+                using (Html.BeginForm("DeleteDocument", "File", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", _cv.Id)
+
+                    <ol class="breadcrumb">
+                        <li class="active" style="width:75%;">@_cv.FileName</li>
+                        <li class="active">
+
+                            <button type="submit" onclick="return confirm('Are you sure want to delete CV?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                <i class="icon icon-left mdi mdi-delete"></i>
+                                Delete
+                            </button>
+
+                        </li>
+                    </ol>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("UploadDocuments", "File", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("DocumentType", "CV")
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">CV</label>
+                        <div class="col-sm-7">
+                            <input type="file" name="file" id="file" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-space btn-primary">
+                                <i class="icon icon-left mdi mdi mdi-upload"></i>
+                                Upload
+                            </button>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-push-3">
+        <h4 class="xs-mb-20"><b>Upload Valid CNIC</b></h4>
+        <div class="panel panel-border-color panel-border-color-warning">
+
+            @if (_cnicFront != null)
+            {
+                <br />
+                using (Html.BeginForm("DeleteDocument", "File", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", _cnicFront.Id)
+
+                    <ol class="breadcrumb">
+                        <li class="active" style="width:75%;">@_cnicFront.FileName</li>
+                        <li class="active">
+
+                            <button type="submit" onclick="return confirm('Are you sure want to delete CNIC front?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                <i class="icon icon-left mdi mdi-delete"></i>
+                                Delete
+                            </button>
+
+                        </li>
+                    </ol>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("UploadDocuments", "File", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("DocumentType", "CNICFront")
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">CNIC Front</label>
+                        <div class="col-sm-7">
+                            <input type="file" name="file" id="file" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-space btn-primary">
+                                <i class="icon icon-left mdi mdi mdi-upload"></i>
+                                Upload
+                            </button>
+                        </div>
+                    </div>
+                }
+            }
+
+            @if (_cnicBack != null)
+            {
+                using (Html.BeginForm("DeleteDocument", "File", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", _cnicBack.Id)
+
+                    <ol class="breadcrumb">
+                        <li class="active" style="width:75%;">@_cnicBack.FileName</li>
+                        <li class="active">
+
+                            <button type="submit" onclick="return confirm('Are you sure want to delete CNIC back?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                <i class="icon icon-left mdi mdi-delete"></i>
+                                Delete
+                            </button>
+
+                        </li>
+                    </ol>
+                }
+            }
+            else
+            {
+                using (Html.BeginForm("UploadDocuments", "File", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("DocumentType", "CNICBack")
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">CNIC Back</label>
+                        <div class="col-sm-7">
+                            <input type="file" name="file" id="file" class="form-control">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-space btn-primary">
+                                <i class="icon icon-left mdi mdi mdi-upload"></i>
+                                Upload
+                            </button>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-push-3">
+        <h4 class="xs-mb-20"><b>Upload Other Documents</b></h4>
+        <ol>
+            <li>
+                Education Certificate(s)
+            </li>
+            <li>
+                Experience Certificate(s)
+            </li>
+            <li>
+                Professional Certifications (if any)
+            </li>
+            <li>
+                Salary Certificate of last Employeer
+            </li>
+        </ol>
+        <div class="panel panel-border-color panel-border-color-warning">
+        </div>
+    </div>
+    <div class="col-md-12 col-md-push-1">
+        @Html.Partial("_UploadOtherDocuments", new EmployeeInformationSystem.Model.DocumentInfo())
+    </div>
+
+    @if (_otherDocsList.Count() > 0)
+            {
+        <div class="col-md-6 col-md-push-3">
+            @foreach (var item in _otherDocsList)
+            {
+                using (Html.BeginForm("DeleteDocument", "File", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", item.Id)
+
+                    <ol class="breadcrumb">
+                        <li class="active" style="width:75%;">@item.FileName</li>
+                        <li class="active">
+
+                            <button type="submit" onclick="return confirm('Are you sure want to delete this document?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                <i class="icon icon-left mdi mdi-delete"></i>
+                                Delete
+                            </button>
+
+                        </li>
+                    </ol>
+                }
+            }
+            <br />
+        </div>
+    }
+</div>

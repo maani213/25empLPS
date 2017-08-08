@@ -1,0 +1,92 @@
+﻿@model EmployeeInformationSystem.Model.NotificationViewModel
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-body">
+                    <br /><br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="~/Content/beagle_Theme/assets/img/admin_banner.jpg" class="img-responsive" alt="No image found" />
+                        </div>
+                    </div>
+                    <br />
+                    @if (Model.EmployeesProbationCompleteList != null && Model.EmployeesProbationCompleteList.Count() > 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="~/Content/beagle_Theme/assets/img/new_notice.gif" alt="No image found" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Employee(s) Probation Notification</h4>
+                                <div class="panel panel-default panel-table">
+                                    <div class="panel panel-border-color panel-border-color-warning">
+                                        <div class="panel-body">
+                                            <div class="table-responsive noSwipe">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Employee Name</th>
+                                                            <th>Probation Period</th>
+                                                            <th>Probation Start Date</th>
+                                                            <th>Probation Complete Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.EmployeesProbationCompleteList)
+                                                        {
+                                                            <tr>
+                                                                <td>@item.FirstName @item.LastName</td>
+                                                                <td>@item.ProbationPeriod Month(s)</td>
+                                                                <td>@item.DateOfJoin.Value.ToString("dd MMMM yyyy")</td>
+                                                                <td>@Convert.ToDateTime(item.DateOfJoin).AddDays(int.Parse(item.ProbationPeriod) * 30).ToString("dd MMMM yyyy")</td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.EmployeesBirthDayList != null && Model.EmployeesBirthDayList.Count() > 0)
+                    {
+                        foreach (var item in Model.EmployeesBirthDayList)
+                        {
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div role="alert" class="alert alert-primary alert-icon alert-icon-border alert-dismissible">
+                                        <div class="icon"><span class="mdi mdi-info-outline"></span></div>
+                                        <div class="message">
+                                            @if (DateTime.Parse(item.DateOfBirth.Value.ToString("dd MMMM")) == DateTime.Parse(DateTime.Now.ToString("dd MMMM")))
+                                            {
+                                                <strong>Info!&nbsp;</strong><span>@item.FirstName&nbsp;@item.LastName celebrating birthday Today.&nbsp;</span><img src="~/Content/beagle_Theme/assets/img/new_notice.gif" alt="No image found" />
+                                            }
+                                            else
+                                            {
+                                                <strong>Info!&nbsp;</strong><span>@item.FirstName&nbsp;@item.LastName celebrates birthday on @item.DateOfBirth.Value.ToString("dd MMMM") @DateTime.Now.Year.&nbsp;</span><img src="~/Content/beagle_Theme/assets/img/new_notice.gif" alt="No image found" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

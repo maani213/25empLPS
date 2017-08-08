@@ -1,0 +1,196 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.AccountInfo>
+
+@{
+    ViewBag.Title = "Manage Accounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Manage Accounts</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <a href="@Url.Action("Create", "Account")" class="btn btn-space btn-success">
+                                    Create Account
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel panel-border-color panel-border-color-warning">
+                                <div class="panel-body">
+                                    <div class="table-responsive noSwipe">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:30%">Company Email</th>
+                                                    @if (User.IsInRole("SuperAdmin"))
+                                                    {
+                                                        <th style="width:15%">Role</th>
+                                                    }
+                                                    <th style="width:15%">Creation Date</th>
+                                                    <th style="width:15%">Account Status</th>
+                                                    <th style="width:25%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    if (User.IsInRole("SuperAdmin"))
+                                                    {
+                                                        <tr>
+                                                            <td>@item.CompanyEmail</td>
+                                                            <td>@item.RoleName</td>
+                                                            <td>
+                                                                @if (item.CreatedDate == null)
+                                                                {
+                                                                    <span>Not Available</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @item.CreatedDate.Value.ToString("dd MMMM yyyy")
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                @{
+                                                                    string _accountStatus;
+
+                                                                    if (item.IsActive == true)
+                                                                    {
+                                                                        _accountStatus = "Active";
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        _accountStatus = "Deactive";
+                                                                    }
+                                                                }
+                                                                @_accountStatus
+                                                            </td>
+                                                            <td>
+                                                                @if (item.IsCheckListCompleted == true)
+                                                                {
+                                                                    if (item.RoleName != "SuperAdmin")
+                                                                    {
+                                                                        <a href="@Url.Action("Update", "Account", new { id = item.Id })" style="font-size:medium">
+                                                                            <i class="icon icon-left mdi mdi-edit"></i>
+                                                                            Edit
+                                                                        </a>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    using (Html.BeginForm("Delete", "Account", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px; display: inline;" }))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+                                                                        @Html.Hidden("id", item.Id)
+
+                                                                        <button type="submit" onclick="return confirm('Are you sure want to delete this account?');" style="border: 0px; background-color: transparent; color: #4285F4; font-size:medium; cursor: hand;">
+                                                                            <i class="icon icon-left mdi mdi-delete"></i>
+                                                                            Delete
+                                                                        </button>
+                                                                    }
+
+                                                                    using (Html.BeginForm("ResendEmail", "Account", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px; display: inline;" }))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+                                                                        @Html.Hidden("id", item.Id)
+
+                                                                        <button type="submit" style="border: 0px; background-color: transparent; color: #4285F4; font-size:medium; cursor: hand;">
+                                                                            <i class="icon icon-left mdi mdi-email"></i>
+                                                                            Resend Email
+                                                                        </button>
+                                                                    }
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                                    }
+                                                                    else if (item.RoleName != "SuperAdmin" && User.IsInRole("Administrator"))
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@item.CompanyEmail</td>
+                                                                            <td>
+                                                                                @if (item.CreatedDate == null)
+                                                                                {
+                                                                                    <span>Not Available</span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    @item.CreatedDate.Value.ToString("dd MMMM yyyy")
+                                                                                }
+                                                                            </td>
+                                                                            <td>
+                                                                                @{
+                                                                                    string _accountStatus;
+
+                                                                                    if (item.IsActive == true)
+                                                                                    {
+                                                                                        _accountStatus = "Active";
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        _accountStatus = "Deactive";
+                                                                                    }
+                                                                                }
+
+                                                                                @_accountStatus
+                                                                            </td>
+                                                                            <td>
+                                                                                @if (item.IsCheckListCompleted == false)
+                                                                                {
+                                                                                    using (Html.BeginForm("Delete", "Account", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px; display: inline;" }))
+                                                                                    {
+                                                                                        @Html.AntiForgeryToken()
+                                                                                        @Html.Hidden("id", item.Id)
+
+                                                                                        <button type="submit" onclick="return confirm('Are you sure want to delete this account?');" style="border: 0px; background-color: transparent; color: #4285F4; font-size:medium; cursor: hand;">
+                                                                                            <i class="icon icon-left mdi mdi-delete"></i>
+                                                                                            Delete
+                                                                                        </button>
+                                                                                    }
+
+                                                                                    using (Html.BeginForm("ResendEmail", "Account", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px; display: inline;" }))
+                                                                                    {
+                                                                                        @Html.AntiForgeryToken()
+                                                                                        @Html.Hidden("id", item.Id)
+
+                                                                                        <button type="submit" style="border: 0px; background-color: transparent; color: #4285F4; font-size:medium; cursor: hand;">
+                                                                                            <i class="icon icon-left mdi mdi-email"></i>
+                                                                                            Resend Email
+                                                                                        </button>
+                                                                                    }
+
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    if (item.RoleName != "Administrator")
+                                                                                    {
+                                                                                        <a href="@Url.Action("Update", "Account", new { id = item.Id })" style="font-size:medium">
+                                                                                            <i class="icon icon-left mdi mdi-edit"></i>
+                                                                                            Edit
+                                                                                        </a>
+                                                                                    }
+
+                                                                                }
+                                                                            </td>
+                                                                        </tr>
+                                                                                        }
+                                                                                    }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

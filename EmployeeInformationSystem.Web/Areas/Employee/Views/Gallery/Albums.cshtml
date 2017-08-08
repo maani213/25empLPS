@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.AlbumInfo>
+
+@{
+    ViewBag.Title = "Albums";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Albums</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        <div class="row">
+                            <div class="panel panel-default panel-table">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-xs-3" style="margin-bottom:40px;">
+                                        <div class="text-center">
+                                            <a href="@Url.Action("Photos", "Gallery", new { id = item.Id })"><img src="@item.CoverPhotoPath" alt="Placeholder" class="img-thumbnail" width="200" height="160"></a>
+                                            <br />
+                                            @item.NumberOfPhotos Photos
+                                            <br />
+                                            <b>@item.Title</b>
+                                            @{
+                                                double diff = (DateTime.Now - DateTime.Parse(item.CreatedOn.ToString())).TotalDays;
+
+                                                if (diff < 5)
+                                                {
+                                                    <br />
+                                                    <img src='@Url.Content("~/Content/new.gif")' />
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h5 class="text-center">No album found</h5>
+                    }
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

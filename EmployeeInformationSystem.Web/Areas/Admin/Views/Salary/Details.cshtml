@@ -1,0 +1,111 @@
+﻿@model EmployeeInformationSystem.Model.EmployeeSalariesViewModel
+
+@{
+    ViewBag.Title = "Salary Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string previousMonth = DateTime.Now.AddMonths(-1).ToString("MMMM - yyyy");
+    string currentMonth = DateTime.Now.ToString("MMMM - yyyy");
+    string nextMonth = DateTime.Now.AddMonths(1).ToString("MMMM - yyyy");
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Employee Salary Details</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+
+                    @using (Html.BeginForm("EmployeeId", "Salary", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Employee</label>
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.EmployeeId, "-- Please Select Employee --", new { @class = "select2 select2-hidden-accessible", onchange = "this.form.submit();" })
+                            </div>
+                        </div>
+                    }
+                    <br />
+
+                    @if (Model != null)
+                    {
+                        if (Model.PaySlipInfoList.Count() > 0)
+                        {
+                            <hr />
+                            using (Html.BeginForm("Details", "Salary", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(x => x.Id)
+
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Year</label>
+                                    <div class="col-md-4">
+                                        @Html.DropDownList("SalaryDateYear", null, htmlAttributes: new { @class = "form-control", onchange = "this.form.submit();" })
+                                    </div>
+                                </div>
+                            }
+                            <br />
+                            <div class="row">
+                                <div class="col-md-10 col-md-push-1">
+                                        <div class="panel panel-border-color panel-border-color-warning">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width:78%;">Month</th>
+                                                            <th style="width:21%;">Payslip</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in Model.PaySlipInfoList)
+                                                        {
+                                                            <tr>
+                                                                <td style="width:78%;">@item.SalaryDate.ToString("MMMM - yyyy")</td>
+                                                                <td style="width:21%;">
+                                                                    @using (Html.BeginForm("DeletePayslip", "Salary", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                    {
+                                                                        @Html.AntiForgeryToken()
+                                                                        @Html.Hidden("PayslipId", item.Id)
+
+                                                                        <a href="javascript:window.open('@Url.Action("PayslipPrintPreview", "Salary", new { id = item.Id, Area = "Admin" })', 'mywindow', 'left=5,top=5,width=700,height=600,toolbar=1,resizable=0')">
+                                                                            <i class="icon icon-left mdi mdi-search-in-file" style="color: #4285F4;"></i>
+                                                                            View Payslip
+                                                                        </a>
+
+                                                                        if (item.SalaryDate.ToString("MMMM - yyyy") == currentMonth || item.SalaryDate.ToString("MMMM - yyyy") == previousMonth || item.SalaryDate.ToString("MMMM - yyyy") == nextMonth)
+                                                                        {
+                                                                            <button type="submit" onclick="return confirm('Are you sure want to delete this payslip?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                                <i class="icon icon-left mdi mdi-delete" style="color: #4285F4;"></i>
+                                                                                Delete
+                                                                            </button>
+                                                                            <span>&nbsp;&nbsp;&nbsp;</span>
+                                                                        }
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        else
+                        {
+                            <h5 class="text-center">No Salary found</h5>
+                        }
+                    }
+                    else
+                    {
+                        <h5 class="text-center">Select employee from the list</h5>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

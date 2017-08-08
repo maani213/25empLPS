@@ -1,0 +1,140 @@
+﻿@model EmployeeInformationSystem.Model.EmployeeInfo
+
+@{
+    ViewBag.Title = "GeneraInfo";
+    string employeeFullName = "";
+
+    if (Model != null)
+    {
+        employeeFullName = Model.FirstName + " " + Model.LastName;
+    }
+
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">General Information</div>
+                <div class="panel-body">
+                    <div class="user-profile">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="user-display">
+                                    <div class="user-display-bg"><br /><br /><br /></div>
+                                    <div class="user-display-bottom">
+                                        @{
+                                            string imgPath = "";
+
+                                            if (Model != null)
+                                            {
+                                                imgPath = Url.Content("~/Content/beagle_Theme/assets/employee-img/") + Model.AccountId + ".jpg";
+                                            }
+                                        }
+                                        <div class="user-display-avatar"><img src="@imgPath" alt="No Image"></div>
+                                        <div class="user-display-info">
+                                            <div class="name">@employeeFullName</div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <div class="user-info-list panel panel-default">
+                                        <div class="panel panel-border-color panel-border-color-warning">
+                                            <div class="panel-body">
+                                                <div class="col-md-6">
+                                                    <table class="no-border no-strip skills">
+                                                        <tbody class="no-border-x no-border-y">
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-cake"></span></td>
+                                                                <td class="item">Date of Birth<span class="icon s7-portfolio"></span></td>
+                                                                <td>
+                                                                    @if (Model.DateOfBirth != null)
+                                                                    {
+                                                                        @Model.DateOfBirth.Value.ToString("dd MMMM yyyy")
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-smartphone-android"></span></td>
+                                                                <td class="item">Phone #<span class="icon s7-gift"></span></td>
+                                                                <td>@Model.PhoneNumber</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-pin"></span></td>
+                                                                <td class="item">Present Address<span class="icon s7-phone"></span></td>
+                                                                <td>@Model.PresentAddress</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-calendar-check"></span></td>
+                                                                <td class="item">Date of Join<span class="icon s7-map-marker"></span></td>
+                                                                <td>
+                                                                    @if (Model.DateOfJoin != null)
+                                                                    {
+                                                                        @Model.DateOfJoin.Value.ToString("dd MMMM yyyy")
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-case"></span></td>
+                                                                <td class="item">Position<span class="icon s7-global"></span></td>
+                                                                <td>@Model.Position</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-email"></span></td>
+                                                                <td class="item">LPS Email<span class="icon s7-global"></span></td>
+                                                                <td>@Model.CompanyEmail</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <table class="no-border no-strip skills">
+                                                        <tbody class="no-border-x no-border-y">
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-card"></span></td>
+                                                                <td class="item">CNIC<span class="icon s7-portfolio"></span></td>
+                                                                <td>@Model.CNIC</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-email"></span></td>
+                                                                <td class="item">Email<span class="icon s7-global"></span></td>
+                                                                <td>@Model.PersonalEmail</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-pin"></span></td>
+                                                                <td class="item">Permanent Address<span class="icon s7-gift"></span></td>
+                                                                <td>@Model.PermanentAddress</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-library"></span></td>
+                                                                <td class="item">Total Experience<span class="icon s7-phone"></span></td>
+                                                                <td>@Model.TotalExperience</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-accounts-alt"></span></td>
+                                                                <td class="item">Team<span class="icon s7-map-marker"></span></td>
+                                                                <td>@Model.Team</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="icon"><span class="mdi mdi-badge-check"></span></td>
+                                                                <td class="item">Manager<span class="icon s7-global"></span></td>
+                                                                <td>@Model.Manager</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

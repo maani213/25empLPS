@@ -1,0 +1,188 @@
+﻿@model EmployeeInformationSystem.Model.PaySlipInfo
+
+@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="~/Content/beagle_Theme/assets/img/logo-fav.png">
+    <title>@Model.EmployeeName @Model.SalaryDate.ToString("MMM yyyy") - Payslip</title>
+    <script src="~/Content/beagle_Theme/assets/lib/jquery/jquery.js"></script>
+    @Styles.Render("~/css/core")
+    <style type="text/css" media="print">
+        #non-print-area {
+            display: none;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#print").click(function () {
+                window.print();
+                setTimeout(function () {
+                    window.close();
+                }, 100);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color">
+                <div class="invoice">
+                    <div class="row invoice-header">
+                        <div class="col-xs-7">
+                            <div class="invoice-logo">
+                                <img src='@Url.Content("~/Content/beagle_Theme/assets/img/logo-xx.png")' />
+                            </div>
+                        </div>
+                        <div class="col-xs-5 invoice-order"><span class="invoice-id">Payslip for the Month</span><span class="incoice-date">@Model.SalaryDate.ToString("MMMM yyyy")</span></div>
+                    </div>
+                    <div class="row invoice-data">
+                        <div class="col-xs-5 invoice-person"><span class="name">@Model.EmployeeName</span><span>@Model.Position</span><span>Emp Code: @Model.EmpCode</span><span>......................................</span><span>No of Days Worked: @Model.NumberOfDaysWorked</span></div>
+                        <div class="col-xs-2 invoice-payment-direction"></div>
+                        <div class="col-xs-5 invoice-person"><span class="name">Logic Powered Solutions</span><span>3rd Floor, Evacuee Trust Complex,</span><span> Sector F-5/1 Islamabad.</span><span> Ph: +92 (051) 2722306</span><span> www.logicpowered.net</span></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="invoice-details">
+                                <tbody>
+                                    <tr>
+                                        <th>Earnings</th>
+                                        <th></th>
+                                        <th class="amount">Amount (PKR)</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">Basic Salary</td>
+                                        <td class="description"></td>
+                                        <td class="amount">
+                                            @Model.BasicSalary
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">House Rent</td>
+                                        <td class="description"></td>
+                                        <td class="amount">@Model.HouseRent</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">Medical Allowance</td>
+                                        <td class="description"></td>
+                                        <td class="amount">@Model.MedicalAllowance</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td class="summary total" style="width:35%;">Net Salary</td>
+                                        <td class="amount total-value">
+                                            @Model.TotalSalary
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="invoice-details">
+                                <tbody>
+                                    <tr>
+                                        <th>Deductions</th>
+                                        <th></th>
+                                        <th class="amount">Amount (PKR)</th>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">Income Tax</td>
+                                        <td class="description"></td>
+                                        <td class="amount">
+                                            @if (Model.IncomTax > 0)
+                                            {
+                                                @Model.IncomTax
+                                            }
+                                            else
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">Loan Deduction</td>
+                                        <td class="description"></td>
+                                        <td class="amount">
+                                            @if (Model.LoanDeduction > 0)
+                                            {
+                                                @Model.LoanDeduction
+                                            }
+                                            else
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">Other Deductions</td>
+                                        <td class="description"></td>
+                                        <td class="amount">
+                                            @if (Model.OtherDeductions > 0)
+                                            {
+                                                @Model.OtherDeductions
+                                            }
+                                            else
+                                            {
+                                                <span>N/A</span>
+                                            }
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td class="summary total">Total Deduction</td>
+                                        <td class="amount total-value">
+                                            @{
+                                                decimal totalDeduction = Convert.ToDecimal((Model.IncomTax + Model.LoanDeduction + Model.OtherDeductions));
+                                            }
+
+                                            @totalDeduction
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td></td>
+                                        <td class="summary total text-center" style="border: 1px solid gray;" colspan="2">
+                                            Net Payable&nbsp;
+                                            @{
+                                                decimal netPayable = Convert.ToDecimal(Model.TotalSalary - (Model.IncomTax + Model.LoanDeduction + Model.OtherDeductions));
+                                            }
+
+                                            Rs&nbsp;@netPayable/-
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <p class="pull-right">@EmployeeInformationSystem.Web.Helpers.ConvertNumberToWords.DecimalToWords(netPayable) only</p>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row invoice-footer" id="non-print-area">
+                        <div class="col-md-12">
+                            <a id="print" href="#" style="font-size:x-large;">
+                                <i class="icon icon-left mdi mdi-print"></i>
+                                Print
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

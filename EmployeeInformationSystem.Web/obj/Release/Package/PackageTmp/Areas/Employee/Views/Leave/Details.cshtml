@@ -1,0 +1,151 @@
+﻿@model EmployeeInformationSystem.Model.LeaveViewModel
+
+@{
+    ViewBag.Title = "Leaves Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Leave Details</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <br />
+                    @if (Model.AnnualLeave != null && Model.CasualLeave != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                @if (Model.LeaveRequestInfo.IsCasualLeaveAvailed == true && Model.LeaveRequestInfo.IsAnnualLeaveAvailed == true && Model.CasualLeave.Allowed > 0 && Model.CasualLeave.Availed > 0 && Model.AnnualLeave.Allowed > 0 && Model.AnnualLeave.Availed > 0)
+                                {
+                                    <div class="btn btn-space btn-danger pull-right table-responsive">Leaves Limit Reached...</div>
+                                }
+
+                                else if (Model.CasualLeave.Allowed == 0 && Model.AnnualLeave.Allowed == 0)
+                                {
+                                    <p style="color:red;" class="pull-right table-responsive"><b>NOTE: </b>You can't apply for leaves right now, this feature will be enable after assigning leaves by Admin.</p>
+                                }
+
+                                else if (Model.LeaveRequestInfo.Status == "Pending")
+                                {
+                                    int _totalLeaves = EmployeeInformationSystem.Web.Common.LeavesCounter.CountLeavesWithoutWeekend(Model.LeaveRequestInfo.StartDate, Model.LeaveRequestInfo.EndDate);
+
+                                    <div class="btn btn-space btn-warning pull-right table-responsive">Request on @Model.LeaveRequestInfo.RequestDate.ToString("dd MMMM yyyy") for @_totalLeaves @Model.LeaveRequestInfo.LeaveType leave(s) (@Model.LeaveRequestInfo.StartDate.ToString("dd MMMM yyyy") - @Model.LeaveRequestInfo.EndDate.ToString("dd MMMM yyyy")) is pending please wait...</div>
+                                }
+
+                                else if (Model.LeaveRequestInfo.Status == "Approved" && Model.LeaveRequestInfo.IsCreatedByAdmin == false && Model.LeaveRequestInfo.EndDate.Date > DateTime.Now.Date)
+                                {
+                                    int _totalLeaves = EmployeeInformationSystem.Web.Common.LeavesCounter.CountLeavesWithoutWeekend(Model.LeaveRequestInfo.StartDate, Model.LeaveRequestInfo.EndDate);
+
+                                    <div class="btn btn-space btn-success pull-right table-responsive">Request on @Model.LeaveRequestInfo.RequestDate.ToString("dd MMMM yyyy") for @_totalLeaves @Model.LeaveRequestInfo.LeaveType leave(s) (@Model.LeaveRequestInfo.StartDate.ToString("dd MMMM yyyy") - @Model.LeaveRequestInfo.EndDate.ToString("dd MMMM yyyy")) is approved...</div>
+                                }
+
+                                else
+                                {
+                                    <button data-toggle="modal" data-target="#apply-leaves" type="button" class="btn btn-space btn-primary pull-right">Apply Leave</button>
+                                }
+
+                                <a href="#" data-toggle="modal" data-target="#availed-leaves" class="pull-left">
+                                    Availed Leaves
+                                </a>
+                                <br />
+                                <hr />
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <h4 class="xs-mb-20">
+                                        Casual Leaves
+                                    </h4>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Allowed</li>
+                                        <li class="active" style="width:10%;">@Model.CasualLeave.Allowed</li>
+                                    </ol>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Availed</li>
+                                        <li class="active" style="width:10%;">@Model.CasualLeave.Availed</li>
+                                    </ol>
+
+                                    @if (Model.CasualLeave.Remaining > 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #34A853; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.CasualLeave.Remaining</li>
+                                        </ol>
+                                    }
+
+                                    else if (Model.CasualLeave.Remaining == 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #FBBC05; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.CasualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                    else
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #EA4335; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.CasualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <h4 class="xs-mb-20">
+                                        Annual Leaves
+                                    </h4>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Allowed</li>
+                                        <li class="active" style="width:10%;">@Model.AnnualLeave.Allowed</li>
+                                    </ol>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Availed</li>
+                                        <li class="active" style="width:10%;">@Model.AnnualLeave.Availed</li>
+                                    </ol>
+
+                                    @if (Model.AnnualLeave.Remaining > 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #34A853; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.AnnualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                    else if (Model.AnnualLeave.Remaining == 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #FBBC05; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.AnnualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                    else
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #EA4335; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.AnnualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                    }
+                    else
+                    {
+                        <h5 class="text-center">No leave found</h5>
+                    }
+                </div>
+            </div>
+            @Html.Partial("_AvailedLeaves", Model.availedLeaveViewModel)
+            @Html.Partial("_ApplyLeaves", new EmployeeInformationSystem.Model.LeaveRequestInfo())
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,186 @@
+﻿@model EmployeeInformationSystem.Model.MedicalCheckoutInfo
+
+@{
+    ViewBag.Title = "Medical Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Medical Details</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+                    <br />
+                    <div class="row">
+                        <div class="col-md-10 col-md-push-1">
+                            <div class="panel-body table-responsive">
+                                @if (Model.MedicalAllowance != null && Model.AvailedMedicalsList.Sum(x => x.Amount) == Model.MedicalAllowance.Amount)
+                                {
+                                    <p style="color:red;" class="pull-right table-responsive"><b>Attention: </b>Your Medical quota has been reached.</p>
+                                }
+                                else
+                                {
+                                    <button data-toggle="modal" data-target="#apply-medical" type="button" class="btn btn-space btn-primary pull-right">Apply Medical</button>
+                                }
+                                <br />
+                                <hr />
+                                @if (Model.PendingMedicalsList != null && Model.PendingMedicalsList.Count() > 0)
+                                {
+                                    <fieldset>
+                                        <legend>Pending Checkouts</legend>
+                                    </fieldset>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-condensed" cellspacing="0" rules="all" border="1" id="gvAcademics" style="border-collapse:collapse;">
+                                            <tbody>
+                                                <tr class="tbl-header primary">
+                                                    <th scope="col">Patient Name</th>
+                                                    <th scope="col">Treatment Date</th>
+                                                    <th scope="col">Description</th>
+                                                    <th scope="col">Amount</th>
+                                                    <th scope="col">Apply Date</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">&nbsp;</th>
+                                                </tr>
+                                                @foreach (var item in Model.PendingMedicalsList)
+                                                {
+                                                    <tr>
+                                                        <td>@item.PatientName</td>
+                                                        <td>@item.TreatmentDate.Value.ToString("dd MMM yyyy")</td>
+                                                        <td>@item.Description</td>
+                                                        <td>@item.Amount</td>
+                                                        <td>@item.RequestDate.Value.ToString("dd MMM yyyy")</td>
+                                                        <td>@item.Status</td>
+                                                        <td>
+                                                            @using (Html.BeginForm("CancelCheckout", "Medical", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+                                                                @Html.Hidden("CheckoutId", item.Id)
+                                                                <button type="submit" onclick="return confirm('Are you sure you want to cancel this checkout?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                    Cancel
+                                                                </button>
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <br />
+                                }
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    @if (Model.MedicalAllowance != null)
+                                    {
+                                        <h4 class="xs-mb-20">
+                                            Medical Health Insurance
+                                        </h4>
+
+                                        <ol class="breadcrumb">
+                                            <li class="active" style="width:60%;">Total Medical Allowed</li>
+                                            <li class="active" style="width:10%;">Rs @Model.MedicalAllowance.Amount</li>
+                                        </ol>
+
+                                        if (Model.AvailedMedicalsList.Sum(x => x.Amount) == Model.MedicalAllowance.Amount)
+                                        {
+                                            <ol class="breadcrumb" style="background-color: #EA4335;">
+                                                <li class="active" style="width:60%; color: white;">Total Medical Remaining</li>
+                                                <li class="active" style="width:10%; color: white;">Rs @Convert.ToDecimal(Model.MedicalAllowance.Amount - @Model.AvailedMedicalsList.Sum(x => x.Amount))</li>
+                                            </ol>
+                                        }
+                                        else
+                                        {
+                                            <ol class="breadcrumb" style="background-color: #34A853;">
+                                                <li class="active" style="width:60%; color: white;">Total Medical Remaining</li>
+                                                <li class="active" style="width:10%; color: white;">Rs @Convert.ToDecimal(Model.MedicalAllowance.Amount - @Model.AvailedMedicalsList.Sum(x => x.Amount))</li>
+                                            </ol>
+                                        }
+
+                                        <hr style="margin: 20px 56px 18px;" />
+                                    }
+                                    <h4>
+                                        Availed Medical
+                                    </h4>
+
+                                    @if (Model.AvailedMedicalsList.Count() > 0)
+                                    {
+                                        using (Html.BeginForm("Details", "Medical", FormMethod.Post, new { @class = "form-horizontal" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">
+                                                    Year
+                                                </label>
+                                                <div class="col-md-4">
+                                                    @Html.DropDownList("MedicalYear", null, htmlAttributes: new { @class = "form-control", onchange = "this.form.submit();" })
+                                                </div>
+                                            </div>
+                                        }
+                                        <br />
+
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Patient Name</th>
+                                                        <th>Treatment Date</th>
+                                                        <th>Description</th>
+                                                        <th>Apply Date</th>
+                                                        <th>Status</th>
+                                                        <th class="number">Amount</th>
+                                                        <th>&nbsp;</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model.AvailedMedicalsList)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.PatientName</td>
+                                                            <td>@item.TreatmentDate.Value.ToString("dd MMM yyyy")</td>
+                                                            <td>@item.Description</td>
+                                                            <td>@item.RequestDate.Value.ToString("dd MMM yyyy")</td>
+                                                            <td>@item.Status</td>
+                                                            <td class="number">Rs @item.Amount</td>
+                                                            <td>
+                                                                @using (Html.BeginForm("DownloadPrescriptions", "Medical", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                {
+                                                                    @Html.AntiForgeryToken()
+                                                                    @Html.Hidden("CheckoutId", item.Id)
+
+                                                                    <button type="submit" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                        <i class="icon icon-left mdi mdi-download"></i>
+                                                                        Prescriptions
+                                                                    </button>
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                    <tr>
+                                                        <td colspan="7" style="border-bottom: 1px solid white;">&nbsp;</td>
+                                                    </tr>
+                                                    <tr style="background-color:gray; color: white;">
+                                                        <td>Total Amount</td>
+                                                        <td colspan="4">&nbsp;</td>
+                                                        <td class="number">Rs @Model.AvailedMedicalsList.Sum(x => x.Amount)</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="text-center">No availed medical found</h5><br />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_ApplyMedical", new EmployeeInformationSystem.Model.MedicalCheckoutInfo())
+</div>

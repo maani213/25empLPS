@@ -1,0 +1,49 @@
+﻿@model EmployeeInformationSystem.Model.ApplicantViewModel
+
+@{
+    ViewBag.Title = "Upload Documents";
+    Layout = "~/Views/Shared/_ApplicantLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#alert-message').hide();
+        }, 5000);
+    });
+</script>
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Upload Documents</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+
+                    @Html.Partial("_ApplicantDocumentsPartialView", Model.documentInfoList)
+
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center;">
+                            <a href="@Url.Action("PersonalInfo","Applicant")" class="btn btn-primary btn-spac">
+                                <i class="icon icon-left mdi mdi-arrow-left"></i> &nbsp;
+                                Previous
+                            </a> &nbsp;&nbsp;
+
+                            @if (Model.accountCheckListInfo.IsDocumentsUploaded == true)
+                            {
+                                <a href="@Url.Action("Picture","Applicant")" class="btn btn-success btn-spac">
+                                    Next Step &nbsp;
+                                    <i class="icon icon-left mdi mdi-arrow-right"></i>
+                                </a>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.pdb
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.pdb
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll.config
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.Mvc.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.Razor.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.WebPages.Razor.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.WebPages.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\Microsoft.Web.Infrastructure.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.WebPages.Deployment.dll
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.Mvc.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.Razor.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.WebPages.Razor.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.WebPages.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\Microsoft.Web.Infrastructure.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.WebPages.Deployment.xml
+F:\Website Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.csprojResolveAssemblyReference.cache
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll.config
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.pdb
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.dll
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.xml
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.csprojResolveAssemblyReference.cache
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.dll
+E:\My Data\LPS Portal Versions\v21\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.pdb
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll.config
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.pdb
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.dll
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.dll
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.xml
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.xml
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.dll
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.pdb
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.Mvc.dll
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.Mvc.xml
+F:\LPS Projects\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.csprojResolveAssemblyReference.cache
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll.config
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.dll
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EmployeeInformationSystem.Model.pdb
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.dll
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.xml
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\bin\Debug\System.Web.Mvc.xml
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.csprojResolveAssemblyReference.cache
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.dll
+D:\LPS\LPS Portal v2.0.2\EmployeeInformationSystem\EmployeeInformationSystem.Model\obj\Debug\EmployeeInformationSystem.Model.pdb

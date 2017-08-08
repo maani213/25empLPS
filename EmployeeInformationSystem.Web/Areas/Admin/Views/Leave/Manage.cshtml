@@ -1,0 +1,256 @@
+﻿@model EmployeeInformationSystem.Model.LeaveViewModel
+
+@{
+    ViewBag.Title = "Manage Leaves";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Manage Leaves</div>
+                <div class="panel-body">
+                    @Html.Raw(TempData["Msg"])
+
+                    @using (Html.BeginForm("Manage", "Leave", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Employee</label>
+                            <div class="col-sm-6">
+                                @Html.DropDownListFor(m => m.EmployeeInfoId, (SelectList)ViewBag.EmployeeId, "-- Please Select Employee --", new { @class = "select2 select2-hidden-accessible", onchange = "this.form.submit();" })
+                            </div>
+                        </div>
+                    }
+
+                    <br />
+                    @if (Model != null)
+                    {
+                        <br />
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <a href="@Url.Action("Add","Leave", new { id = Model.EmployeeInfoId})">
+                                    <i class="mdi mdi-plus"></i>
+                                    Add Leave
+                                </a>
+
+                                @*@if (User.IsInRole("SuperAdmin"))
+                                {*@
+                                    <span>&nbsp;| &nbsp;</span>
+                                    <a href="@Url.Action("Reset","Leave", new { id = Model.EmployeeInfoId})">
+                                        <i class="mdi mdi-rotate-right"></i>
+                                        Reset Leaves
+                                    </a>
+                                @*}*@
+                                
+                                <hr />
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <h4 class="xs-mb-20">
+                                        Casual Leaves
+                                    </h4>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Allowed</li>
+                                        <li class="active" style="width:10%;">@Model.CasualLeave.Allowed</li>
+                                    </ol>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Availed</li>
+                                        <li class="active" style="width:10%;">@Model.CasualLeave.Availed</li>
+                                    </ol>
+
+                                    @if (Model.CasualLeave.Remaining > 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #34A853; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.CasualLeave.Remaining</li>
+                                        </ol>
+                                    }
+
+                                    else if (Model.CasualLeave.Remaining == 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #FBBC05; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.CasualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                    else
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #EA4335; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.CasualLeave.Remaining</li>
+                                        </ol>
+                                    }
+
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-striped table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Total Leaves</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="no-border-x">
+                                                @if (Model.CasualLeaveRequestInfoList.Count() > 0)
+                                                {
+                                                    foreach (var item in Model.CasualLeaveRequestInfoList)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
+                                                            <td>@item.EndDate.ToString("dd MMMM yyyy")</td>
+                                                            <td>
+                                                                @{
+                                                                    int _totalLeaves = EmployeeInformationSystem.Web.Common.LeavesCounter.CountLeavesWithoutWeekend(item.StartDate, item.EndDate);
+                                                                }
+                                                                @_totalLeaves
+                                                            </td>
+                                                            <td>
+                                                                @using (Html.BeginForm("Delete", "Leave", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                {
+                                                                    @Html.AntiForgeryToken()
+                                                                    @Html.Hidden("LeaveId", item.Id)
+                                                                    @Html.Hidden("EmployeeInfoId", Model.EmployeeInfoId)
+
+                                                                    <a href="@Url.Action("Update", "Leave", new { id = item.Id})">
+                                                                        <i class="icon icon-left mdi mdi-edit"></i>
+                                                                        Edit
+                                                                    </a><span>&nbsp;|&nbsp;</span>
+
+                                                                    <button type="submit" onclick="return confirm('Are you sure want to delete this leave(s)?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                        <i class="icon icon-left mdi mdi-delete"></i>
+                                                                        Delete
+                                                                    </button>
+                                                                }
+
+                                                            </td>
+                                                        </tr>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <tr>
+                                                                            <td colspan="4" style="text-align:center;">No casual leave(s) availed</td>
+                                                                        </tr>
+
+                                                                    }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <h4 class="xs-mb-20">
+                                        Annual Leaves
+                                    </h4>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Allowed</li>
+                                        <li class="active" style="width:10%;">@Model.AnnualLeave.Allowed</li>
+                                    </ol>
+
+                                    <ol class="breadcrumb">
+                                        <li class="active" style="width:60%;">Total Leaves Availed</li>
+                                        <li class="active" style="width:10%;">@Model.AnnualLeave.Availed</li>
+                                    </ol>
+
+                                    @if (Model.AnnualLeave.Remaining > 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #34A853; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.AnnualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                    else if (Model.AnnualLeave.Remaining == 0)
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #FBBC05; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.AnnualLeave.Remaining</li>
+                                        </ol>
+                                    }
+                                    else
+                                    {
+                                        <ol class="breadcrumb" style="background-color: #EA4335; color: white !important">
+                                            <li style="width:60%;">Total Leaves Remaining</li>
+                                            <li style="width:10%;">@Model.AnnualLeave.Remaining</li>
+                                        </ol>
+                                    }
+
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-striped table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                    <th>Total Leaves</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="no-border-x">
+                                                @if (Model.AnnualLeaveRequestInfoList.Count() > 0)
+                                                {
+                                                    foreach (var item in Model.AnnualLeaveRequestInfoList)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.StartDate.ToString("dd MMMM yyyy")</td>
+                                                            <td>@item.EndDate.ToString("dd MMMM yyyy")</td>
+                                                            <td>
+                                                                @{
+                                                                    int _totalLeaves = EmployeeInformationSystem.Web.Common.LeavesCounter.CountLeavesWithoutWeekend(item.StartDate, item.EndDate);
+                                                                }
+
+                                                                @_totalLeaves
+                                                            </td>
+                                                            <td>
+                                                                @using (Html.BeginForm("Delete", "Leave", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                                                                {
+                                                                    @Html.AntiForgeryToken()
+                                                                    @Html.Hidden("LeaveId", item.Id)
+                                                                    @Html.Hidden("EmployeeInfoId", Model.EmployeeInfoId)
+
+                                                                    <a href="@Url.Action("Update", "Leave", new { id = item.Id })">
+                                                                        <i class="icon icon-left mdi mdi-edit"></i>
+                                                                        Edit
+                                                                    </a><span>&nbsp;|&nbsp;</span>
+
+                                                                    <button type="submit" onclick="return confirm('Are you sure want to delete this leave(s)?');" style="border: 0px; background-color: transparent; color: #4285F4;  cursor: hand;">
+                                                                        <i class="icon icon-left mdi mdi-delete"></i>
+                                                                        Delete
+                                                                    </button>
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <tr>
+                                                                            <td colspan="4" style="text-align:center;">No annual leave(s) availed</td>
+                                                                        </tr>
+
+                                                                    }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                                    }
+
+                                                                    else
+                                                                    {
+                                                                        <h5 class="text-center">Select employee from the list</h5>
+                                                                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

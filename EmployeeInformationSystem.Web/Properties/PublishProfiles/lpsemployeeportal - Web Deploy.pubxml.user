@@ -1,0 +1,1358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAATSl/oXSsSEiEJsR5yTSNOwAAAAACAAAAAAAQZgAAAAEAACAAAACln3dw4WKiQ35TSwRgFNuZZYtnaAIcBITHdJ0RU8VBwAAAAAAOgAAAAAIAACAAAACcciy6wZDnyYWde4DqhD+mqblPLf255p1dAtPyxyqeHIAAAADvnI6XYvg/+Qk/ycJbfId4JOwbuBB/JQ3ztk7tCAPdCxDTwvkDaFRDDldItE3N1G6VBuJ8YL1k8IanuxbzM27+p97nGmLcI/ZDP0zKf8InTyezjppCxe+14sIuJinb4o0uiPAhdAi7+Qt9GZTJwWSBGW9qP6J8G7k+kbK00WRGdEAAAADDSF+2OyWqcMSbTCo8vyhtxME7KQIqPNjZ9aBbxep5Bg2hZU7YMfaUqDDxtYNzWYQdNlNiJ7JVCMfn94T93Ma5</EncryptedPassword>
+    <_PublishTargetUrl>C:\Users\Muhammad Sharif\Desktop\LPS Portal Compiled</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="App_Browsers/qt.browser">
+      <publishTime>01/20/2017 19:19:01</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Account/Create.cshtml">
+      <publishTime>05/23/2017 16:02:06</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Account/Manage.cshtml">
+      <publishTime>05/25/2017 17:02:55</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Account/Update.cshtml">
+      <publishTime>05/24/2017 21:05:34</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Announcement/Create.cshtml">
+      <publishTime>05/23/2017 16:02:31</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Announcement/Manage.cshtml">
+      <publishTime>05/23/2017 16:02:38</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Announcement/Update.cshtml">
+      <publishTime>05/23/2017 16:02:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Family/Add.cshtml">
+      <publishTime>07/05/2017 19:19:39</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Family/Update.cshtml">
+      <publishTime>05/28/2017 16:42:15</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Gallery/CreateAlbum.cshtml">
+      <publishTime>05/23/2017 16:02:56</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Gallery/Manage.cshtml">
+      <publishTime>05/23/2017 16:03:02</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Gallery/UpdateAlbum.cshtml">
+      <publishTime>05/23/2017 16:03:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Gallery/UploadPhotos.cshtml">
+      <publishTime>05/29/2017 17:27:07</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Home/Dashboard.cshtml">
+      <publishTime>05/29/2017 23:48:52</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Leave/Add.cshtml">
+      <publishTime>05/25/2017 20:39:14</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Leave/Manage.cshtml">
+      <publishTime>05/24/2017 19:39:05</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Leave/RequestDetails.cshtml">
+      <publishTime>05/23/2017 16:04:25</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Leave/Requests.cshtml">
+      <publishTime>05/23/2017 16:04:32</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Leave/Reset.cshtml">
+      <publishTime>05/23/2017 16:04:38</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Leave/Update.cshtml">
+      <publishTime>05/25/2017 20:48:24</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Medical/Allowance.cshtml">
+      <publishTime>05/23/2017 16:05:08</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Medical/CreateAllowance.cshtml">
+      <publishTime>05/25/2017 20:51:45</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Medical/Manage.cshtml">
+      <publishTime>05/23/2017 16:05:19</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Medical/RequestDetails.cshtml">
+      <publishTime>05/23/2017 16:05:41</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Medical/Requests.cshtml">
+      <publishTime>05/23/2017 16:05:49</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Medical/UpdateAllowance.cshtml">
+      <publishTime>05/25/2017 20:53:09</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Medical/ViewPrescription.cshtml">
+      <publishTime>05/23/2017 16:06:02</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Profile/Manage.cshtml">
+      <publishTime>05/30/2017 21:28:32</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Profile/Update.cshtml">
+      <publishTime>05/25/2017 16:28:07</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Profile/UpdateMyInfo.cshtml">
+      <publishTime>05/23/2017 16:07:01</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Salary/Details.cshtml">
+      <publishTime>05/25/2017 19:01:20</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Salary/Manage.cshtml">
+      <publishTime>05/23/2017 16:07:38</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Salary/Update.cshtml">
+      <publishTime>03/16/2017 18:21:41</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Shared/_PayslipPrintPreview.cshtml">
+      <publishTime>05/23/2017 18:06:28</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/web.config">
+      <publishTime>03/10/2017 17:10:11</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Attendance/Details.cshtml">
+      <publishTime>05/31/2017 17:25:47</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Gallery/Albums.cshtml">
+      <publishTime>05/23/2017 16:08:35</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Gallery/Photos.cshtml">
+      <publishTime>05/29/2017 17:31:49</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Home/Announcements.cshtml">
+      <publishTime>03/21/2017 21:43:55</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Home/Dashboard.cshtml">
+      <publishTime>05/29/2017 23:49:50</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Home/GeneralInfo.cshtml">
+      <publishTime>05/28/2017 15:21:52</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Leave/Details.cshtml">
+      <publishTime>05/23/2017 18:23:48</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Medical/Apply.cshtml">
+      <publishTime>05/25/2017 22:39:16</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Medical/Details.cshtml">
+      <publishTime>05/23/2017 16:36:54</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Medical/UpdateCheckout.cshtml">
+      <publishTime>05/26/2017 23:08:07</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Salary/Details.cshtml">
+      <publishTime>05/23/2017 18:15:53</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Shared/_ApplyLeaves.cshtml">
+      <publishTime>05/09/2017 19:35:56</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Shared/_ApplyMedical.cshtml">
+      <publishTime>05/24/2017 16:12:04</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Shared/_AvailedLeaves.cshtml">
+      <publishTime>03/20/2017 22:11:27</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Shared/_PayslipPrintPreview.cshtml">
+      <publishTime>05/23/2017 16:55:53</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/Tax/Details.cshtml">
+      <publishTime>05/23/2017 16:11:21</publishTime>
+    </File>
+    <File Include="Areas/Employee/Views/web.config">
+      <publishTime>03/07/2017 20:25:30</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Account/ResetPassword.cshtml">
+      <publishTime>05/23/2017 16:11:36</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Family/Add.cshtml">
+      <publishTime>05/26/2017 23:12:05</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Family/Details.cshtml">
+      <publishTime>05/26/2017 23:11:57</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Family/Update.cshtml">
+      <publishTime>05/26/2017 23:11:45</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/File/UploadDocuments.cshtml">
+      <publishTime>05/31/2017 17:09:42</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/File/UploadPicture.cshtml">
+      <publishTime>05/31/2017 17:12:04</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Profile/PersonalInfo.cshtml">
+      <publishTime>05/26/2017 23:11:22</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Shared/_Documents.cshtml">
+      <publishTime>05/26/2017 23:11:13</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Shared/_FamilyDetails.cshtml">
+      <publishTime>05/31/2017 17:08:35</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Shared/_Layout.cshtml">
+      <publishTime>05/31/2017 10:19:48</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Shared/_PersonalInfo.cshtml">
+      <publishTime>05/26/2017 23:10:50</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Shared/_ReviewInfo.cshtml">
+      <publishTime>05/28/2017 15:19:01</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Shared/_UploadOtherDocuments.cshtml">
+      <publishTime>05/26/2017 23:10:32</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/Shared/_WizardProgress.cshtml">
+      <publishTime>05/26/2017 20:53:08</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/web.config">
+      <publishTime>03/07/2017 13:27:08</publishTime>
+    </File>
+    <File Include="Areas/EmployeeReg/Views/_ViewStart.cshtml">
+      <publishTime>03/24/2017 17:06:35</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>01/16/2017 16:10:19</publishTime>
+    </File>
+    <File Include="bin/DotNetZip.dll">
+      <publishTime>06/22/2016 21:31:52</publishTime>
+    </File>
+    <File Include="bin/EmployeeInformationSystem.Business.dll">
+      <publishTime>08/02/2017 19:22:41</publishTime>
+    </File>
+    <File Include="bin/EmployeeInformationSystem.Data.dll">
+      <publishTime>08/02/2017 19:22:40</publishTime>
+    </File>
+    <File Include="bin/EmployeeInformationSystem.Model.dll">
+      <publishTime>08/02/2017 19:22:40</publishTime>
+    </File>
+    <File Include="bin/EmployeeInformationSystem.Web.dll">
+      <publishTime>08/02/2017 19:22:46</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>01/16/2017 19:01:53</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>01/16/2017 19:01:53</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>01/16/2017 16:10:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>02/13/2015 13:16:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>02/13/2015 13:16:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>02/13/2015 13:16:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>02/13/2015 13:16:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>01/16/2017 16:10:18</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>01/16/2017 16:10:23</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/13/2012 12:19:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>01/16/2017 16:10:25</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>01/16/2017 16:10:25</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>01/16/2017 16:10:26</publishTime>
+    </File>
+    <File Include="bin/Rotativa.dll">
+      <publishTime>01/20/2017 19:18:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/16/2017 16:10:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/16/2017 16:10:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>01/16/2017 16:10:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/16/2017 16:10:16</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/16/2017 16:10:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/16/2017 16:10:17</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/16/2017 16:10:17</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>01/16/2017 16:10:19</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/album-coverphotos/default-album-cover.jpg">
+      <publishTime>02/27/2017 17:55:32</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/chosen-sprite.png">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/chosen.css">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/chosen.js">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/chosen.min.js">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/Locale.de-DE.Chosen.js">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/Locale.en-US.Chosen.js">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/Locale.es-ES.Chosen.js">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/Locale.it-IT.Chosen.js">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/Locale.pt-BR.Chosen.js">
+      <publishTime>05/09/2017 17:17:37</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/Chosen/mootools-more-1.4.0.1.js">
+      <publishTime>05/09/2017 17:22:28</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/css/style.css">
+      <publishTime>03/21/2017 16:41:35</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/employee-documents/16-7d873fde-834a-4a86-ae90-62ee784a201cM Sharif.jpg">
+      <publishTime>01/30/2017 16:43:44</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/employee-documents/16-fc1a7ca9-e6cd-48bc-a296-c87bf419567cM Sharif.jpg">
+      <publishTime>01/30/2017 16:43:39</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/employee-documents/17-43ddec1e-fc70-4f3d-a185-bf7f101d4ad5nadir-pic.jpg">
+      <publishTime>01/30/2017 17:44:25</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/employee-documents/17-72573f42-70e6-4e73-8a91-b7756655ac26nadir-pic.jpg">
+      <publishTime>01/30/2017 17:44:30</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/employee-img/1.jpg">
+      <publishTime>01/18/2017 18:31:47</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/employee-img/4.jpg">
+      <publishTime>01/30/2017 16:58:18</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/employee-img/5.jpg">
+      <publishTime>01/30/2017 17:44:38</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/140x140.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/404-bg.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/admin_banner.jpg">
+      <publishTime>03/29/2017 12:30:34</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar-150.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar1.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar2.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar3.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar4.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar5.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/avatar6.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/bitbucket.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/dribbble.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/dropbox.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/eis_banner.jpg">
+      <publishTime>01/18/2017 20:16:03</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/employee_banner.jpg">
+      <publishTime>03/29/2017 12:54:01</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img1.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img10.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img11.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img12.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img2.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img3.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img4.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img5.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img6.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img7.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img8.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/gallery/img9.jpg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/github.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/logo-fav.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/logo-symbol.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/logo-white-xx.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/logo-white.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/logo-xx.png">
+      <publishTime>01/19/2017 20:07:54</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/logo-xx1.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/logo.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/lps-logo.jpg">
+      <publishTime>01/16/2017 17:41:35</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/mail_chimp.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/new_notice.gif">
+      <publishTime>01/18/2017 20:42:19</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/online_banner.jpg">
+      <publishTime>01/18/2017 19:21:35</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/online_banner2.jpg">
+      <publishTime>01/18/2017 20:05:36</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/online_banner3.jpg">
+      <publishTime>01/18/2017 20:49:57</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/slack.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/img/user-profile-display.png">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/js/main.js">
+      <publishTime>05/08/2017 23:26:43</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap-markdown/js/bootstrap-markdown.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap-multiselect/css/bootstrap-multiselect.css">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap-multiselect/js/bootstrap-multiselect.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap-slider/css/bootstrap-slider.css">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap-slider/js/bootstrap-slider.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/fonts/glyphicons-halflings-regulard41d.eot">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/js/bootstrap.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/bootstrap/dist/js/bootstrap.min.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/chartjs/Chart.min.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/countup/countUp.min.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/css/dataTables.bootstrap.min.css">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/js/dataTables.bootstrap.min.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/js/jquery.dataTables.min.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/plugins/buttons/js/buttons.bootstrap.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/plugins/buttons/js/buttons.colVis.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/plugins/buttons/js/buttons.flash.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/plugins/buttons/js/buttons.html5.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/plugins/buttons/js/buttons.print.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datatables/plugins/buttons/js/dataTables.buttons.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/daterangepicker/css/daterangepicker.css">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/daterangepicker/js/daterangepicker.js">
+      <publishTime>01/16/2017 16:17:04</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datetimepicker/css/bootstrap-datetimepicker.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datetimepicker/js/bootstrap-datetimepicker.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/dropzone/dist/dropzone.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/dropzone/dist/dropzone.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/font-awesome/css/font-awesome.min.html">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/fuelux/js/wizard.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery-flot/jquery.flot.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery-flot/jquery.flot.pie.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery-flot/jquery.flot.resize.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery-flot/plugins/curvedLines.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery-flot/plugins/jquery.flot.orderBars.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery-ui/jquery-ui.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery-ui/jquery-ui.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.fullcalendar/fullcalendar.min.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.fullcalendar/fullcalendar.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.gritter/css/jquery.gritter.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.gritter/images/gritter-bg.png">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.gritter/images/gritter-light.png">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.gritter/images/gritter.png">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.gritter/images/ie-spacer.gif">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.gritter/js/jquery.gritter.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.magnific-popup/jquery.magnific-popup.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.magnific-popup/jquery.magnific-popup.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.magnific-popup/magnific-popup.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.maskedinput/jquery.maskedinput.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.nestable/jquery.nestable.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.niftymodals/dist/jquery.niftymodals.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.sparkline/jquery.sparkline.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-au-mill-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-ca-lcc-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-fr-merc-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-in-mill-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-map.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-uk-mill-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-us-il-chicago-mill-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery/jquery.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jquery/jquery.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jqvmap/jquery.vmap.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jqvmap/jqvmap.min.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/jqvmap/maps/jquery.vmap.world.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/markdown-js/markdown.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/masonry/masonry.pkgd.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/masonry/masonry.pkgd.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/material-design-icons/css/material-design-iconic-font.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/material-design-icons/css/material-design-iconic-font.min.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/material-design-icons/fonts/Material-Design-Iconic-Fontd1f1.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/material-design-icons/fonts/Material-Design-Iconic-Fontd1f1.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/material-design-icons/fonts/Material-Design-Iconic-Fontd1f1.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/moment.js/min/moment.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/moment.js/min/moment.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/morrisjs/morris.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/morrisjs/morris.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/multiselect/css/multi-select.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/multiselect/img/switch.png">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/multiselect/js/jquery.multi-select.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/parsley/parsley.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/perfect-scrollbar/css/perfect-scrollbar.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/prettify/prettify.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/quicksearch/jquery.quicksearch.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/quicksearch/jquery.quicksearch.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/raphael/raphael-min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Black.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Black.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Black.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Black.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Black.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Blackd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BlackItalic.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BlackItalic.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BlackItalic.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BlackItalic.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BlackItalic.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BlackItalicd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Bold.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Bold.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Bold.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Bold.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Bold.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Boldd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BoldItalic.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BoldItalic.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BoldItalic.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BoldItalic.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BoldItalic.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-BoldItalicd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Light.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Light.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Light.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Light.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Light.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Lightd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-LightItalic.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-LightItalic.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-LightItalic.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-LightItalic.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-LightItalic.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-LightItalicd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Medium.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Medium.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Medium.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Medium.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Medium.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Mediumd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-MediumItalic.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-MediumItalic.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-MediumItalic.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-MediumItalic.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-MediumItalic.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-MediumItalicd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Regular.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Regular.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Regular.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Regular.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Regular.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Regulard41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-RegularItalic.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-RegularItalic.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-RegularItalic.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-RegularItalic.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-RegularItalic.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-RegularItalicd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Thin.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Thin.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Thin.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Thin.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Thin.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-Thind41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-ThinItalic.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-ThinItalic.svg">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-ThinItalic.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-ThinItalic.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-ThinItalic.woff2">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/roboto/Roboto-ThinItalicd41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/select2/css/select2.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/select2/css/select2.min.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/select2/js/select2.full.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/select2/js/select2.full.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/select2/js/select2.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/select2/js/select2.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/summernote/font/summernoted41d.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/summernote/font/summernotef534.eot">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/summernote/font/summernotef534.ttf">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/summernote/font/summernotef534.woff">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/summernote/summernote-ext-beagle.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/summernote/summernote.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/summernote/summernote.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/x-editable/bootstrap3-editable/css/bootstrap-editable.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/x-editable/bootstrap3-editable/img/clear.png">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/x-editable/bootstrap3-editable/img/loading.gif">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/x-editable/bootstrap3-editable/js/bootstrap-editable.min.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/x-editable/inputs-ext/typeaheadjs/lib/typeahead.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/x-editable/inputs-ext/typeaheadjs/lib/typeahead.js-bootstrap.css">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/beagle_Theme/assets/lib/x-editable/inputs-ext/typeaheadjs/typeaheadjs.js">
+      <publishTime>01/16/2017 16:17:05</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>01/16/2017 16:10:02</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>01/16/2017 16:10:02</publishTime>
+    </File>
+    <File Include="Content/default-album-cover.jpg">
+      <publishTime>03/24/2017 21:11:42</publishTime>
+    </File>
+    <File Include="Content/new.gif">
+      <publishTime>03/21/2017 17:40:11</publishTime>
+    </File>
+    <File Include="Content/online_banner.jpg">
+      <publishTime>03/29/2017 12:16:36</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>01/16/2017 16:09:46</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>01/16/2017 16:09:46</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/16/2017 16:10:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/16/2017 16:10:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/16/2017 16:10:01</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/16/2017 16:10:01</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/16/2017 16:09:46</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>05/15/2017 22:22:18</publishTime>
+    </File>
+    <File Include="Rotativa/wkhtmltopdf.exe">
+      <publishTime>01/20/2017 19:19:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>01/16/2017 16:10:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>01/16/2017 16:10:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>01/16/2017 16:10:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>01/16/2017 16:10:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>01/16/2017 16:10:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.min.js">
+      <publishTime>02/28/2017 21:06:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery.js">
+      <publishTime>02/28/2017 21:06:03</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>01/16/2017 16:10:20</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>01/16/2017 16:10:20</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>01/16/2017 16:10:20</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>01/16/2017 16:10:20</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>01/16/2017 16:10:18</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>01/16/2017 16:10:19</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>01/16/2017 16:10:19</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>05/22/2017 20:30:44</publishTime>
+    </File>
+    <File Include="Views/Admin/AddAnnouncement.cshtml">
+      <publishTime>02/21/2017 17:20:56</publishTime>
+    </File>
+    <File Include="Views/Admin/AddLeave.cshtml">
+      <publishTime>02/17/2017 16:14:12</publishTime>
+    </File>
+    <File Include="Views/Admin/AdjustLeaves.cshtml">
+      <publishTime>02/22/2017 16:28:54</publishTime>
+    </File>
+    <File Include="Views/Admin/CreateAlbum.cshtml">
+      <publishTime>02/24/2017 22:46:08</publishTime>
+    </File>
+    <File Include="Views/Admin/CreateEmployeeAccount.cshtml">
+      <publishTime>01/24/2017 21:21:02</publishTime>
+    </File>
+    <File Include="Views/Admin/Dashboard.cshtml">
+      <publishTime>02/20/2017 20:05:35</publishTime>
+    </File>
+    <File Include="Views/Admin/EmployeeGeneralInfo.cshtml">
+      <publishTime>02/22/2017 16:16:48</publishTime>
+    </File>
+    <File Include="Views/Admin/EmployeeSalaries.cshtml">
+      <publishTime>02/22/2017 16:27:38</publishTime>
+    </File>
+    <File Include="Views/Admin/LeavesRequest.cshtml">
+      <publishTime>02/15/2017 21:50:45</publishTime>
+    </File>
+    <File Include="Views/Admin/LeavesRequestDetails.cshtml">
+      <publishTime>02/17/2017 22:16:42</publishTime>
+    </File>
+    <File Include="Views/Admin/ManageAccounts.cshtml">
+      <publishTime>02/24/2017 14:18:09</publishTime>
+    </File>
+    <File Include="Views/Admin/ManageAnnouncements.cshtml">
+      <publishTime>02/21/2017 21:13:24</publishTime>
+    </File>
+    <File Include="Views/Admin/ManageGallery.cshtml">
+      <publishTime>03/03/2017 20:08:05</publishTime>
+    </File>
+    <File Include="Views/Admin/ManageSalaries.cshtml">
+      <publishTime>02/21/2017 18:15:47</publishTime>
+    </File>
+    <File Include="Views/Admin/ResetLeaves.cshtml">
+      <publishTime>02/17/2017 20:46:49</publishTime>
+    </File>
+    <File Include="Views/Admin/UpdateAlbum.cshtml">
+      <publishTime>02/27/2017 20:43:58</publishTime>
+    </File>
+    <File Include="Views/Admin/UpdateAnnouncement.cshtml">
+      <publishTime>02/21/2017 17:22:13</publishTime>
+    </File>
+    <File Include="Views/Admin/UpdateEmployeeAccount.cshtml">
+      <publishTime>01/25/2017 17:15:47</publishTime>
+    </File>
+    <File Include="Views/Admin/UpdateEmployeeGeneralInfo.cshtml">
+      <publishTime>02/21/2017 20:24:05</publishTime>
+    </File>
+    <File Include="Views/Admin/UpdateLeave.cshtml">
+      <publishTime>02/17/2017 19:51:31</publishTime>
+    </File>
+    <File Include="Views/Admin/UpdateSalary.cshtml">
+      <publishTime>02/15/2017 16:49:21</publishTime>
+    </File>
+    <File Include="Views/Admin/UploadPhotos.cshtml">
+      <publishTime>03/03/2017 18:58:02</publishTime>
+    </File>
+    <File Include="Views/Admin/_EditLeavePartialView.cshtml">
+      <publishTime>02/16/2017 22:24:09</publishTime>
+    </File>
+    <File Include="Views/Applicant/ChangeNewPassword.cshtml">
+      <publishTime>02/20/2017 22:15:32</publishTime>
+    </File>
+    <File Include="Views/Applicant/ChangeNewPassword1.cshtml">
+      <publishTime>01/30/2017 14:14:45</publishTime>
+    </File>
+    <File Include="Views/Applicant/Documents.cshtml">
+      <publishTime>02/24/2017 15:11:43</publishTime>
+    </File>
+    <File Include="Views/Applicant/PersonalInfo.cshtml">
+      <publishTime>02/24/2017 15:11:49</publishTime>
+    </File>
+    <File Include="Views/Applicant/Picture.cshtml">
+      <publishTime>02/24/2017 15:11:37</publishTime>
+    </File>
+    <File Include="Views/Applicant/_ApplicantDocumentsPartialView.cshtml">
+      <publishTime>01/30/2017 17:04:52</publishTime>
+    </File>
+    <File Include="Views/Applicant/_ApplicantPersonalInfoPartialView.cshtml">
+      <publishTime>02/15/2017 20:58:23</publishTime>
+    </File>
+    <File Include="Views/Auth/ChangeNewPassword.cshtml">
+      <publishTime>05/23/2017 15:07:36</publishTime>
+    </File>
+    <File Include="Views/Auth/ChangePassword.cshtml">
+      <publishTime>05/23/2017 15:07:57</publishTime>
+    </File>
+    <File Include="Views/Auth/ForgotPassword.cshtml">
+      <publishTime>05/23/2017 15:08:17</publishTime>
+    </File>
+    <File Include="Views/Auth/Login.cshtml">
+      <publishTime>07/31/2017 14:07:40</publishTime>
+    </File>
+    <File Include="Views/Auth/ResetPassword.cshtml">
+      <publishTime>05/23/2017 15:08:45</publishTime>
+    </File>
+    <File Include="Views/Auth/Verify.cshtml">
+      <publishTime>05/23/2017 15:08:57</publishTime>
+    </File>
+    <File Include="Views/Employee/AlbumPhotos.cshtml">
+      <publishTime>03/03/2017 21:11:38</publishTime>
+    </File>
+    <File Include="Views/Employee/Announcement.cshtml">
+      <publishTime>02/21/2017 21:09:37</publishTime>
+    </File>
+    <File Include="Views/Employee/Attendence.cshtml">
+      <publishTime>02/15/2017 21:55:01</publishTime>
+    </File>
+    <File Include="Views/Employee/Dashboard.cshtml">
+      <publishTime>01/30/2017 14:16:00</publishTime>
+    </File>
+    <File Include="Views/Employee/Gallery.cshtml">
+      <publishTime>03/03/2017 21:03:33</publishTime>
+    </File>
+    <File Include="Views/Employee/GeneralInfo.cshtml">
+      <publishTime>01/30/2017 15:02:31</publishTime>
+    </File>
+    <File Include="Views/Employee/Leave.cshtml">
+      <publishTime>02/24/2017 15:24:46</publishTime>
+    </File>
+    <File Include="Views/Employee/Payslip.cshtml">
+      <publishTime>02/08/2017 20:28:25</publishTime>
+    </File>
+    <File Include="Views/Employee/Salary.cshtml">
+      <publishTime>02/22/2017 15:09:38</publishTime>
+    </File>
+    <File Include="Views/Employee/Tax.cshtml">
+      <publishTime>02/15/2017 21:48:26</publishTime>
+    </File>
+    <File Include="Views/Employee/_AnnualLeavesPartialView.cshtml">
+      <publishTime>02/07/2017 19:56:40</publishTime>
+    </File>
+    <File Include="Views/Employee/_ApplyLeavesPartialView.cshtml">
+      <publishTime>02/20/2017 18:51:54</publishTime>
+    </File>
+    <File Include="Views/Employee/_AvailedLeavesPartialView.cshtml">
+      <publishTime>02/20/2017 17:31:32</publishTime>
+    </File>
+    <File Include="Views/Employee/_CasualLeavesPartialView.cshtml">
+      <publishTime>02/07/2017 19:59:39</publishTime>
+    </File>
+    <File Include="Views/Employee/_PayslipPrintPreviewPartialView.cshtml">
+      <publishTime>02/22/2017 15:14:00</publishTime>
+    </File>
+    <File Include="Views/Error/PageNotFound.cshtml">
+      <publishTime>05/23/2017 15:03:38</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>03/10/2017 17:09:08</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminMenu.cshtml">
+      <publishTime>05/18/2017 23:05:55</publishTime>
+    </File>
+    <File Include="Views/Shared/_ApplicantLayout.cshtml">
+      <publishTime>02/15/2017 19:33:52</publishTime>
+    </File>
+    <File Include="Views/Shared/_EmployeeMenu.cshtml">
+      <publishTime>05/02/2017 15:33:16</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>07/05/2017 19:10:08</publishTime>
+    </File>
+    <File Include="Views/Test/Index.cshtml">
+      <publishTime>02/28/2017 17:58:11</publishTime>
+    </File>
+    <File Include="Views/Test/Upload.cshtml">
+      <publishTime>03/03/2017 14:28:29</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>07/05/2017 19:28:58</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/16/2017 16:09:46</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/30/2017 18:04:51</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

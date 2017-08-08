@@ -1,0 +1,58 @@
+﻿@model EmployeeInformationSystem.Model.LeaveRequestInfo
+
+<!--Form Modals-->
+<div id="apply-leaves" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+    <div class="modal-dialog custom-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close"></span></button>
+                <h3 class="modal-title">Apply For Leaves</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-border-color panel-border-color-warning">
+                    <div class="col-md-10 col-md-push-1">
+                        @using (Html.BeginForm("ApplyLeaves", "Leave", FormMethod.Post, new { @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-group">
+                                <label>Total Leaves</label>
+                                <input type="text" name="LeaveDate" id="LeaveDate" class="form-control daterange" readonly style="background-color:white;">
+                            </div>
+                            <div class="form-group">
+                                <label>Leave Type</label>
+                                <select class="form-control" id="LeaveType" name="LeaveType">
+                                    @if (Model.IsCasualLeaveAvailed == true && Model.IsAnnualLeaveAvailed == false)
+                                    {
+                                        <option value="Annual">Annual</option>
+                                    }
+                                    else if (Model.IsAnnualLeaveAvailed == true && Model.IsCasualLeaveAvailed == false)
+                                    {
+                                        <option value="Casual">Casual</option>
+                                    }
+                                    else if (Model.IsAnnualLeaveAvailed == false && Model.IsCasualLeaveAvailed == false)
+                                    {
+                                        <option value="Casual">Casual</option>
+                                        <option value="Annual">Annual</option>
+                                    }
+                                    else
+                                    {
+                                        <option value=""></option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Reason</label>
+                                @Html.TextAreaFor(model => model.Reason, new { @class = "form-control", @rows = 3, @style = "resize: none;" })
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" data-dismiss="modal" class="btn btn-default md-close">Cancel</button>
+                                <button type="submit" onclick="return confirm('Are you sure want to apply for selected Leave(s)?');" class="btn btn-primary md-close">Proceed</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@model EmployeeInformationSystem.Model.DocumentInfo
+
+@using (Html.BeginForm("UploadDocuments", "File", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal group-border-dashed", @style = "border-radius: 0px;" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("DocumentType", "Other")
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Document Name</label>
+        <div class="col-sm-3">
+            @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FileName)
+            <br />
+        </div>
+
+        <div class="col-sm-3">
+            <input type="file" name="file" id="file" class="form-control">
+            <br />
+        </div>
+
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-space btn-primary">
+                <i class="icon icon-left mdi mdi mdi-upload"></i>
+                Upload
+            </button>
+        </div>
+    </div>
+}

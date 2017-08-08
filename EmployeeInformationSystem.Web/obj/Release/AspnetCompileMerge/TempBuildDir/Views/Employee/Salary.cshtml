@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EmployeeInformationSystem.Model.SalaryInfo>
+
+@{
+    ViewBag.Title = "Salary Details";
+}
+
+<div class="main-content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-heading panel-heading-divider">Salary Details</div>
+                <div class="panel-body">
+                    <br />
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-10 col-md-push-1">
+                                <div class="panel panel-border-color panel-border-color-warning">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Month</th>
+                                                <th>Net Payable Amount (PKR)</th>
+                                                <th class="actions"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                decimal netPayableSalary = Convert.ToDecimal((item.BasicSalary + item.HouseRent + item.MedicalAllowance) - (item.IncomTax + item.LoanDeduction));
+                                                <tr>
+                                                    <td>@item.SalaryDate.ToString("MMMM")</td>
+                                                    <td>@netPayableSalary</td>
+                                                    <td class="actions"><a href="@Url.Action("Payslip","Employee", new {id = item.Id })">Payslip</a></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <h5 class="text-center">No salary found</h5>
+                    }
+
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
